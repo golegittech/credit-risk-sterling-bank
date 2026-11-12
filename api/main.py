@@ -35,9 +35,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-MODELS_DIR = "models"
-RESULTS_DIR = "results"
-DATA_DIR = "data"
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MODELS_DIR = os.path.join(BASE_DIR, "models")
+RESULTS_DIR = os.path.join(BASE_DIR, "results")
+DATA_DIR = os.path.join(BASE_DIR, "data")
 
 # Mount results directory to serve generated charts & curves directly
 if os.path.exists(RESULTS_DIR):
@@ -383,15 +384,15 @@ def dashboard_html():
                                         <option value="retail">Retail SME Portfolio</option>
                                     </select>
                                 </div>
-                                <p class="text-muted small">Global SHAP feature importance rankings demonstrate the systemic drivers of default across the entire credit portfolio.</p>
+                                <p class="text-muted small">Systemic credit risk direction and feature sensitivity across the portfolio. <strong>Red bars</strong> indicate factors that accelerate default risk; <strong>Green bars</strong> indicate protective factors that reduce default likelihood and support approval.</p>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h6 class="fw-bold text-center">SHAP Global Beeswarm Summary</h6>
-                                        <img id="xaiBeeswarmImg" src="/results/personal_shap_beeswarm.png" class="chart-img" alt="SHAP Beeswarm">
+                                        <h6 class="fw-bold text-center text-danger"><i class="fa-solid fa-arrows-split-up-and-left me-1"></i>Risk Accelerators vs. Protective Mitigators</h6>
+                                        <img id="xaiBeeswarmImg" src="/results/personal_shap_beeswarm.png" class="chart-img" alt="Directional Risk Drivers">
                                     </div>
                                     <div class="col-md-6">
-                                        <h6 class="fw-bold text-center">Mean Absolute |SHAP| Importance Ranking</h6>
-                                        <img id="xaiSummaryImg" src="/results/personal_shap_summary.png" class="chart-img" alt="SHAP Summary">
+                                        <h6 class="fw-bold text-center text-dark"><i class="fa-solid fa-ranking-star me-1"></i>Overall Feature Importance Magnitude</h6>
+                                        <img id="xaiSummaryImg" src="/results/personal_shap_summary.png" class="chart-img" alt="SHAP Importance Summary">
                                     </div>
                                 </div>
                                 <div class="card bg-light p-3 mt-3 border-0">
@@ -685,16 +686,22 @@ def dashboard_html():
             }
 
             async function loadBatchAudit(portfolio) {
+                if (document.getElementById('auditPortfolioSelect')) {
+                    document.getElementById('auditPortfolioSelect').value = portfolio;
+                }
                 const thead = document.getElementById('auditTableHead');
                 const tbody = document.getElementById('auditTableBody');
                 tbody.innerHTML = '<tr><td colspan="10" class="text-center"><div class="spinner-border spinner-border-sm text-danger"></div> Loading 50 accounts...</td></tr>';
 
                 try {
                     const res = await fetch(`/audit-sample/${portfolio}`);
+                    if (!res.ok) {
+                        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                    }
                     const json = await res.json();
                     currentAuditData = json.data;
                     
-                    if (currentAuditData.length > 0) {
+                    if (currentAuditData && currentAuditData.length > 0) {
                         let headHtml = '<tr>';
                         Object.keys(currentAuditData[0]).forEach(k => { headHtml += `<th>${k.replace(/_/g, ' ')}</th>`; });
                         headHtml += '</tr>';
@@ -714,9 +721,12 @@ def dashboard_html():
                             bodyHtml += '</tr>';
                         });
                         tbody.innerHTML = bodyHtml;
+                    } else {
+                        tbody.innerHTML = '<tr><td colspan="10" class="text-muted text-center">No records available.</td></tr>';
                     }
                 } catch (e) {
-                    tbody.innerHTML = '<tr><td colspan="10" class="text-danger text-center">Failed to load audit sample.</td></tr>';
+                    console.error('Audit sample error:', e);
+                    tbody.innerHTML = `<tr><td colspan="10" class="text-danger text-center">Failed to load audit sample (${e.message}).</td></tr>`;
                 }
             }
 
@@ -743,21 +753,25 @@ def dashboard_html():
 
 @app.get("/audit-sample/{portfolio_type}")
 def get_audit_sample(portfolio_type: str):
-    p_type = portfolio_type.lower()
-    csv_file = f"data/{p_type}_loans.csv" if p_type == "personal" else "data/retail_sme_loans.csv"
-    if not os.path.exists(csv_file):
-        raise HTTPException(status_code=404, detail="Data file not found.")
+    p_type = "personal" if "personal" in portfolio_type.lower() else "retail"
+    csv_file = os.path.join(DATA_DIR, f"{p_type}_loans.csv" if p_type == "personal" else "retail_sme_loans.csv")
+    
+    if os.path.exists(csv_file):
+        df = pd.read_csv(csv_file).head(50)
+    else:
+        from src.data_generator import generate_personal_loans, generate_retail_sme_loans
+        df = generate_personal_loans(n_samples=50) if p_type == "personal" else generate_retail_sme_loans(n_samples=50)
     
     model, prep = load_model_and_prep(p_type)
     opt_th = get_optimal_threshold(p_type)
     
-    df = pd.read_csv(csv_file).head(50)
     X_batch, _ = prep.transform_test(df)
     probs = model.predict_proba(X_batch)[:, 1]
     
     df_res = df.copy()
     df_res["Predicted_Default_Prob"] = np.round(probs, 4)
     df_res["Underwriter_Decision"] = np.where(probs < (opt_th * 0.70), "APPROVE", np.where(probs < opt_th, "MANUAL REVIEW", "REJECT"))
+    df_res = df_res.replace({np.nan: "N/A"}).fillna("N/A")
     
     return {"data": df_res.to_dict(orient="records")}
 
