@@ -1,0 +1,4727 @@
+{
+    "Logistic_Regression": {
+        "accuracy": 0.7541666666666667,
+        "precision": 0.17664670658682635,
+        "recall": 0.7468354430379747,
+        "specificity": 0.7546833184656556,
+        "f1_score": 0.2857142857142857,
+        "roc_auc": 0.8553280863605055,
+        "pr_auc": 0.38792441554057444,
+        "tn": 846,
+        "fp": 275,
+        "fn": 20,
+        "tp": 59,
+        "financial_optimization": {
+            "portfolio_type": "personal",
+            "c_fn": 1625000.0,
+            "c_fp": 300000.0,
+            "optimal_threshold": 0.71,
+            "min_financial_loss": 83375000.0,
+            "default_50_loss": 115000000.0,
+            "monetary_savings_ngn": 31625000.0,
+            "savings_percentage": 27.500000000000004,
+            "optimal_metrics": {
+                "threshold": 0.71,
+                "tp": 48.0,
+                "tn": 1011.0,
+                "fp": 110.0,
+                "fn": 31.0,
+                "fn_loss": 50375000.0,
+                "fp_loss": 33000000.0,
+                "total_financial_loss": 83375000.0
+            },
+            "loss_curve": [
+                {
+                    "threshold": 0.05,
+                    "tp": 79,
+                    "tn": 138,
+                    "fp": 983,
+                    "fn": 0,
+                    "fn_loss": 0.0,
+                    "fp_loss": 294900000.0,
+                    "total_financial_loss": 294900000.0
+                },
+                {
+                    "threshold": 0.06,
+                    "tp": 79,
+                    "tn": 168,
+                    "fp": 953,
+                    "fn": 0,
+                    "fn_loss": 0.0,
+                    "fp_loss": 285900000.0,
+                    "total_financial_loss": 285900000.0
+                },
+                {
+                    "threshold": 0.07,
+                    "tp": 79,
+                    "tn": 190,
+                    "fp": 931,
+                    "fn": 0,
+                    "fn_loss": 0.0,
+                    "fp_loss": 279300000.0,
+                    "total_financial_loss": 279300000.0
+                },
+                {
+                    "threshold": 0.08,
+                    "tp": 79,
+                    "tn": 221,
+                    "fp": 900,
+                    "fn": 0,
+                    "fn_loss": 0.0,
+                    "fp_loss": 270000000.0,
+                    "total_financial_loss": 270000000.0
+                },
+                {
+                    "threshold": 0.09,
+                    "tp": 79,
+                    "tn": 253,
+                    "fp": 868,
+                    "fn": 0,
+                    "fn_loss": 0.0,
+                    "fp_loss": 260400000.0,
+                    "total_financial_loss": 260400000.0
+                },
+                {
+                    "threshold": 0.09999999999999999,
+                    "tp": 79,
+                    "tn": 275,
+                    "fp": 846,
+                    "fn": 0,
+                    "fn_loss": 0.0,
+                    "fp_loss": 253800000.0,
+                    "total_financial_loss": 253800000.0
+                },
+                {
+                    "threshold": 0.10999999999999999,
+                    "tp": 79,
+                    "tn": 299,
+                    "fp": 822,
+                    "fn": 0,
+                    "fn_loss": 0.0,
+                    "fp_loss": 246600000.0,
+                    "total_financial_loss": 246600000.0
+                },
+                {
+                    "threshold": 0.12,
+                    "tp": 78,
+                    "tn": 329,
+                    "fp": 792,
+                    "fn": 1,
+                    "fn_loss": 1625000.0,
+                    "fp_loss": 237600000.0,
+                    "total_financial_loss": 239225000.0
+                },
+                {
+                    "threshold": 0.13,
+                    "tp": 78,
+                    "tn": 355,
+                    "fp": 766,
+                    "fn": 1,
+                    "fn_loss": 1625000.0,
+                    "fp_loss": 229800000.0,
+                    "total_financial_loss": 231425000.0
+                },
+                {
+                    "threshold": 0.13999999999999999,
+                    "tp": 78,
+                    "tn": 382,
+                    "fp": 739,
+                    "fn": 1,
+                    "fn_loss": 1625000.0,
+                    "fp_loss": 221700000.0,
+                    "total_financial_loss": 223325000.0
+                },
+                {
+                    "threshold": 0.14999999999999997,
+                    "tp": 77,
+                    "tn": 401,
+                    "fp": 720,
+                    "fn": 2,
+                    "fn_loss": 3250000.0,
+                    "fp_loss": 216000000.0,
+                    "total_financial_loss": 219250000.0
+                },
+                {
+                    "threshold": 0.15999999999999998,
+                    "tp": 77,
+                    "tn": 427,
+                    "fp": 694,
+                    "fn": 2,
+                    "fn_loss": 3250000.0,
+                    "fp_loss": 208200000.0,
+                    "total_financial_loss": 211450000.0
+                },
+                {
+                    "threshold": 0.16999999999999998,
+                    "tp": 76,
+                    "tn": 437,
+                    "fp": 684,
+                    "fn": 3,
+                    "fn_loss": 4875000.0,
+                    "fp_loss": 205200000.0,
+                    "total_financial_loss": 210075000.0
+                },
+                {
+                    "threshold": 0.18,
+                    "tp": 76,
+                    "tn": 457,
+                    "fp": 664,
+                    "fn": 3,
+                    "fn_loss": 4875000.0,
+                    "fp_loss": 199200000.0,
+                    "total_financial_loss": 204075000.0
+                },
+                {
+                    "threshold": 0.19,
+                    "tp": 76,
+                    "tn": 475,
+                    "fp": 646,
+                    "fn": 3,
+                    "fn_loss": 4875000.0,
+                    "fp_loss": 193800000.0,
+                    "total_financial_loss": 198675000.0
+                },
+                {
+                    "threshold": 0.19999999999999996,
+                    "tp": 76,
+                    "tn": 494,
+                    "fp": 627,
+                    "fn": 3,
+                    "fn_loss": 4875000.0,
+                    "fp_loss": 188100000.0,
+                    "total_financial_loss": 192975000.0
+                },
+                {
+                    "threshold": 0.20999999999999996,
+                    "tp": 75,
+                    "tn": 504,
+                    "fp": 617,
+                    "fn": 4,
+                    "fn_loss": 6500000.0,
+                    "fp_loss": 185100000.0,
+                    "total_financial_loss": 191600000.0
+                },
+                {
+                    "threshold": 0.21999999999999997,
+                    "tp": 75,
+                    "tn": 523,
+                    "fp": 598,
+                    "fn": 4,
+                    "fn_loss": 6500000.0,
+                    "fp_loss": 179400000.0,
+                    "total_financial_loss": 185900000.0
+                },
+                {
+                    "threshold": 0.22999999999999998,
+                    "tp": 75,
+                    "tn": 540,
+                    "fp": 581,
+                    "fn": 4,
+                    "fn_loss": 6500000.0,
+                    "fp_loss": 174300000.0,
+                    "total_financial_loss": 180800000.0
+                },
+                {
+                    "threshold": 0.24,
+                    "tp": 75,
+                    "tn": 556,
+                    "fp": 565,
+                    "fn": 4,
+                    "fn_loss": 6500000.0,
+                    "fp_loss": 169500000.0,
+                    "total_financial_loss": 176000000.0
+                },
+                {
+                    "threshold": 0.24999999999999994,
+                    "tp": 74,
+                    "tn": 575,
+                    "fp": 546,
+                    "fn": 5,
+                    "fn_loss": 8125000.0,
+                    "fp_loss": 163800000.0,
+                    "total_financial_loss": 171925000.0
+                },
+                {
+                    "threshold": 0.25999999999999995,
+                    "tp": 74,
+                    "tn": 589,
+                    "fp": 532,
+                    "fn": 5,
+                    "fn_loss": 8125000.0,
+                    "fp_loss": 159600000.0,
+                    "total_financial_loss": 167725000.0
+                },
+                {
+                    "threshold": 0.26999999999999996,
+                    "tp": 73,
+                    "tn": 605,
+                    "fp": 516,
+                    "fn": 6,
+                    "fn_loss": 9750000.0,
+                    "fp_loss": 154800000.0,
+                    "total_financial_loss": 164550000.0
+                },
+                {
+                    "threshold": 0.27999999999999997,
+                    "tp": 72,
+                    "tn": 622,
+                    "fp": 499,
+                    "fn": 7,
+                    "fn_loss": 11375000.0,
+                    "fp_loss": 149700000.0,
+                    "total_financial_loss": 161075000.0
+                },
+                {
+                    "threshold": 0.29,
+                    "tp": 72,
+                    "tn": 635,
+                    "fp": 486,
+                    "fn": 7,
+                    "fn_loss": 11375000.0,
+                    "fp_loss": 145800000.0,
+                    "total_financial_loss": 157175000.0
+                },
+                {
+                    "threshold": 0.3,
+                    "tp": 72,
+                    "tn": 644,
+                    "fp": 477,
+                    "fn": 7,
+                    "fn_loss": 11375000.0,
+                    "fp_loss": 143100000.0,
+                    "total_financial_loss": 154475000.0
+                },
+                {
+                    "threshold": 0.30999999999999994,
+                    "tp": 72,
+                    "tn": 665,
+                    "fp": 456,
+                    "fn": 7,
+                    "fn_loss": 11375000.0,
+                    "fp_loss": 136800000.0,
+                    "total_financial_loss": 148175000.0
+                },
+                {
+                    "threshold": 0.31999999999999995,
+                    "tp": 70,
+                    "tn": 680,
+                    "fp": 441,
+                    "fn": 9,
+                    "fn_loss": 14625000.0,
+                    "fp_loss": 132300000.0,
+                    "total_financial_loss": 146925000.0
+                },
+                {
+                    "threshold": 0.32999999999999996,
+                    "tp": 69,
+                    "tn": 692,
+                    "fp": 429,
+                    "fn": 10,
+                    "fn_loss": 16250000.0,
+                    "fp_loss": 128700000.0,
+                    "total_financial_loss": 144950000.0
+                },
+                {
+                    "threshold": 0.33999999999999997,
+                    "tp": 69,
+                    "tn": 701,
+                    "fp": 420,
+                    "fn": 10,
+                    "fn_loss": 16250000.0,
+                    "fp_loss": 126000000.0,
+                    "total_financial_loss": 142250000.0
+                },
+                {
+                    "threshold": 0.3499999999999999,
+                    "tp": 68,
+                    "tn": 708,
+                    "fp": 413,
+                    "fn": 11,
+                    "fn_loss": 17875000.0,
+                    "fp_loss": 123900000.0,
+                    "total_financial_loss": 141775000.0
+                },
+                {
+                    "threshold": 0.35999999999999993,
+                    "tp": 68,
+                    "tn": 721,
+                    "fp": 400,
+                    "fn": 11,
+                    "fn_loss": 17875000.0,
+                    "fp_loss": 120000000.0,
+                    "total_financial_loss": 137875000.0
+                },
+                {
+                    "threshold": 0.36999999999999994,
+                    "tp": 68,
+                    "tn": 723,
+                    "fp": 398,
+                    "fn": 11,
+                    "fn_loss": 17875000.0,
+                    "fp_loss": 119400000.0,
+                    "total_financial_loss": 137275000.0
+                },
+                {
+                    "threshold": 0.37999999999999995,
+                    "tp": 67,
+                    "tn": 741,
+                    "fp": 380,
+                    "fn": 12,
+                    "fn_loss": 19500000.0,
+                    "fp_loss": 114000000.0,
+                    "total_financial_loss": 133500000.0
+                },
+                {
+                    "threshold": 0.38999999999999996,
+                    "tp": 67,
+                    "tn": 753,
+                    "fp": 368,
+                    "fn": 12,
+                    "fn_loss": 19500000.0,
+                    "fp_loss": 110400000.0,
+                    "total_financial_loss": 129900000.0
+                },
+                {
+                    "threshold": 0.3999999999999999,
+                    "tp": 65,
+                    "tn": 762,
+                    "fp": 359,
+                    "fn": 14,
+                    "fn_loss": 22750000.0,
+                    "fp_loss": 107700000.0,
+                    "total_financial_loss": 130450000.0
+                },
+                {
+                    "threshold": 0.4099999999999999,
+                    "tp": 65,
+                    "tn": 773,
+                    "fp": 348,
+                    "fn": 14,
+                    "fn_loss": 22750000.0,
+                    "fp_loss": 104400000.0,
+                    "total_financial_loss": 127150000.0
+                },
+                {
+                    "threshold": 0.41999999999999993,
+                    "tp": 64,
+                    "tn": 785,
+                    "fp": 336,
+                    "fn": 15,
+                    "fn_loss": 24375000.0,
+                    "fp_loss": 100800000.0,
+                    "total_financial_loss": 125175000.0
+                },
+                {
+                    "threshold": 0.42999999999999994,
+                    "tp": 64,
+                    "tn": 793,
+                    "fp": 328,
+                    "fn": 15,
+                    "fn_loss": 24375000.0,
+                    "fp_loss": 98400000.0,
+                    "total_financial_loss": 122775000.0
+                },
+                {
+                    "threshold": 0.43999999999999995,
+                    "tp": 64,
+                    "tn": 799,
+                    "fp": 322,
+                    "fn": 15,
+                    "fn_loss": 24375000.0,
+                    "fp_loss": 96600000.0,
+                    "total_financial_loss": 120975000.0
+                },
+                {
+                    "threshold": 0.4499999999999999,
+                    "tp": 64,
+                    "tn": 810,
+                    "fp": 311,
+                    "fn": 15,
+                    "fn_loss": 24375000.0,
+                    "fp_loss": 93300000.0,
+                    "total_financial_loss": 117675000.0
+                },
+                {
+                    "threshold": 0.4599999999999999,
+                    "tp": 63,
+                    "tn": 815,
+                    "fp": 306,
+                    "fn": 16,
+                    "fn_loss": 26000000.0,
+                    "fp_loss": 91800000.0,
+                    "total_financial_loss": 117800000.0
+                },
+                {
+                    "threshold": 0.4699999999999999,
+                    "tp": 63,
+                    "tn": 821,
+                    "fp": 300,
+                    "fn": 16,
+                    "fn_loss": 26000000.0,
+                    "fp_loss": 90000000.0,
+                    "total_financial_loss": 116000000.0
+                },
+                {
+                    "threshold": 0.4799999999999999,
+                    "tp": 62,
+                    "tn": 831,
+                    "fp": 290,
+                    "fn": 17,
+                    "fn_loss": 27625000.0,
+                    "fp_loss": 87000000.0,
+                    "total_financial_loss": 114625000.0
+                },
+                {
+                    "threshold": 0.48999999999999994,
+                    "tp": 60,
+                    "tn": 837,
+                    "fp": 284,
+                    "fn": 19,
+                    "fn_loss": 30875000.0,
+                    "fp_loss": 85200000.0,
+                    "total_financial_loss": 116075000.0
+                },
+                {
+                    "threshold": 0.49999999999999994,
+                    "tp": 59,
+                    "tn": 846,
+                    "fp": 275,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 82500000.0,
+                    "total_financial_loss": 115000000.0
+                },
+                {
+                    "threshold": 0.5099999999999999,
+                    "tp": 59,
+                    "tn": 852,
+                    "fp": 269,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 80700000.0,
+                    "total_financial_loss": 113200000.0
+                },
+                {
+                    "threshold": 0.5199999999999999,
+                    "tp": 59,
+                    "tn": 862,
+                    "fp": 259,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 77700000.0,
+                    "total_financial_loss": 110200000.0
+                },
+                {
+                    "threshold": 0.5299999999999999,
+                    "tp": 59,
+                    "tn": 870,
+                    "fp": 251,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 75300000.0,
+                    "total_financial_loss": 107800000.0
+                },
+                {
+                    "threshold": 0.5399999999999999,
+                    "tp": 59,
+                    "tn": 878,
+                    "fp": 243,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 72900000.0,
+                    "total_financial_loss": 105400000.0
+                },
+                {
+                    "threshold": 0.5499999999999999,
+                    "tp": 58,
+                    "tn": 886,
+                    "fp": 235,
+                    "fn": 21,
+                    "fn_loss": 34125000.0,
+                    "fp_loss": 70500000.0,
+                    "total_financial_loss": 104625000.0
+                },
+                {
+                    "threshold": 0.5599999999999999,
+                    "tp": 57,
+                    "tn": 895,
+                    "fp": 226,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 67800000.0,
+                    "total_financial_loss": 103550000.0
+                },
+                {
+                    "threshold": 0.57,
+                    "tp": 55,
+                    "tn": 904,
+                    "fp": 217,
+                    "fn": 24,
+                    "fn_loss": 39000000.0,
+                    "fp_loss": 65100000.0,
+                    "total_financial_loss": 104100000.0
+                },
+                {
+                    "threshold": 0.58,
+                    "tp": 55,
+                    "tn": 912,
+                    "fp": 209,
+                    "fn": 24,
+                    "fn_loss": 39000000.0,
+                    "fp_loss": 62700000.0,
+                    "total_financial_loss": 101700000.0
+                },
+                {
+                    "threshold": 0.59,
+                    "tp": 55,
+                    "tn": 922,
+                    "fp": 199,
+                    "fn": 24,
+                    "fn_loss": 39000000.0,
+                    "fp_loss": 59700000.0,
+                    "total_financial_loss": 98700000.0
+                },
+                {
+                    "threshold": 0.6,
+                    "tp": 54,
+                    "tn": 929,
+                    "fp": 192,
+                    "fn": 25,
+                    "fn_loss": 40625000.0,
+                    "fp_loss": 57600000.0,
+                    "total_financial_loss": 98225000.0
+                },
+                {
+                    "threshold": 0.61,
+                    "tp": 54,
+                    "tn": 935,
+                    "fp": 186,
+                    "fn": 25,
+                    "fn_loss": 40625000.0,
+                    "fp_loss": 55800000.0,
+                    "total_financial_loss": 96425000.0
+                },
+                {
+                    "threshold": 0.62,
+                    "tp": 54,
+                    "tn": 949,
+                    "fp": 172,
+                    "fn": 25,
+                    "fn_loss": 40625000.0,
+                    "fp_loss": 51600000.0,
+                    "total_financial_loss": 92225000.0
+                },
+                {
+                    "threshold": 0.63,
+                    "tp": 53,
+                    "tn": 954,
+                    "fp": 167,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 50100000.0,
+                    "total_financial_loss": 92350000.0
+                },
+                {
+                    "threshold": 0.6399999999999999,
+                    "tp": 52,
+                    "tn": 961,
+                    "fp": 160,
+                    "fn": 27,
+                    "fn_loss": 43875000.0,
+                    "fp_loss": 48000000.0,
+                    "total_financial_loss": 91875000.0
+                },
+                {
+                    "threshold": 0.6499999999999999,
+                    "tp": 51,
+                    "tn": 966,
+                    "fp": 155,
+                    "fn": 28,
+                    "fn_loss": 45500000.0,
+                    "fp_loss": 46500000.0,
+                    "total_financial_loss": 92000000.0
+                },
+                {
+                    "threshold": 0.6599999999999999,
+                    "tp": 51,
+                    "tn": 976,
+                    "fp": 145,
+                    "fn": 28,
+                    "fn_loss": 45500000.0,
+                    "fp_loss": 43500000.0,
+                    "total_financial_loss": 89000000.0
+                },
+                {
+                    "threshold": 0.6699999999999999,
+                    "tp": 51,
+                    "tn": 979,
+                    "fp": 142,
+                    "fn": 28,
+                    "fn_loss": 45500000.0,
+                    "fp_loss": 42600000.0,
+                    "total_financial_loss": 88100000.0
+                },
+                {
+                    "threshold": 0.6799999999999999,
+                    "tp": 50,
+                    "tn": 987,
+                    "fp": 134,
+                    "fn": 29,
+                    "fn_loss": 47125000.0,
+                    "fp_loss": 40200000.0,
+                    "total_financial_loss": 87325000.0
+                },
+                {
+                    "threshold": 0.69,
+                    "tp": 50,
+                    "tn": 994,
+                    "fp": 127,
+                    "fn": 29,
+                    "fn_loss": 47125000.0,
+                    "fp_loss": 38100000.0,
+                    "total_financial_loss": 85225000.0
+                },
+                {
+                    "threshold": 0.7,
+                    "tp": 49,
+                    "tn": 1002,
+                    "fp": 119,
+                    "fn": 30,
+                    "fn_loss": 48750000.0,
+                    "fp_loss": 35700000.0,
+                    "total_financial_loss": 84450000.0
+                },
+                {
+                    "threshold": 0.71,
+                    "tp": 48,
+                    "tn": 1011,
+                    "fp": 110,
+                    "fn": 31,
+                    "fn_loss": 50375000.0,
+                    "fp_loss": 33000000.0,
+                    "total_financial_loss": 83375000.0
+                },
+                {
+                    "threshold": 0.72,
+                    "tp": 46,
+                    "tn": 1017,
+                    "fp": 104,
+                    "fn": 33,
+                    "fn_loss": 53625000.0,
+                    "fp_loss": 31200000.0,
+                    "total_financial_loss": 84825000.0
+                },
+                {
+                    "threshold": 0.73,
+                    "tp": 44,
+                    "tn": 1021,
+                    "fp": 100,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 30000000.0,
+                    "total_financial_loss": 86875000.0
+                },
+                {
+                    "threshold": 0.74,
+                    "tp": 43,
+                    "tn": 1033,
+                    "fp": 88,
+                    "fn": 36,
+                    "fn_loss": 58500000.0,
+                    "fp_loss": 26400000.0,
+                    "total_financial_loss": 84900000.0
+                },
+                {
+                    "threshold": 0.7499999999999999,
+                    "tp": 41,
+                    "tn": 1039,
+                    "fp": 82,
+                    "fn": 38,
+                    "fn_loss": 61750000.0,
+                    "fp_loss": 24600000.0,
+                    "total_financial_loss": 86350000.0
+                },
+                {
+                    "threshold": 0.7599999999999999,
+                    "tp": 40,
+                    "tn": 1045,
+                    "fp": 76,
+                    "fn": 39,
+                    "fn_loss": 63375000.0,
+                    "fp_loss": 22800000.0,
+                    "total_financial_loss": 86175000.0
+                },
+                {
+                    "threshold": 0.7699999999999999,
+                    "tp": 40,
+                    "tn": 1050,
+                    "fp": 71,
+                    "fn": 39,
+                    "fn_loss": 63375000.0,
+                    "fp_loss": 21300000.0,
+                    "total_financial_loss": 84675000.0
+                },
+                {
+                    "threshold": 0.7799999999999999,
+                    "tp": 38,
+                    "tn": 1058,
+                    "fp": 63,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 18900000.0,
+                    "total_financial_loss": 85525000.0
+                },
+                {
+                    "threshold": 0.7899999999999999,
+                    "tp": 34,
+                    "tn": 1061,
+                    "fp": 60,
+                    "fn": 45,
+                    "fn_loss": 73125000.0,
+                    "fp_loss": 18000000.0,
+                    "total_financial_loss": 91125000.0
+                },
+                {
+                    "threshold": 0.7999999999999999,
+                    "tp": 32,
+                    "tn": 1062,
+                    "fp": 59,
+                    "fn": 47,
+                    "fn_loss": 76375000.0,
+                    "fp_loss": 17700000.0,
+                    "total_financial_loss": 94075000.0
+                },
+                {
+                    "threshold": 0.8099999999999999,
+                    "tp": 32,
+                    "tn": 1065,
+                    "fp": 56,
+                    "fn": 47,
+                    "fn_loss": 76375000.0,
+                    "fp_loss": 16800000.0,
+                    "total_financial_loss": 93175000.0
+                },
+                {
+                    "threshold": 0.82,
+                    "tp": 32,
+                    "tn": 1071,
+                    "fp": 50,
+                    "fn": 47,
+                    "fn_loss": 76375000.0,
+                    "fp_loss": 15000000.0,
+                    "total_financial_loss": 91375000.0
+                },
+                {
+                    "threshold": 0.83,
+                    "tp": 32,
+                    "tn": 1077,
+                    "fp": 44,
+                    "fn": 47,
+                    "fn_loss": 76375000.0,
+                    "fp_loss": 13200000.0,
+                    "total_financial_loss": 89575000.0
+                },
+                {
+                    "threshold": 0.84,
+                    "tp": 31,
+                    "tn": 1082,
+                    "fp": 39,
+                    "fn": 48,
+                    "fn_loss": 78000000.0,
+                    "fp_loss": 11700000.0,
+                    "total_financial_loss": 89700000.0
+                },
+                {
+                    "threshold": 0.8499999999999999,
+                    "tp": 29,
+                    "tn": 1083,
+                    "fp": 38,
+                    "fn": 50,
+                    "fn_loss": 81250000.0,
+                    "fp_loss": 11400000.0,
+                    "total_financial_loss": 92650000.0
+                },
+                {
+                    "threshold": 0.8599999999999999,
+                    "tp": 28,
+                    "tn": 1085,
+                    "fp": 36,
+                    "fn": 51,
+                    "fn_loss": 82875000.0,
+                    "fp_loss": 10800000.0,
+                    "total_financial_loss": 93675000.0
+                },
+                {
+                    "threshold": 0.8699999999999999,
+                    "tp": 26,
+                    "tn": 1090,
+                    "fp": 31,
+                    "fn": 53,
+                    "fn_loss": 86125000.0,
+                    "fp_loss": 9300000.0,
+                    "total_financial_loss": 95425000.0
+                },
+                {
+                    "threshold": 0.8799999999999999,
+                    "tp": 24,
+                    "tn": 1094,
+                    "fp": 27,
+                    "fn": 55,
+                    "fn_loss": 89375000.0,
+                    "fp_loss": 8100000.0,
+                    "total_financial_loss": 97475000.0
+                },
+                {
+                    "threshold": 0.8899999999999999,
+                    "tp": 23,
+                    "tn": 1095,
+                    "fp": 26,
+                    "fn": 56,
+                    "fn_loss": 91000000.0,
+                    "fp_loss": 7800000.0,
+                    "total_financial_loss": 98800000.0
+                },
+                {
+                    "threshold": 0.8999999999999999,
+                    "tp": 21,
+                    "tn": 1101,
+                    "fp": 20,
+                    "fn": 58,
+                    "fn_loss": 94250000.0,
+                    "fp_loss": 6000000.0,
+                    "total_financial_loss": 100250000.0
+                },
+                {
+                    "threshold": 0.9099999999999999,
+                    "tp": 20,
+                    "tn": 1104,
+                    "fp": 17,
+                    "fn": 59,
+                    "fn_loss": 95875000.0,
+                    "fp_loss": 5100000.0,
+                    "total_financial_loss": 100975000.0
+                },
+                {
+                    "threshold": 0.9199999999999999,
+                    "tp": 17,
+                    "tn": 1109,
+                    "fp": 12,
+                    "fn": 62,
+                    "fn_loss": 100750000.0,
+                    "fp_loss": 3600000.0,
+                    "total_financial_loss": 104350000.0
+                },
+                {
+                    "threshold": 0.9299999999999999,
+                    "tp": 15,
+                    "tn": 1112,
+                    "fp": 9,
+                    "fn": 64,
+                    "fn_loss": 104000000.0,
+                    "fp_loss": 2700000.0,
+                    "total_financial_loss": 106700000.0
+                },
+                {
+                    "threshold": 0.94,
+                    "tp": 13,
+                    "tn": 1113,
+                    "fp": 8,
+                    "fn": 66,
+                    "fn_loss": 107250000.0,
+                    "fp_loss": 2400000.0,
+                    "total_financial_loss": 109650000.0
+                },
+                {
+                    "threshold": 0.95,
+                    "tp": 11,
+                    "tn": 1115,
+                    "fp": 6,
+                    "fn": 68,
+                    "fn_loss": 110500000.0,
+                    "fp_loss": 1800000.0,
+                    "total_financial_loss": 112300000.0
+                }
+            ]
+        }
+    },
+    "Random_Forest": {
+        "accuracy": 0.8883333333333333,
+        "precision": 0.2764227642276423,
+        "recall": 0.43037974683544306,
+        "specificity": 0.9206066012488849,
+        "f1_score": 0.33663366336633666,
+        "roc_auc": 0.8263191770458114,
+        "pr_auc": 0.2517783704232594,
+        "tn": 1032,
+        "fp": 89,
+        "fn": 45,
+        "tp": 34,
+        "financial_optimization": {
+            "portfolio_type": "personal",
+            "c_fn": 1625000.0,
+            "c_fp": 300000.0,
+            "optimal_threshold": 0.36999999999999994,
+            "min_financial_loss": 91150000.0,
+            "default_50_loss": 99825000.0,
+            "monetary_savings_ngn": 8675000.0,
+            "savings_percentage": 8.690207863761582,
+            "optimal_metrics": {
+                "threshold": 0.36999999999999994,
+                "tp": 53.0,
+                "tn": 958.0,
+                "fp": 163.0,
+                "fn": 26.0,
+                "fn_loss": 42250000.0,
+                "fp_loss": 48900000.0,
+                "total_financial_loss": 91150000.0
+            },
+            "loss_curve": [
+                {
+                    "threshold": 0.05,
+                    "tp": 77,
+                    "tn": 406,
+                    "fp": 715,
+                    "fn": 2,
+                    "fn_loss": 3250000.0,
+                    "fp_loss": 214500000.0,
+                    "total_financial_loss": 217750000.0
+                },
+                {
+                    "threshold": 0.06,
+                    "tp": 75,
+                    "tn": 446,
+                    "fp": 675,
+                    "fn": 4,
+                    "fn_loss": 6500000.0,
+                    "fp_loss": 202500000.0,
+                    "total_financial_loss": 209000000.0
+                },
+                {
+                    "threshold": 0.07,
+                    "tp": 73,
+                    "tn": 495,
+                    "fp": 626,
+                    "fn": 6,
+                    "fn_loss": 9750000.0,
+                    "fp_loss": 187800000.0,
+                    "total_financial_loss": 197550000.0
+                },
+                {
+                    "threshold": 0.08,
+                    "tp": 73,
+                    "tn": 525,
+                    "fp": 596,
+                    "fn": 6,
+                    "fn_loss": 9750000.0,
+                    "fp_loss": 178800000.0,
+                    "total_financial_loss": 188550000.0
+                },
+                {
+                    "threshold": 0.09,
+                    "tp": 71,
+                    "tn": 557,
+                    "fp": 564,
+                    "fn": 8,
+                    "fn_loss": 13000000.0,
+                    "fp_loss": 169200000.0,
+                    "total_financial_loss": 182200000.0
+                },
+                {
+                    "threshold": 0.09999999999999999,
+                    "tp": 69,
+                    "tn": 589,
+                    "fp": 532,
+                    "fn": 10,
+                    "fn_loss": 16250000.0,
+                    "fp_loss": 159600000.0,
+                    "total_financial_loss": 175850000.0
+                },
+                {
+                    "threshold": 0.10999999999999999,
+                    "tp": 68,
+                    "tn": 619,
+                    "fp": 502,
+                    "fn": 11,
+                    "fn_loss": 17875000.0,
+                    "fp_loss": 150600000.0,
+                    "total_financial_loss": 168475000.0
+                },
+                {
+                    "threshold": 0.12,
+                    "tp": 68,
+                    "tn": 640,
+                    "fp": 481,
+                    "fn": 11,
+                    "fn_loss": 17875000.0,
+                    "fp_loss": 144300000.0,
+                    "total_financial_loss": 162175000.0
+                },
+                {
+                    "threshold": 0.13,
+                    "tp": 67,
+                    "tn": 660,
+                    "fp": 461,
+                    "fn": 12,
+                    "fn_loss": 19500000.0,
+                    "fp_loss": 138300000.0,
+                    "total_financial_loss": 157800000.0
+                },
+                {
+                    "threshold": 0.13999999999999999,
+                    "tp": 66,
+                    "tn": 681,
+                    "fp": 440,
+                    "fn": 13,
+                    "fn_loss": 21125000.0,
+                    "fp_loss": 132000000.0,
+                    "total_financial_loss": 153125000.0
+                },
+                {
+                    "threshold": 0.14999999999999997,
+                    "tp": 66,
+                    "tn": 707,
+                    "fp": 414,
+                    "fn": 13,
+                    "fn_loss": 21125000.0,
+                    "fp_loss": 124200000.0,
+                    "total_financial_loss": 145325000.0
+                },
+                {
+                    "threshold": 0.15999999999999998,
+                    "tp": 63,
+                    "tn": 721,
+                    "fp": 400,
+                    "fn": 16,
+                    "fn_loss": 26000000.0,
+                    "fp_loss": 120000000.0,
+                    "total_financial_loss": 146000000.0
+                },
+                {
+                    "threshold": 0.16999999999999998,
+                    "tp": 63,
+                    "tn": 732,
+                    "fp": 389,
+                    "fn": 16,
+                    "fn_loss": 26000000.0,
+                    "fp_loss": 116700000.0,
+                    "total_financial_loss": 142700000.0
+                },
+                {
+                    "threshold": 0.18,
+                    "tp": 62,
+                    "tn": 747,
+                    "fp": 374,
+                    "fn": 17,
+                    "fn_loss": 27625000.0,
+                    "fp_loss": 112200000.0,
+                    "total_financial_loss": 139825000.0
+                },
+                {
+                    "threshold": 0.19,
+                    "tp": 62,
+                    "tn": 760,
+                    "fp": 361,
+                    "fn": 17,
+                    "fn_loss": 27625000.0,
+                    "fp_loss": 108300000.0,
+                    "total_financial_loss": 135925000.0
+                },
+                {
+                    "threshold": 0.19999999999999996,
+                    "tp": 61,
+                    "tn": 776,
+                    "fp": 345,
+                    "fn": 18,
+                    "fn_loss": 29250000.0,
+                    "fp_loss": 103500000.0,
+                    "total_financial_loss": 132750000.0
+                },
+                {
+                    "threshold": 0.20999999999999996,
+                    "tp": 60,
+                    "tn": 785,
+                    "fp": 336,
+                    "fn": 19,
+                    "fn_loss": 30875000.0,
+                    "fp_loss": 100800000.0,
+                    "total_financial_loss": 131675000.0
+                },
+                {
+                    "threshold": 0.21999999999999997,
+                    "tp": 59,
+                    "tn": 798,
+                    "fp": 323,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 96900000.0,
+                    "total_financial_loss": 129400000.0
+                },
+                {
+                    "threshold": 0.22999999999999998,
+                    "tp": 59,
+                    "tn": 808,
+                    "fp": 313,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 93900000.0,
+                    "total_financial_loss": 126400000.0
+                },
+                {
+                    "threshold": 0.24,
+                    "tp": 59,
+                    "tn": 815,
+                    "fp": 306,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 91800000.0,
+                    "total_financial_loss": 124300000.0
+                },
+                {
+                    "threshold": 0.24999999999999994,
+                    "tp": 58,
+                    "tn": 832,
+                    "fp": 289,
+                    "fn": 21,
+                    "fn_loss": 34125000.0,
+                    "fp_loss": 86700000.0,
+                    "total_financial_loss": 120825000.0
+                },
+                {
+                    "threshold": 0.25999999999999995,
+                    "tp": 58,
+                    "tn": 837,
+                    "fp": 284,
+                    "fn": 21,
+                    "fn_loss": 34125000.0,
+                    "fp_loss": 85200000.0,
+                    "total_financial_loss": 119325000.0
+                },
+                {
+                    "threshold": 0.26999999999999996,
+                    "tp": 58,
+                    "tn": 849,
+                    "fp": 272,
+                    "fn": 21,
+                    "fn_loss": 34125000.0,
+                    "fp_loss": 81600000.0,
+                    "total_financial_loss": 115725000.0
+                },
+                {
+                    "threshold": 0.27999999999999997,
+                    "tp": 57,
+                    "tn": 867,
+                    "fp": 254,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 76200000.0,
+                    "total_financial_loss": 111950000.0
+                },
+                {
+                    "threshold": 0.29,
+                    "tp": 57,
+                    "tn": 883,
+                    "fp": 238,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 71400000.0,
+                    "total_financial_loss": 107150000.0
+                },
+                {
+                    "threshold": 0.3,
+                    "tp": 57,
+                    "tn": 898,
+                    "fp": 223,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 66900000.0,
+                    "total_financial_loss": 102650000.0
+                },
+                {
+                    "threshold": 0.30999999999999994,
+                    "tp": 57,
+                    "tn": 903,
+                    "fp": 218,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 65400000.0,
+                    "total_financial_loss": 101150000.0
+                },
+                {
+                    "threshold": 0.31999999999999995,
+                    "tp": 57,
+                    "tn": 915,
+                    "fp": 206,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 61800000.0,
+                    "total_financial_loss": 97550000.0
+                },
+                {
+                    "threshold": 0.32999999999999996,
+                    "tp": 57,
+                    "tn": 923,
+                    "fp": 198,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 59400000.0,
+                    "total_financial_loss": 95150000.0
+                },
+                {
+                    "threshold": 0.33999999999999997,
+                    "tp": 56,
+                    "tn": 937,
+                    "fp": 184,
+                    "fn": 23,
+                    "fn_loss": 37375000.0,
+                    "fp_loss": 55200000.0,
+                    "total_financial_loss": 92575000.0
+                },
+                {
+                    "threshold": 0.3499999999999999,
+                    "tp": 54,
+                    "tn": 942,
+                    "fp": 179,
+                    "fn": 25,
+                    "fn_loss": 40625000.0,
+                    "fp_loss": 53700000.0,
+                    "total_financial_loss": 94325000.0
+                },
+                {
+                    "threshold": 0.35999999999999993,
+                    "tp": 53,
+                    "tn": 952,
+                    "fp": 169,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 50700000.0,
+                    "total_financial_loss": 92950000.0
+                },
+                {
+                    "threshold": 0.36999999999999994,
+                    "tp": 53,
+                    "tn": 958,
+                    "fp": 163,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 48900000.0,
+                    "total_financial_loss": 91150000.0
+                },
+                {
+                    "threshold": 0.37999999999999995,
+                    "tp": 48,
+                    "tn": 959,
+                    "fp": 162,
+                    "fn": 31,
+                    "fn_loss": 50375000.0,
+                    "fp_loss": 48600000.0,
+                    "total_financial_loss": 98975000.0
+                },
+                {
+                    "threshold": 0.38999999999999996,
+                    "tp": 48,
+                    "tn": 966,
+                    "fp": 155,
+                    "fn": 31,
+                    "fn_loss": 50375000.0,
+                    "fp_loss": 46500000.0,
+                    "total_financial_loss": 96875000.0
+                },
+                {
+                    "threshold": 0.3999999999999999,
+                    "tp": 47,
+                    "tn": 975,
+                    "fp": 146,
+                    "fn": 32,
+                    "fn_loss": 52000000.0,
+                    "fp_loss": 43800000.0,
+                    "total_financial_loss": 95800000.0
+                },
+                {
+                    "threshold": 0.4099999999999999,
+                    "tp": 45,
+                    "tn": 990,
+                    "fp": 131,
+                    "fn": 34,
+                    "fn_loss": 55250000.0,
+                    "fp_loss": 39300000.0,
+                    "total_financial_loss": 94550000.0
+                },
+                {
+                    "threshold": 0.41999999999999993,
+                    "tp": 43,
+                    "tn": 995,
+                    "fp": 126,
+                    "fn": 36,
+                    "fn_loss": 58500000.0,
+                    "fp_loss": 37800000.0,
+                    "total_financial_loss": 96300000.0
+                },
+                {
+                    "threshold": 0.42999999999999994,
+                    "tp": 43,
+                    "tn": 1000,
+                    "fp": 121,
+                    "fn": 36,
+                    "fn_loss": 58500000.0,
+                    "fp_loss": 36300000.0,
+                    "total_financial_loss": 94800000.0
+                },
+                {
+                    "threshold": 0.43999999999999995,
+                    "tp": 41,
+                    "tn": 1004,
+                    "fp": 117,
+                    "fn": 38,
+                    "fn_loss": 61750000.0,
+                    "fp_loss": 35100000.0,
+                    "total_financial_loss": 96850000.0
+                },
+                {
+                    "threshold": 0.4499999999999999,
+                    "tp": 41,
+                    "tn": 1010,
+                    "fp": 111,
+                    "fn": 38,
+                    "fn_loss": 61750000.0,
+                    "fp_loss": 33300000.0,
+                    "total_financial_loss": 95050000.0
+                },
+                {
+                    "threshold": 0.4599999999999999,
+                    "tp": 38,
+                    "tn": 1017,
+                    "fp": 104,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 31200000.0,
+                    "total_financial_loss": 97825000.0
+                },
+                {
+                    "threshold": 0.4699999999999999,
+                    "tp": 37,
+                    "tn": 1023,
+                    "fp": 98,
+                    "fn": 42,
+                    "fn_loss": 68250000.0,
+                    "fp_loss": 29400000.0,
+                    "total_financial_loss": 97650000.0
+                },
+                {
+                    "threshold": 0.4799999999999999,
+                    "tp": 36,
+                    "tn": 1025,
+                    "fp": 96,
+                    "fn": 43,
+                    "fn_loss": 69875000.0,
+                    "fp_loss": 28800000.0,
+                    "total_financial_loss": 98675000.0
+                },
+                {
+                    "threshold": 0.48999999999999994,
+                    "tp": 36,
+                    "tn": 1030,
+                    "fp": 91,
+                    "fn": 43,
+                    "fn_loss": 69875000.0,
+                    "fp_loss": 27300000.0,
+                    "total_financial_loss": 97175000.0
+                },
+                {
+                    "threshold": 0.49999999999999994,
+                    "tp": 34,
+                    "tn": 1032,
+                    "fp": 89,
+                    "fn": 45,
+                    "fn_loss": 73125000.0,
+                    "fp_loss": 26700000.0,
+                    "total_financial_loss": 99825000.0
+                },
+                {
+                    "threshold": 0.5099999999999999,
+                    "tp": 34,
+                    "tn": 1037,
+                    "fp": 84,
+                    "fn": 45,
+                    "fn_loss": 73125000.0,
+                    "fp_loss": 25200000.0,
+                    "total_financial_loss": 98325000.0
+                },
+                {
+                    "threshold": 0.5199999999999999,
+                    "tp": 32,
+                    "tn": 1043,
+                    "fp": 78,
+                    "fn": 47,
+                    "fn_loss": 76375000.0,
+                    "fp_loss": 23400000.0,
+                    "total_financial_loss": 99775000.0
+                },
+                {
+                    "threshold": 0.5299999999999999,
+                    "tp": 32,
+                    "tn": 1045,
+                    "fp": 76,
+                    "fn": 47,
+                    "fn_loss": 76375000.0,
+                    "fp_loss": 22800000.0,
+                    "total_financial_loss": 99175000.0
+                },
+                {
+                    "threshold": 0.5399999999999999,
+                    "tp": 31,
+                    "tn": 1049,
+                    "fp": 72,
+                    "fn": 48,
+                    "fn_loss": 78000000.0,
+                    "fp_loss": 21600000.0,
+                    "total_financial_loss": 99600000.0
+                },
+                {
+                    "threshold": 0.5499999999999999,
+                    "tp": 29,
+                    "tn": 1050,
+                    "fp": 71,
+                    "fn": 50,
+                    "fn_loss": 81250000.0,
+                    "fp_loss": 21300000.0,
+                    "total_financial_loss": 102550000.0
+                },
+                {
+                    "threshold": 0.5599999999999999,
+                    "tp": 29,
+                    "tn": 1052,
+                    "fp": 69,
+                    "fn": 50,
+                    "fn_loss": 81250000.0,
+                    "fp_loss": 20700000.0,
+                    "total_financial_loss": 101950000.0
+                },
+                {
+                    "threshold": 0.57,
+                    "tp": 29,
+                    "tn": 1055,
+                    "fp": 66,
+                    "fn": 50,
+                    "fn_loss": 81250000.0,
+                    "fp_loss": 19800000.0,
+                    "total_financial_loss": 101050000.0
+                },
+                {
+                    "threshold": 0.58,
+                    "tp": 29,
+                    "tn": 1057,
+                    "fp": 64,
+                    "fn": 50,
+                    "fn_loss": 81250000.0,
+                    "fp_loss": 19200000.0,
+                    "total_financial_loss": 100450000.0
+                },
+                {
+                    "threshold": 0.59,
+                    "tp": 26,
+                    "tn": 1062,
+                    "fp": 59,
+                    "fn": 53,
+                    "fn_loss": 86125000.0,
+                    "fp_loss": 17700000.0,
+                    "total_financial_loss": 103825000.0
+                },
+                {
+                    "threshold": 0.6,
+                    "tp": 26,
+                    "tn": 1064,
+                    "fp": 57,
+                    "fn": 53,
+                    "fn_loss": 86125000.0,
+                    "fp_loss": 17100000.0,
+                    "total_financial_loss": 103225000.0
+                },
+                {
+                    "threshold": 0.61,
+                    "tp": 26,
+                    "tn": 1067,
+                    "fp": 54,
+                    "fn": 53,
+                    "fn_loss": 86125000.0,
+                    "fp_loss": 16200000.0,
+                    "total_financial_loss": 102325000.0
+                },
+                {
+                    "threshold": 0.62,
+                    "tp": 25,
+                    "tn": 1074,
+                    "fp": 47,
+                    "fn": 54,
+                    "fn_loss": 87750000.0,
+                    "fp_loss": 14100000.0,
+                    "total_financial_loss": 101850000.0
+                },
+                {
+                    "threshold": 0.63,
+                    "tp": 25,
+                    "tn": 1084,
+                    "fp": 37,
+                    "fn": 54,
+                    "fn_loss": 87750000.0,
+                    "fp_loss": 11100000.0,
+                    "total_financial_loss": 98850000.0
+                },
+                {
+                    "threshold": 0.6399999999999999,
+                    "tp": 24,
+                    "tn": 1086,
+                    "fp": 35,
+                    "fn": 55,
+                    "fn_loss": 89375000.0,
+                    "fp_loss": 10500000.0,
+                    "total_financial_loss": 99875000.0
+                },
+                {
+                    "threshold": 0.6499999999999999,
+                    "tp": 22,
+                    "tn": 1088,
+                    "fp": 33,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 9900000.0,
+                    "total_financial_loss": 102525000.0
+                },
+                {
+                    "threshold": 0.6599999999999999,
+                    "tp": 16,
+                    "tn": 1091,
+                    "fp": 30,
+                    "fn": 63,
+                    "fn_loss": 102375000.0,
+                    "fp_loss": 9000000.0,
+                    "total_financial_loss": 111375000.0
+                },
+                {
+                    "threshold": 0.6699999999999999,
+                    "tp": 14,
+                    "tn": 1094,
+                    "fp": 27,
+                    "fn": 65,
+                    "fn_loss": 105625000.0,
+                    "fp_loss": 8100000.0,
+                    "total_financial_loss": 113725000.0
+                },
+                {
+                    "threshold": 0.6799999999999999,
+                    "tp": 14,
+                    "tn": 1095,
+                    "fp": 26,
+                    "fn": 65,
+                    "fn_loss": 105625000.0,
+                    "fp_loss": 7800000.0,
+                    "total_financial_loss": 113425000.0
+                },
+                {
+                    "threshold": 0.69,
+                    "tp": 11,
+                    "tn": 1097,
+                    "fp": 24,
+                    "fn": 68,
+                    "fn_loss": 110500000.0,
+                    "fp_loss": 7200000.0,
+                    "total_financial_loss": 117700000.0
+                },
+                {
+                    "threshold": 0.7,
+                    "tp": 9,
+                    "tn": 1102,
+                    "fp": 19,
+                    "fn": 70,
+                    "fn_loss": 113750000.0,
+                    "fp_loss": 5700000.0,
+                    "total_financial_loss": 119450000.0
+                },
+                {
+                    "threshold": 0.71,
+                    "tp": 9,
+                    "tn": 1102,
+                    "fp": 19,
+                    "fn": 70,
+                    "fn_loss": 113750000.0,
+                    "fp_loss": 5700000.0,
+                    "total_financial_loss": 119450000.0
+                },
+                {
+                    "threshold": 0.72,
+                    "tp": 8,
+                    "tn": 1102,
+                    "fp": 19,
+                    "fn": 71,
+                    "fn_loss": 115375000.0,
+                    "fp_loss": 5700000.0,
+                    "total_financial_loss": 121075000.0
+                },
+                {
+                    "threshold": 0.73,
+                    "tp": 5,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 124150000.0
+                },
+                {
+                    "threshold": 0.74,
+                    "tp": 5,
+                    "tn": 1111,
+                    "fp": 10,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 3000000.0,
+                    "total_financial_loss": 123250000.0
+                },
+                {
+                    "threshold": 0.7499999999999999,
+                    "tp": 2,
+                    "tn": 1114,
+                    "fp": 7,
+                    "fn": 77,
+                    "fn_loss": 125125000.0,
+                    "fp_loss": 2100000.0,
+                    "total_financial_loss": 127225000.0
+                },
+                {
+                    "threshold": 0.7599999999999999,
+                    "tp": 2,
+                    "tn": 1116,
+                    "fp": 5,
+                    "fn": 77,
+                    "fn_loss": 125125000.0,
+                    "fp_loss": 1500000.0,
+                    "total_financial_loss": 126625000.0
+                },
+                {
+                    "threshold": 0.7699999999999999,
+                    "tp": 0,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 129575000.0
+                },
+                {
+                    "threshold": 0.7799999999999999,
+                    "tp": 0,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 129275000.0
+                },
+                {
+                    "threshold": 0.7899999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.7999999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.8099999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.82,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.83,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.84,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.8499999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.8599999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.8699999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8799999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8899999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8999999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.9099999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.9199999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.9299999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.94,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.95,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                }
+            ]
+        }
+    },
+    "LightGBM": {
+        "accuracy": 0.92,
+        "precision": 0.36065573770491804,
+        "recall": 0.27848101265822783,
+        "specificity": 0.9652096342551294,
+        "f1_score": 0.3142857142857143,
+        "roc_auc": 0.8146094693932858,
+        "pr_auc": 0.2562639608364611,
+        "tn": 1082,
+        "fp": 39,
+        "fn": 57,
+        "tp": 22,
+        "financial_optimization": {
+            "portfolio_type": "personal",
+            "c_fn": 1625000.0,
+            "c_fp": 300000.0,
+            "optimal_threshold": 0.37999999999999995,
+            "min_financial_loss": 87150000.0,
+            "default_50_loss": 104325000.0,
+            "monetary_savings_ngn": 17175000.0,
+            "savings_percentage": 16.462976276060388,
+            "optimal_metrics": {
+                "threshold": 0.37999999999999995,
+                "tp": 37.0,
+                "tn": 1058.0,
+                "fp": 63.0,
+                "fn": 42.0,
+                "fn_loss": 68250000.0,
+                "fp_loss": 18900000.0,
+                "total_financial_loss": 87150000.0
+            },
+            "loss_curve": [
+                {
+                    "threshold": 0.05,
+                    "tp": 61,
+                    "tn": 752,
+                    "fp": 369,
+                    "fn": 18,
+                    "fn_loss": 29250000.0,
+                    "fp_loss": 110700000.0,
+                    "total_financial_loss": 139950000.0
+                },
+                {
+                    "threshold": 0.06,
+                    "tp": 60,
+                    "tn": 779,
+                    "fp": 342,
+                    "fn": 19,
+                    "fn_loss": 30875000.0,
+                    "fp_loss": 102600000.0,
+                    "total_financial_loss": 133475000.0
+                },
+                {
+                    "threshold": 0.07,
+                    "tp": 60,
+                    "tn": 805,
+                    "fp": 316,
+                    "fn": 19,
+                    "fn_loss": 30875000.0,
+                    "fp_loss": 94800000.0,
+                    "total_financial_loss": 125675000.0
+                },
+                {
+                    "threshold": 0.08,
+                    "tp": 57,
+                    "tn": 824,
+                    "fp": 297,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 89100000.0,
+                    "total_financial_loss": 124850000.0
+                },
+                {
+                    "threshold": 0.09,
+                    "tp": 57,
+                    "tn": 849,
+                    "fp": 272,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 81600000.0,
+                    "total_financial_loss": 117350000.0
+                },
+                {
+                    "threshold": 0.09999999999999999,
+                    "tp": 56,
+                    "tn": 863,
+                    "fp": 258,
+                    "fn": 23,
+                    "fn_loss": 37375000.0,
+                    "fp_loss": 77400000.0,
+                    "total_financial_loss": 114775000.0
+                },
+                {
+                    "threshold": 0.10999999999999999,
+                    "tp": 55,
+                    "tn": 873,
+                    "fp": 248,
+                    "fn": 24,
+                    "fn_loss": 39000000.0,
+                    "fp_loss": 74400000.0,
+                    "total_financial_loss": 113400000.0
+                },
+                {
+                    "threshold": 0.12,
+                    "tp": 54,
+                    "tn": 884,
+                    "fp": 237,
+                    "fn": 25,
+                    "fn_loss": 40625000.0,
+                    "fp_loss": 71100000.0,
+                    "total_financial_loss": 111725000.0
+                },
+                {
+                    "threshold": 0.13,
+                    "tp": 53,
+                    "tn": 896,
+                    "fp": 225,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 67500000.0,
+                    "total_financial_loss": 109750000.0
+                },
+                {
+                    "threshold": 0.13999999999999999,
+                    "tp": 51,
+                    "tn": 903,
+                    "fp": 218,
+                    "fn": 28,
+                    "fn_loss": 45500000.0,
+                    "fp_loss": 65400000.0,
+                    "total_financial_loss": 110900000.0
+                },
+                {
+                    "threshold": 0.14999999999999997,
+                    "tp": 50,
+                    "tn": 919,
+                    "fp": 202,
+                    "fn": 29,
+                    "fn_loss": 47125000.0,
+                    "fp_loss": 60600000.0,
+                    "total_financial_loss": 107725000.0
+                },
+                {
+                    "threshold": 0.15999999999999998,
+                    "tp": 49,
+                    "tn": 928,
+                    "fp": 193,
+                    "fn": 30,
+                    "fn_loss": 48750000.0,
+                    "fp_loss": 57900000.0,
+                    "total_financial_loss": 106650000.0
+                },
+                {
+                    "threshold": 0.16999999999999998,
+                    "tp": 49,
+                    "tn": 941,
+                    "fp": 180,
+                    "fn": 30,
+                    "fn_loss": 48750000.0,
+                    "fp_loss": 54000000.0,
+                    "total_financial_loss": 102750000.0
+                },
+                {
+                    "threshold": 0.18,
+                    "tp": 48,
+                    "tn": 952,
+                    "fp": 169,
+                    "fn": 31,
+                    "fn_loss": 50375000.0,
+                    "fp_loss": 50700000.0,
+                    "total_financial_loss": 101075000.0
+                },
+                {
+                    "threshold": 0.19,
+                    "tp": 47,
+                    "tn": 956,
+                    "fp": 165,
+                    "fn": 32,
+                    "fn_loss": 52000000.0,
+                    "fp_loss": 49500000.0,
+                    "total_financial_loss": 101500000.0
+                },
+                {
+                    "threshold": 0.19999999999999996,
+                    "tp": 47,
+                    "tn": 968,
+                    "fp": 153,
+                    "fn": 32,
+                    "fn_loss": 52000000.0,
+                    "fp_loss": 45900000.0,
+                    "total_financial_loss": 97900000.0
+                },
+                {
+                    "threshold": 0.20999999999999996,
+                    "tp": 45,
+                    "tn": 972,
+                    "fp": 149,
+                    "fn": 34,
+                    "fn_loss": 55250000.0,
+                    "fp_loss": 44700000.0,
+                    "total_financial_loss": 99950000.0
+                },
+                {
+                    "threshold": 0.21999999999999997,
+                    "tp": 45,
+                    "tn": 977,
+                    "fp": 144,
+                    "fn": 34,
+                    "fn_loss": 55250000.0,
+                    "fp_loss": 43200000.0,
+                    "total_financial_loss": 98450000.0
+                },
+                {
+                    "threshold": 0.22999999999999998,
+                    "tp": 44,
+                    "tn": 983,
+                    "fp": 138,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 41400000.0,
+                    "total_financial_loss": 98275000.0
+                },
+                {
+                    "threshold": 0.24,
+                    "tp": 44,
+                    "tn": 987,
+                    "fp": 134,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 40200000.0,
+                    "total_financial_loss": 97075000.0
+                },
+                {
+                    "threshold": 0.24999999999999994,
+                    "tp": 43,
+                    "tn": 993,
+                    "fp": 128,
+                    "fn": 36,
+                    "fn_loss": 58500000.0,
+                    "fp_loss": 38400000.0,
+                    "total_financial_loss": 96900000.0
+                },
+                {
+                    "threshold": 0.25999999999999995,
+                    "tp": 42,
+                    "tn": 997,
+                    "fp": 124,
+                    "fn": 37,
+                    "fn_loss": 60125000.0,
+                    "fp_loss": 37200000.0,
+                    "total_financial_loss": 97325000.0
+                },
+                {
+                    "threshold": 0.26999999999999996,
+                    "tp": 41,
+                    "tn": 1001,
+                    "fp": 120,
+                    "fn": 38,
+                    "fn_loss": 61750000.0,
+                    "fp_loss": 36000000.0,
+                    "total_financial_loss": 97750000.0
+                },
+                {
+                    "threshold": 0.27999999999999997,
+                    "tp": 39,
+                    "tn": 1007,
+                    "fp": 114,
+                    "fn": 40,
+                    "fn_loss": 65000000.0,
+                    "fp_loss": 34200000.0,
+                    "total_financial_loss": 99200000.0
+                },
+                {
+                    "threshold": 0.29,
+                    "tp": 39,
+                    "tn": 1017,
+                    "fp": 104,
+                    "fn": 40,
+                    "fn_loss": 65000000.0,
+                    "fp_loss": 31200000.0,
+                    "total_financial_loss": 96200000.0
+                },
+                {
+                    "threshold": 0.3,
+                    "tp": 39,
+                    "tn": 1019,
+                    "fp": 102,
+                    "fn": 40,
+                    "fn_loss": 65000000.0,
+                    "fp_loss": 30600000.0,
+                    "total_financial_loss": 95600000.0
+                },
+                {
+                    "threshold": 0.30999999999999994,
+                    "tp": 38,
+                    "tn": 1025,
+                    "fp": 96,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 28800000.0,
+                    "total_financial_loss": 95425000.0
+                },
+                {
+                    "threshold": 0.31999999999999995,
+                    "tp": 38,
+                    "tn": 1031,
+                    "fp": 90,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 27000000.0,
+                    "total_financial_loss": 93625000.0
+                },
+                {
+                    "threshold": 0.32999999999999996,
+                    "tp": 38,
+                    "tn": 1036,
+                    "fp": 85,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 25500000.0,
+                    "total_financial_loss": 92125000.0
+                },
+                {
+                    "threshold": 0.33999999999999997,
+                    "tp": 38,
+                    "tn": 1042,
+                    "fp": 79,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 23700000.0,
+                    "total_financial_loss": 90325000.0
+                },
+                {
+                    "threshold": 0.3499999999999999,
+                    "tp": 38,
+                    "tn": 1046,
+                    "fp": 75,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 22500000.0,
+                    "total_financial_loss": 89125000.0
+                },
+                {
+                    "threshold": 0.35999999999999993,
+                    "tp": 37,
+                    "tn": 1049,
+                    "fp": 72,
+                    "fn": 42,
+                    "fn_loss": 68250000.0,
+                    "fp_loss": 21600000.0,
+                    "total_financial_loss": 89850000.0
+                },
+                {
+                    "threshold": 0.36999999999999994,
+                    "tp": 37,
+                    "tn": 1054,
+                    "fp": 67,
+                    "fn": 42,
+                    "fn_loss": 68250000.0,
+                    "fp_loss": 20100000.0,
+                    "total_financial_loss": 88350000.0
+                },
+                {
+                    "threshold": 0.37999999999999995,
+                    "tp": 37,
+                    "tn": 1058,
+                    "fp": 63,
+                    "fn": 42,
+                    "fn_loss": 68250000.0,
+                    "fp_loss": 18900000.0,
+                    "total_financial_loss": 87150000.0
+                },
+                {
+                    "threshold": 0.38999999999999996,
+                    "tp": 36,
+                    "tn": 1058,
+                    "fp": 63,
+                    "fn": 43,
+                    "fn_loss": 69875000.0,
+                    "fp_loss": 18900000.0,
+                    "total_financial_loss": 88775000.0
+                },
+                {
+                    "threshold": 0.3999999999999999,
+                    "tp": 34,
+                    "tn": 1060,
+                    "fp": 61,
+                    "fn": 45,
+                    "fn_loss": 73125000.0,
+                    "fp_loss": 18300000.0,
+                    "total_financial_loss": 91425000.0
+                },
+                {
+                    "threshold": 0.4099999999999999,
+                    "tp": 33,
+                    "tn": 1062,
+                    "fp": 59,
+                    "fn": 46,
+                    "fn_loss": 74750000.0,
+                    "fp_loss": 17700000.0,
+                    "total_financial_loss": 92450000.0
+                },
+                {
+                    "threshold": 0.41999999999999993,
+                    "tp": 30,
+                    "tn": 1065,
+                    "fp": 56,
+                    "fn": 49,
+                    "fn_loss": 79625000.0,
+                    "fp_loss": 16800000.0,
+                    "total_financial_loss": 96425000.0
+                },
+                {
+                    "threshold": 0.42999999999999994,
+                    "tp": 29,
+                    "tn": 1068,
+                    "fp": 53,
+                    "fn": 50,
+                    "fn_loss": 81250000.0,
+                    "fp_loss": 15900000.0,
+                    "total_financial_loss": 97150000.0
+                },
+                {
+                    "threshold": 0.43999999999999995,
+                    "tp": 28,
+                    "tn": 1070,
+                    "fp": 51,
+                    "fn": 51,
+                    "fn_loss": 82875000.0,
+                    "fp_loss": 15300000.0,
+                    "total_financial_loss": 98175000.0
+                },
+                {
+                    "threshold": 0.4499999999999999,
+                    "tp": 26,
+                    "tn": 1072,
+                    "fp": 49,
+                    "fn": 53,
+                    "fn_loss": 86125000.0,
+                    "fp_loss": 14700000.0,
+                    "total_financial_loss": 100825000.0
+                },
+                {
+                    "threshold": 0.4599999999999999,
+                    "tp": 25,
+                    "tn": 1074,
+                    "fp": 47,
+                    "fn": 54,
+                    "fn_loss": 87750000.0,
+                    "fp_loss": 14100000.0,
+                    "total_financial_loss": 101850000.0
+                },
+                {
+                    "threshold": 0.4699999999999999,
+                    "tp": 25,
+                    "tn": 1078,
+                    "fp": 43,
+                    "fn": 54,
+                    "fn_loss": 87750000.0,
+                    "fp_loss": 12900000.0,
+                    "total_financial_loss": 100650000.0
+                },
+                {
+                    "threshold": 0.4799999999999999,
+                    "tp": 22,
+                    "tn": 1080,
+                    "fp": 41,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 12300000.0,
+                    "total_financial_loss": 104925000.0
+                },
+                {
+                    "threshold": 0.48999999999999994,
+                    "tp": 22,
+                    "tn": 1080,
+                    "fp": 41,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 12300000.0,
+                    "total_financial_loss": 104925000.0
+                },
+                {
+                    "threshold": 0.49999999999999994,
+                    "tp": 22,
+                    "tn": 1082,
+                    "fp": 39,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 11700000.0,
+                    "total_financial_loss": 104325000.0
+                },
+                {
+                    "threshold": 0.5099999999999999,
+                    "tp": 21,
+                    "tn": 1083,
+                    "fp": 38,
+                    "fn": 58,
+                    "fn_loss": 94250000.0,
+                    "fp_loss": 11400000.0,
+                    "total_financial_loss": 105650000.0
+                },
+                {
+                    "threshold": 0.5199999999999999,
+                    "tp": 18,
+                    "tn": 1084,
+                    "fp": 37,
+                    "fn": 61,
+                    "fn_loss": 99125000.0,
+                    "fp_loss": 11100000.0,
+                    "total_financial_loss": 110225000.0
+                },
+                {
+                    "threshold": 0.5299999999999999,
+                    "tp": 18,
+                    "tn": 1084,
+                    "fp": 37,
+                    "fn": 61,
+                    "fn_loss": 99125000.0,
+                    "fp_loss": 11100000.0,
+                    "total_financial_loss": 110225000.0
+                },
+                {
+                    "threshold": 0.5399999999999999,
+                    "tp": 18,
+                    "tn": 1085,
+                    "fp": 36,
+                    "fn": 61,
+                    "fn_loss": 99125000.0,
+                    "fp_loss": 10800000.0,
+                    "total_financial_loss": 109925000.0
+                },
+                {
+                    "threshold": 0.5499999999999999,
+                    "tp": 18,
+                    "tn": 1087,
+                    "fp": 34,
+                    "fn": 61,
+                    "fn_loss": 99125000.0,
+                    "fp_loss": 10200000.0,
+                    "total_financial_loss": 109325000.0
+                },
+                {
+                    "threshold": 0.5599999999999999,
+                    "tp": 17,
+                    "tn": 1088,
+                    "fp": 33,
+                    "fn": 62,
+                    "fn_loss": 100750000.0,
+                    "fp_loss": 9900000.0,
+                    "total_financial_loss": 110650000.0
+                },
+                {
+                    "threshold": 0.57,
+                    "tp": 16,
+                    "tn": 1091,
+                    "fp": 30,
+                    "fn": 63,
+                    "fn_loss": 102375000.0,
+                    "fp_loss": 9000000.0,
+                    "total_financial_loss": 111375000.0
+                },
+                {
+                    "threshold": 0.58,
+                    "tp": 16,
+                    "tn": 1091,
+                    "fp": 30,
+                    "fn": 63,
+                    "fn_loss": 102375000.0,
+                    "fp_loss": 9000000.0,
+                    "total_financial_loss": 111375000.0
+                },
+                {
+                    "threshold": 0.59,
+                    "tp": 16,
+                    "tn": 1094,
+                    "fp": 27,
+                    "fn": 63,
+                    "fn_loss": 102375000.0,
+                    "fp_loss": 8100000.0,
+                    "total_financial_loss": 110475000.0
+                },
+                {
+                    "threshold": 0.6,
+                    "tp": 16,
+                    "tn": 1097,
+                    "fp": 24,
+                    "fn": 63,
+                    "fn_loss": 102375000.0,
+                    "fp_loss": 7200000.0,
+                    "total_financial_loss": 109575000.0
+                },
+                {
+                    "threshold": 0.61,
+                    "tp": 14,
+                    "tn": 1098,
+                    "fp": 23,
+                    "fn": 65,
+                    "fn_loss": 105625000.0,
+                    "fp_loss": 6900000.0,
+                    "total_financial_loss": 112525000.0
+                },
+                {
+                    "threshold": 0.62,
+                    "tp": 14,
+                    "tn": 1100,
+                    "fp": 21,
+                    "fn": 65,
+                    "fn_loss": 105625000.0,
+                    "fp_loss": 6300000.0,
+                    "total_financial_loss": 111925000.0
+                },
+                {
+                    "threshold": 0.63,
+                    "tp": 12,
+                    "tn": 1100,
+                    "fp": 21,
+                    "fn": 67,
+                    "fn_loss": 108875000.0,
+                    "fp_loss": 6300000.0,
+                    "total_financial_loss": 115175000.0
+                },
+                {
+                    "threshold": 0.6399999999999999,
+                    "tp": 11,
+                    "tn": 1101,
+                    "fp": 20,
+                    "fn": 68,
+                    "fn_loss": 110500000.0,
+                    "fp_loss": 6000000.0,
+                    "total_financial_loss": 116500000.0
+                },
+                {
+                    "threshold": 0.6499999999999999,
+                    "tp": 11,
+                    "tn": 1102,
+                    "fp": 19,
+                    "fn": 68,
+                    "fn_loss": 110500000.0,
+                    "fp_loss": 5700000.0,
+                    "total_financial_loss": 116200000.0
+                },
+                {
+                    "threshold": 0.6599999999999999,
+                    "tp": 10,
+                    "tn": 1104,
+                    "fp": 17,
+                    "fn": 69,
+                    "fn_loss": 112125000.0,
+                    "fp_loss": 5100000.0,
+                    "total_financial_loss": 117225000.0
+                },
+                {
+                    "threshold": 0.6699999999999999,
+                    "tp": 8,
+                    "tn": 1104,
+                    "fp": 17,
+                    "fn": 71,
+                    "fn_loss": 115375000.0,
+                    "fp_loss": 5100000.0,
+                    "total_financial_loss": 120475000.0
+                },
+                {
+                    "threshold": 0.6799999999999999,
+                    "tp": 8,
+                    "tn": 1104,
+                    "fp": 17,
+                    "fn": 71,
+                    "fn_loss": 115375000.0,
+                    "fp_loss": 5100000.0,
+                    "total_financial_loss": 120475000.0
+                },
+                {
+                    "threshold": 0.69,
+                    "tp": 8,
+                    "tn": 1104,
+                    "fp": 17,
+                    "fn": 71,
+                    "fn_loss": 115375000.0,
+                    "fp_loss": 5100000.0,
+                    "total_financial_loss": 120475000.0
+                },
+                {
+                    "threshold": 0.7,
+                    "tp": 8,
+                    "tn": 1105,
+                    "fp": 16,
+                    "fn": 71,
+                    "fn_loss": 115375000.0,
+                    "fp_loss": 4800000.0,
+                    "total_financial_loss": 120175000.0
+                },
+                {
+                    "threshold": 0.71,
+                    "tp": 8,
+                    "tn": 1106,
+                    "fp": 15,
+                    "fn": 71,
+                    "fn_loss": 115375000.0,
+                    "fp_loss": 4500000.0,
+                    "total_financial_loss": 119875000.0
+                },
+                {
+                    "threshold": 0.72,
+                    "tp": 8,
+                    "tn": 1107,
+                    "fp": 14,
+                    "fn": 71,
+                    "fn_loss": 115375000.0,
+                    "fp_loss": 4200000.0,
+                    "total_financial_loss": 119575000.0
+                },
+                {
+                    "threshold": 0.73,
+                    "tp": 7,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 72,
+                    "fn_loss": 117000000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 120900000.0
+                },
+                {
+                    "threshold": 0.74,
+                    "tp": 7,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 72,
+                    "fn_loss": 117000000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 120900000.0
+                },
+                {
+                    "threshold": 0.7499999999999999,
+                    "tp": 5,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 124150000.0
+                },
+                {
+                    "threshold": 0.7599999999999999,
+                    "tp": 5,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 124150000.0
+                },
+                {
+                    "threshold": 0.7699999999999999,
+                    "tp": 4,
+                    "tn": 1109,
+                    "fp": 12,
+                    "fn": 75,
+                    "fn_loss": 121875000.0,
+                    "fp_loss": 3600000.0,
+                    "total_financial_loss": 125475000.0
+                },
+                {
+                    "threshold": 0.7799999999999999,
+                    "tp": 3,
+                    "tn": 1110,
+                    "fp": 11,
+                    "fn": 76,
+                    "fn_loss": 123500000.0,
+                    "fp_loss": 3300000.0,
+                    "total_financial_loss": 126800000.0
+                },
+                {
+                    "threshold": 0.7899999999999999,
+                    "tp": 2,
+                    "tn": 1111,
+                    "fp": 10,
+                    "fn": 77,
+                    "fn_loss": 125125000.0,
+                    "fp_loss": 3000000.0,
+                    "total_financial_loss": 128125000.0
+                },
+                {
+                    "threshold": 0.7999999999999999,
+                    "tp": 2,
+                    "tn": 1114,
+                    "fp": 7,
+                    "fn": 77,
+                    "fn_loss": 125125000.0,
+                    "fp_loss": 2100000.0,
+                    "total_financial_loss": 127225000.0
+                },
+                {
+                    "threshold": 0.8099999999999999,
+                    "tp": 2,
+                    "tn": 1116,
+                    "fp": 5,
+                    "fn": 77,
+                    "fn_loss": 125125000.0,
+                    "fp_loss": 1500000.0,
+                    "total_financial_loss": 126625000.0
+                },
+                {
+                    "threshold": 0.82,
+                    "tp": 2,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 77,
+                    "fn_loss": 125125000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 126325000.0
+                },
+                {
+                    "threshold": 0.83,
+                    "tp": 1,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 127950000.0
+                },
+                {
+                    "threshold": 0.84,
+                    "tp": 1,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 127650000.0
+                },
+                {
+                    "threshold": 0.8499999999999999,
+                    "tp": 1,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 127650000.0
+                },
+                {
+                    "threshold": 0.8599999999999999,
+                    "tp": 1,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 127350000.0
+                },
+                {
+                    "threshold": 0.8699999999999999,
+                    "tp": 0,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 128975000.0
+                },
+                {
+                    "threshold": 0.8799999999999999,
+                    "tp": 0,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 128975000.0
+                },
+                {
+                    "threshold": 0.8899999999999999,
+                    "tp": 0,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 128975000.0
+                },
+                {
+                    "threshold": 0.8999999999999999,
+                    "tp": 0,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 128975000.0
+                },
+                {
+                    "threshold": 0.9099999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.9199999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.9299999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.94,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.95,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                }
+            ]
+        }
+    },
+    "XGBoost": {
+        "accuracy": 0.8966666666666666,
+        "precision": 0.2897196261682243,
+        "recall": 0.3924050632911392,
+        "specificity": 0.9322033898305084,
+        "f1_score": 0.3333333333333333,
+        "roc_auc": 0.8168000993687824,
+        "pr_auc": 0.25719665529489694,
+        "tn": 1045,
+        "fp": 76,
+        "fn": 48,
+        "tp": 31,
+        "financial_optimization": {
+            "portfolio_type": "personal",
+            "c_fn": 1625000.0,
+            "c_fp": 300000.0,
+            "optimal_threshold": 0.6,
+            "min_financial_loss": 95175000.0,
+            "default_50_loss": 100800000.0,
+            "monetary_savings_ngn": 5625000.0,
+            "savings_percentage": 5.580357142857143,
+            "optimal_metrics": {
+                "threshold": 0.6,
+                "tp": 28.0,
+                "tn": 1080.0,
+                "fp": 41.0,
+                "fn": 51.0,
+                "fn_loss": 82875000.0,
+                "fp_loss": 12300000.0,
+                "total_financial_loss": 95175000.0
+            },
+            "loss_curve": [
+                {
+                    "threshold": 0.05,
+                    "tp": 69,
+                    "tn": 587,
+                    "fp": 534,
+                    "fn": 10,
+                    "fn_loss": 16250000.0,
+                    "fp_loss": 160200000.0,
+                    "total_financial_loss": 176450000.0
+                },
+                {
+                    "threshold": 0.06,
+                    "tp": 69,
+                    "tn": 624,
+                    "fp": 497,
+                    "fn": 10,
+                    "fn_loss": 16250000.0,
+                    "fp_loss": 149100000.0,
+                    "total_financial_loss": 165350000.0
+                },
+                {
+                    "threshold": 0.07,
+                    "tp": 68,
+                    "tn": 660,
+                    "fp": 461,
+                    "fn": 11,
+                    "fn_loss": 17875000.0,
+                    "fp_loss": 138300000.0,
+                    "total_financial_loss": 156175000.0
+                },
+                {
+                    "threshold": 0.08,
+                    "tp": 68,
+                    "tn": 691,
+                    "fp": 430,
+                    "fn": 11,
+                    "fn_loss": 17875000.0,
+                    "fp_loss": 129000000.0,
+                    "total_financial_loss": 146875000.0
+                },
+                {
+                    "threshold": 0.09,
+                    "tp": 64,
+                    "tn": 714,
+                    "fp": 407,
+                    "fn": 15,
+                    "fn_loss": 24375000.0,
+                    "fp_loss": 122100000.0,
+                    "total_financial_loss": 146475000.0
+                },
+                {
+                    "threshold": 0.09999999999999999,
+                    "tp": 62,
+                    "tn": 738,
+                    "fp": 383,
+                    "fn": 17,
+                    "fn_loss": 27625000.0,
+                    "fp_loss": 114900000.0,
+                    "total_financial_loss": 142525000.0
+                },
+                {
+                    "threshold": 0.10999999999999999,
+                    "tp": 61,
+                    "tn": 758,
+                    "fp": 363,
+                    "fn": 18,
+                    "fn_loss": 29250000.0,
+                    "fp_loss": 108900000.0,
+                    "total_financial_loss": 138150000.0
+                },
+                {
+                    "threshold": 0.12,
+                    "tp": 60,
+                    "tn": 774,
+                    "fp": 347,
+                    "fn": 19,
+                    "fn_loss": 30875000.0,
+                    "fp_loss": 104100000.0,
+                    "total_financial_loss": 134975000.0
+                },
+                {
+                    "threshold": 0.13,
+                    "tp": 57,
+                    "tn": 794,
+                    "fp": 327,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 98100000.0,
+                    "total_financial_loss": 133850000.0
+                },
+                {
+                    "threshold": 0.13999999999999999,
+                    "tp": 57,
+                    "tn": 810,
+                    "fp": 311,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 93300000.0,
+                    "total_financial_loss": 129050000.0
+                },
+                {
+                    "threshold": 0.14999999999999997,
+                    "tp": 57,
+                    "tn": 824,
+                    "fp": 297,
+                    "fn": 22,
+                    "fn_loss": 35750000.0,
+                    "fp_loss": 89100000.0,
+                    "total_financial_loss": 124850000.0
+                },
+                {
+                    "threshold": 0.15999999999999998,
+                    "tp": 56,
+                    "tn": 830,
+                    "fp": 291,
+                    "fn": 23,
+                    "fn_loss": 37375000.0,
+                    "fp_loss": 87300000.0,
+                    "total_financial_loss": 124675000.0
+                },
+                {
+                    "threshold": 0.16999999999999998,
+                    "tp": 54,
+                    "tn": 849,
+                    "fp": 272,
+                    "fn": 25,
+                    "fn_loss": 40625000.0,
+                    "fp_loss": 81600000.0,
+                    "total_financial_loss": 122225000.0
+                },
+                {
+                    "threshold": 0.18,
+                    "tp": 54,
+                    "tn": 856,
+                    "fp": 265,
+                    "fn": 25,
+                    "fn_loss": 40625000.0,
+                    "fp_loss": 79500000.0,
+                    "total_financial_loss": 120125000.0
+                },
+                {
+                    "threshold": 0.19,
+                    "tp": 53,
+                    "tn": 864,
+                    "fp": 257,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 77100000.0,
+                    "total_financial_loss": 119350000.0
+                },
+                {
+                    "threshold": 0.19999999999999996,
+                    "tp": 53,
+                    "tn": 873,
+                    "fp": 248,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 74400000.0,
+                    "total_financial_loss": 116650000.0
+                },
+                {
+                    "threshold": 0.20999999999999996,
+                    "tp": 53,
+                    "tn": 880,
+                    "fp": 241,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 72300000.0,
+                    "total_financial_loss": 114550000.0
+                },
+                {
+                    "threshold": 0.21999999999999997,
+                    "tp": 53,
+                    "tn": 889,
+                    "fp": 232,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 69600000.0,
+                    "total_financial_loss": 111850000.0
+                },
+                {
+                    "threshold": 0.22999999999999998,
+                    "tp": 53,
+                    "tn": 893,
+                    "fp": 228,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 68400000.0,
+                    "total_financial_loss": 110650000.0
+                },
+                {
+                    "threshold": 0.24,
+                    "tp": 53,
+                    "tn": 911,
+                    "fp": 210,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 63000000.0,
+                    "total_financial_loss": 105250000.0
+                },
+                {
+                    "threshold": 0.24999999999999994,
+                    "tp": 53,
+                    "tn": 917,
+                    "fp": 204,
+                    "fn": 26,
+                    "fn_loss": 42250000.0,
+                    "fp_loss": 61200000.0,
+                    "total_financial_loss": 103450000.0
+                },
+                {
+                    "threshold": 0.25999999999999995,
+                    "tp": 49,
+                    "tn": 925,
+                    "fp": 196,
+                    "fn": 30,
+                    "fn_loss": 48750000.0,
+                    "fp_loss": 58800000.0,
+                    "total_financial_loss": 107550000.0
+                },
+                {
+                    "threshold": 0.26999999999999996,
+                    "tp": 49,
+                    "tn": 931,
+                    "fp": 190,
+                    "fn": 30,
+                    "fn_loss": 48750000.0,
+                    "fp_loss": 57000000.0,
+                    "total_financial_loss": 105750000.0
+                },
+                {
+                    "threshold": 0.27999999999999997,
+                    "tp": 45,
+                    "tn": 936,
+                    "fp": 185,
+                    "fn": 34,
+                    "fn_loss": 55250000.0,
+                    "fp_loss": 55500000.0,
+                    "total_financial_loss": 110750000.0
+                },
+                {
+                    "threshold": 0.29,
+                    "tp": 44,
+                    "tn": 941,
+                    "fp": 180,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 54000000.0,
+                    "total_financial_loss": 110875000.0
+                },
+                {
+                    "threshold": 0.3,
+                    "tp": 44,
+                    "tn": 945,
+                    "fp": 176,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 52800000.0,
+                    "total_financial_loss": 109675000.0
+                },
+                {
+                    "threshold": 0.30999999999999994,
+                    "tp": 44,
+                    "tn": 949,
+                    "fp": 172,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 51600000.0,
+                    "total_financial_loss": 108475000.0
+                },
+                {
+                    "threshold": 0.31999999999999995,
+                    "tp": 44,
+                    "tn": 956,
+                    "fp": 165,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 49500000.0,
+                    "total_financial_loss": 106375000.0
+                },
+                {
+                    "threshold": 0.32999999999999996,
+                    "tp": 44,
+                    "tn": 965,
+                    "fp": 156,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 46800000.0,
+                    "total_financial_loss": 103675000.0
+                },
+                {
+                    "threshold": 0.33999999999999997,
+                    "tp": 43,
+                    "tn": 970,
+                    "fp": 151,
+                    "fn": 36,
+                    "fn_loss": 58500000.0,
+                    "fp_loss": 45300000.0,
+                    "total_financial_loss": 103800000.0
+                },
+                {
+                    "threshold": 0.3499999999999999,
+                    "tp": 43,
+                    "tn": 981,
+                    "fp": 140,
+                    "fn": 36,
+                    "fn_loss": 58500000.0,
+                    "fp_loss": 42000000.0,
+                    "total_financial_loss": 100500000.0
+                },
+                {
+                    "threshold": 0.35999999999999993,
+                    "tp": 42,
+                    "tn": 988,
+                    "fp": 133,
+                    "fn": 37,
+                    "fn_loss": 60125000.0,
+                    "fp_loss": 39900000.0,
+                    "total_financial_loss": 100025000.0
+                },
+                {
+                    "threshold": 0.36999999999999994,
+                    "tp": 41,
+                    "tn": 993,
+                    "fp": 128,
+                    "fn": 38,
+                    "fn_loss": 61750000.0,
+                    "fp_loss": 38400000.0,
+                    "total_financial_loss": 100150000.0
+                },
+                {
+                    "threshold": 0.37999999999999995,
+                    "tp": 41,
+                    "tn": 998,
+                    "fp": 123,
+                    "fn": 38,
+                    "fn_loss": 61750000.0,
+                    "fp_loss": 36900000.0,
+                    "total_financial_loss": 98650000.0
+                },
+                {
+                    "threshold": 0.38999999999999996,
+                    "tp": 39,
+                    "tn": 1002,
+                    "fp": 119,
+                    "fn": 40,
+                    "fn_loss": 65000000.0,
+                    "fp_loss": 35700000.0,
+                    "total_financial_loss": 100700000.0
+                },
+                {
+                    "threshold": 0.3999999999999999,
+                    "tp": 39,
+                    "tn": 1008,
+                    "fp": 113,
+                    "fn": 40,
+                    "fn_loss": 65000000.0,
+                    "fp_loss": 33900000.0,
+                    "total_financial_loss": 98900000.0
+                },
+                {
+                    "threshold": 0.4099999999999999,
+                    "tp": 39,
+                    "tn": 1012,
+                    "fp": 109,
+                    "fn": 40,
+                    "fn_loss": 65000000.0,
+                    "fp_loss": 32700000.0,
+                    "total_financial_loss": 97700000.0
+                },
+                {
+                    "threshold": 0.41999999999999993,
+                    "tp": 39,
+                    "tn": 1016,
+                    "fp": 105,
+                    "fn": 40,
+                    "fn_loss": 65000000.0,
+                    "fp_loss": 31500000.0,
+                    "total_financial_loss": 96500000.0
+                },
+                {
+                    "threshold": 0.42999999999999994,
+                    "tp": 38,
+                    "tn": 1020,
+                    "fp": 101,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 30300000.0,
+                    "total_financial_loss": 96925000.0
+                },
+                {
+                    "threshold": 0.43999999999999995,
+                    "tp": 37,
+                    "tn": 1027,
+                    "fp": 94,
+                    "fn": 42,
+                    "fn_loss": 68250000.0,
+                    "fp_loss": 28200000.0,
+                    "total_financial_loss": 96450000.0
+                },
+                {
+                    "threshold": 0.4499999999999999,
+                    "tp": 36,
+                    "tn": 1028,
+                    "fp": 93,
+                    "fn": 43,
+                    "fn_loss": 69875000.0,
+                    "fp_loss": 27900000.0,
+                    "total_financial_loss": 97775000.0
+                },
+                {
+                    "threshold": 0.4599999999999999,
+                    "tp": 35,
+                    "tn": 1032,
+                    "fp": 89,
+                    "fn": 44,
+                    "fn_loss": 71500000.0,
+                    "fp_loss": 26700000.0,
+                    "total_financial_loss": 98200000.0
+                },
+                {
+                    "threshold": 0.4699999999999999,
+                    "tp": 35,
+                    "tn": 1035,
+                    "fp": 86,
+                    "fn": 44,
+                    "fn_loss": 71500000.0,
+                    "fp_loss": 25800000.0,
+                    "total_financial_loss": 97300000.0
+                },
+                {
+                    "threshold": 0.4799999999999999,
+                    "tp": 33,
+                    "tn": 1040,
+                    "fp": 81,
+                    "fn": 46,
+                    "fn_loss": 74750000.0,
+                    "fp_loss": 24300000.0,
+                    "total_financial_loss": 99050000.0
+                },
+                {
+                    "threshold": 0.48999999999999994,
+                    "tp": 32,
+                    "tn": 1041,
+                    "fp": 80,
+                    "fn": 47,
+                    "fn_loss": 76375000.0,
+                    "fp_loss": 24000000.0,
+                    "total_financial_loss": 100375000.0
+                },
+                {
+                    "threshold": 0.49999999999999994,
+                    "tp": 31,
+                    "tn": 1045,
+                    "fp": 76,
+                    "fn": 48,
+                    "fn_loss": 78000000.0,
+                    "fp_loss": 22800000.0,
+                    "total_financial_loss": 100800000.0
+                },
+                {
+                    "threshold": 0.5099999999999999,
+                    "tp": 31,
+                    "tn": 1048,
+                    "fp": 73,
+                    "fn": 48,
+                    "fn_loss": 78000000.0,
+                    "fp_loss": 21900000.0,
+                    "total_financial_loss": 99900000.0
+                },
+                {
+                    "threshold": 0.5199999999999999,
+                    "tp": 31,
+                    "tn": 1051,
+                    "fp": 70,
+                    "fn": 48,
+                    "fn_loss": 78000000.0,
+                    "fp_loss": 21000000.0,
+                    "total_financial_loss": 99000000.0
+                },
+                {
+                    "threshold": 0.5299999999999999,
+                    "tp": 31,
+                    "tn": 1054,
+                    "fp": 67,
+                    "fn": 48,
+                    "fn_loss": 78000000.0,
+                    "fp_loss": 20100000.0,
+                    "total_financial_loss": 98100000.0
+                },
+                {
+                    "threshold": 0.5399999999999999,
+                    "tp": 29,
+                    "tn": 1061,
+                    "fp": 60,
+                    "fn": 50,
+                    "fn_loss": 81250000.0,
+                    "fp_loss": 18000000.0,
+                    "total_financial_loss": 99250000.0
+                },
+                {
+                    "threshold": 0.5499999999999999,
+                    "tp": 28,
+                    "tn": 1063,
+                    "fp": 58,
+                    "fn": 51,
+                    "fn_loss": 82875000.0,
+                    "fp_loss": 17400000.0,
+                    "total_financial_loss": 100275000.0
+                },
+                {
+                    "threshold": 0.5599999999999999,
+                    "tp": 28,
+                    "tn": 1069,
+                    "fp": 52,
+                    "fn": 51,
+                    "fn_loss": 82875000.0,
+                    "fp_loss": 15600000.0,
+                    "total_financial_loss": 98475000.0
+                },
+                {
+                    "threshold": 0.57,
+                    "tp": 28,
+                    "tn": 1071,
+                    "fp": 50,
+                    "fn": 51,
+                    "fn_loss": 82875000.0,
+                    "fp_loss": 15000000.0,
+                    "total_financial_loss": 97875000.0
+                },
+                {
+                    "threshold": 0.58,
+                    "tp": 28,
+                    "tn": 1074,
+                    "fp": 47,
+                    "fn": 51,
+                    "fn_loss": 82875000.0,
+                    "fp_loss": 14100000.0,
+                    "total_financial_loss": 96975000.0
+                },
+                {
+                    "threshold": 0.59,
+                    "tp": 28,
+                    "tn": 1079,
+                    "fp": 42,
+                    "fn": 51,
+                    "fn_loss": 82875000.0,
+                    "fp_loss": 12600000.0,
+                    "total_financial_loss": 95475000.0
+                },
+                {
+                    "threshold": 0.6,
+                    "tp": 28,
+                    "tn": 1080,
+                    "fp": 41,
+                    "fn": 51,
+                    "fn_loss": 82875000.0,
+                    "fp_loss": 12300000.0,
+                    "total_financial_loss": 95175000.0
+                },
+                {
+                    "threshold": 0.61,
+                    "tp": 26,
+                    "tn": 1081,
+                    "fp": 40,
+                    "fn": 53,
+                    "fn_loss": 86125000.0,
+                    "fp_loss": 12000000.0,
+                    "total_financial_loss": 98125000.0
+                },
+                {
+                    "threshold": 0.62,
+                    "tp": 25,
+                    "tn": 1081,
+                    "fp": 40,
+                    "fn": 54,
+                    "fn_loss": 87750000.0,
+                    "fp_loss": 12000000.0,
+                    "total_financial_loss": 99750000.0
+                },
+                {
+                    "threshold": 0.63,
+                    "tp": 23,
+                    "tn": 1083,
+                    "fp": 38,
+                    "fn": 56,
+                    "fn_loss": 91000000.0,
+                    "fp_loss": 11400000.0,
+                    "total_financial_loss": 102400000.0
+                },
+                {
+                    "threshold": 0.6399999999999999,
+                    "tp": 22,
+                    "tn": 1083,
+                    "fp": 38,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 11400000.0,
+                    "total_financial_loss": 104025000.0
+                },
+                {
+                    "threshold": 0.6499999999999999,
+                    "tp": 19,
+                    "tn": 1084,
+                    "fp": 37,
+                    "fn": 60,
+                    "fn_loss": 97500000.0,
+                    "fp_loss": 11100000.0,
+                    "total_financial_loss": 108600000.0
+                },
+                {
+                    "threshold": 0.6599999999999999,
+                    "tp": 19,
+                    "tn": 1087,
+                    "fp": 34,
+                    "fn": 60,
+                    "fn_loss": 97500000.0,
+                    "fp_loss": 10200000.0,
+                    "total_financial_loss": 107700000.0
+                },
+                {
+                    "threshold": 0.6699999999999999,
+                    "tp": 16,
+                    "tn": 1090,
+                    "fp": 31,
+                    "fn": 63,
+                    "fn_loss": 102375000.0,
+                    "fp_loss": 9300000.0,
+                    "total_financial_loss": 111675000.0
+                },
+                {
+                    "threshold": 0.6799999999999999,
+                    "tp": 15,
+                    "tn": 1092,
+                    "fp": 29,
+                    "fn": 64,
+                    "fn_loss": 104000000.0,
+                    "fp_loss": 8700000.0,
+                    "total_financial_loss": 112700000.0
+                },
+                {
+                    "threshold": 0.69,
+                    "tp": 15,
+                    "tn": 1096,
+                    "fp": 25,
+                    "fn": 64,
+                    "fn_loss": 104000000.0,
+                    "fp_loss": 7500000.0,
+                    "total_financial_loss": 111500000.0
+                },
+                {
+                    "threshold": 0.7,
+                    "tp": 14,
+                    "tn": 1097,
+                    "fp": 24,
+                    "fn": 65,
+                    "fn_loss": 105625000.0,
+                    "fp_loss": 7200000.0,
+                    "total_financial_loss": 112825000.0
+                },
+                {
+                    "threshold": 0.71,
+                    "tp": 14,
+                    "tn": 1099,
+                    "fp": 22,
+                    "fn": 65,
+                    "fn_loss": 105625000.0,
+                    "fp_loss": 6600000.0,
+                    "total_financial_loss": 112225000.0
+                },
+                {
+                    "threshold": 0.72,
+                    "tp": 14,
+                    "tn": 1103,
+                    "fp": 18,
+                    "fn": 65,
+                    "fn_loss": 105625000.0,
+                    "fp_loss": 5400000.0,
+                    "total_financial_loss": 111025000.0
+                },
+                {
+                    "threshold": 0.73,
+                    "tp": 13,
+                    "tn": 1105,
+                    "fp": 16,
+                    "fn": 66,
+                    "fn_loss": 107250000.0,
+                    "fp_loss": 4800000.0,
+                    "total_financial_loss": 112050000.0
+                },
+                {
+                    "threshold": 0.74,
+                    "tp": 11,
+                    "tn": 1106,
+                    "fp": 15,
+                    "fn": 68,
+                    "fn_loss": 110500000.0,
+                    "fp_loss": 4500000.0,
+                    "total_financial_loss": 115000000.0
+                },
+                {
+                    "threshold": 0.7499999999999999,
+                    "tp": 9,
+                    "tn": 1109,
+                    "fp": 12,
+                    "fn": 70,
+                    "fn_loss": 113750000.0,
+                    "fp_loss": 3600000.0,
+                    "total_financial_loss": 117350000.0
+                },
+                {
+                    "threshold": 0.7599999999999999,
+                    "tp": 9,
+                    "tn": 1109,
+                    "fp": 12,
+                    "fn": 70,
+                    "fn_loss": 113750000.0,
+                    "fp_loss": 3600000.0,
+                    "total_financial_loss": 117350000.0
+                },
+                {
+                    "threshold": 0.7699999999999999,
+                    "tp": 9,
+                    "tn": 1109,
+                    "fp": 12,
+                    "fn": 70,
+                    "fn_loss": 113750000.0,
+                    "fp_loss": 3600000.0,
+                    "total_financial_loss": 117350000.0
+                },
+                {
+                    "threshold": 0.7799999999999999,
+                    "tp": 5,
+                    "tn": 1111,
+                    "fp": 10,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 3000000.0,
+                    "total_financial_loss": 123250000.0
+                },
+                {
+                    "threshold": 0.7899999999999999,
+                    "tp": 5,
+                    "tn": 1112,
+                    "fp": 9,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 2700000.0,
+                    "total_financial_loss": 122950000.0
+                },
+                {
+                    "threshold": 0.7999999999999999,
+                    "tp": 4,
+                    "tn": 1113,
+                    "fp": 8,
+                    "fn": 75,
+                    "fn_loss": 121875000.0,
+                    "fp_loss": 2400000.0,
+                    "total_financial_loss": 124275000.0
+                },
+                {
+                    "threshold": 0.8099999999999999,
+                    "tp": 3,
+                    "tn": 1113,
+                    "fp": 8,
+                    "fn": 76,
+                    "fn_loss": 123500000.0,
+                    "fp_loss": 2400000.0,
+                    "total_financial_loss": 125900000.0
+                },
+                {
+                    "threshold": 0.82,
+                    "tp": 3,
+                    "tn": 1114,
+                    "fp": 7,
+                    "fn": 76,
+                    "fn_loss": 123500000.0,
+                    "fp_loss": 2100000.0,
+                    "total_financial_loss": 125600000.0
+                },
+                {
+                    "threshold": 0.83,
+                    "tp": 3,
+                    "tn": 1115,
+                    "fp": 6,
+                    "fn": 76,
+                    "fn_loss": 123500000.0,
+                    "fp_loss": 1800000.0,
+                    "total_financial_loss": 125300000.0
+                },
+                {
+                    "threshold": 0.84,
+                    "tp": 3,
+                    "tn": 1115,
+                    "fp": 6,
+                    "fn": 76,
+                    "fn_loss": 123500000.0,
+                    "fp_loss": 1800000.0,
+                    "total_financial_loss": 125300000.0
+                },
+                {
+                    "threshold": 0.8499999999999999,
+                    "tp": 2,
+                    "tn": 1115,
+                    "fp": 6,
+                    "fn": 77,
+                    "fn_loss": 125125000.0,
+                    "fp_loss": 1800000.0,
+                    "total_financial_loss": 126925000.0
+                },
+                {
+                    "threshold": 0.8599999999999999,
+                    "tp": 1,
+                    "tn": 1116,
+                    "fp": 5,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 1500000.0,
+                    "total_financial_loss": 128250000.0
+                },
+                {
+                    "threshold": 0.8699999999999999,
+                    "tp": 0,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 129275000.0
+                },
+                {
+                    "threshold": 0.8799999999999999,
+                    "tp": 0,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 129275000.0
+                },
+                {
+                    "threshold": 0.8899999999999999,
+                    "tp": 0,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 128975000.0
+                },
+                {
+                    "threshold": 0.8999999999999999,
+                    "tp": 0,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 128975000.0
+                },
+                {
+                    "threshold": 0.9099999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.9199999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.9299999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.94,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.95,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                }
+            ]
+        }
+    },
+    "XGBoost_No_SMOTE": {
+        "accuracy": 0.9341666666666667,
+        "precision": 0.5,
+        "recall": 0.08860759493670886,
+        "specificity": 0.9937555753791257,
+        "f1_score": 0.15053763440860216,
+        "roc_auc": 0.844702401788638,
+        "pr_auc": 0.31371996311379696,
+        "tn": 1114,
+        "fp": 7,
+        "fn": 72,
+        "tp": 7,
+        "financial_optimization": {
+            "portfolio_type": "personal",
+            "c_fn": 1625000.0,
+            "c_fp": 300000.0,
+            "optimal_threshold": 0.14999999999999997,
+            "min_financial_loss": 88275000.0,
+            "default_50_loss": 119100000.0,
+            "monetary_savings_ngn": 30825000.0,
+            "savings_percentage": 25.8816120906801,
+            "optimal_metrics": {
+                "threshold": 0.14999999999999997,
+                "tp": 40.0,
+                "tn": 1038.0,
+                "fp": 83.0,
+                "fn": 39.0,
+                "fn_loss": 63375000.0,
+                "fp_loss": 24900000.0,
+                "total_financial_loss": 88275000.0
+            },
+            "loss_curve": [
+                {
+                    "threshold": 0.05,
+                    "tp": 62,
+                    "tn": 849,
+                    "fp": 272,
+                    "fn": 17,
+                    "fn_loss": 27625000.0,
+                    "fp_loss": 81600000.0,
+                    "total_financial_loss": 109225000.0
+                },
+                {
+                    "threshold": 0.06,
+                    "tp": 59,
+                    "tn": 882,
+                    "fp": 239,
+                    "fn": 20,
+                    "fn_loss": 32500000.0,
+                    "fp_loss": 71700000.0,
+                    "total_financial_loss": 104200000.0
+                },
+                {
+                    "threshold": 0.07,
+                    "tp": 56,
+                    "tn": 905,
+                    "fp": 216,
+                    "fn": 23,
+                    "fn_loss": 37375000.0,
+                    "fp_loss": 64800000.0,
+                    "total_financial_loss": 102175000.0
+                },
+                {
+                    "threshold": 0.08,
+                    "tp": 50,
+                    "tn": 941,
+                    "fp": 180,
+                    "fn": 29,
+                    "fn_loss": 47125000.0,
+                    "fp_loss": 54000000.0,
+                    "total_financial_loss": 101125000.0
+                },
+                {
+                    "threshold": 0.09,
+                    "tp": 47,
+                    "tn": 963,
+                    "fp": 158,
+                    "fn": 32,
+                    "fn_loss": 52000000.0,
+                    "fp_loss": 47400000.0,
+                    "total_financial_loss": 99400000.0
+                },
+                {
+                    "threshold": 0.09999999999999999,
+                    "tp": 45,
+                    "tn": 979,
+                    "fp": 142,
+                    "fn": 34,
+                    "fn_loss": 55250000.0,
+                    "fp_loss": 42600000.0,
+                    "total_financial_loss": 97850000.0
+                },
+                {
+                    "threshold": 0.10999999999999999,
+                    "tp": 44,
+                    "tn": 991,
+                    "fp": 130,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 39000000.0,
+                    "total_financial_loss": 95875000.0
+                },
+                {
+                    "threshold": 0.12,
+                    "tp": 44,
+                    "tn": 1006,
+                    "fp": 115,
+                    "fn": 35,
+                    "fn_loss": 56875000.0,
+                    "fp_loss": 34500000.0,
+                    "total_financial_loss": 91375000.0
+                },
+                {
+                    "threshold": 0.13,
+                    "tp": 42,
+                    "tn": 1018,
+                    "fp": 103,
+                    "fn": 37,
+                    "fn_loss": 60125000.0,
+                    "fp_loss": 30900000.0,
+                    "total_financial_loss": 91025000.0
+                },
+                {
+                    "threshold": 0.13999999999999999,
+                    "tp": 41,
+                    "tn": 1031,
+                    "fp": 90,
+                    "fn": 38,
+                    "fn_loss": 61750000.0,
+                    "fp_loss": 27000000.0,
+                    "total_financial_loss": 88750000.0
+                },
+                {
+                    "threshold": 0.14999999999999997,
+                    "tp": 40,
+                    "tn": 1038,
+                    "fp": 83,
+                    "fn": 39,
+                    "fn_loss": 63375000.0,
+                    "fp_loss": 24900000.0,
+                    "total_financial_loss": 88275000.0
+                },
+                {
+                    "threshold": 0.15999999999999998,
+                    "tp": 38,
+                    "tn": 1044,
+                    "fp": 77,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 23100000.0,
+                    "total_financial_loss": 89725000.0
+                },
+                {
+                    "threshold": 0.16999999999999998,
+                    "tp": 38,
+                    "tn": 1047,
+                    "fp": 74,
+                    "fn": 41,
+                    "fn_loss": 66625000.0,
+                    "fp_loss": 22200000.0,
+                    "total_financial_loss": 88825000.0
+                },
+                {
+                    "threshold": 0.18,
+                    "tp": 37,
+                    "tn": 1052,
+                    "fp": 69,
+                    "fn": 42,
+                    "fn_loss": 68250000.0,
+                    "fp_loss": 20700000.0,
+                    "total_financial_loss": 88950000.0
+                },
+                {
+                    "threshold": 0.19,
+                    "tp": 35,
+                    "tn": 1058,
+                    "fp": 63,
+                    "fn": 44,
+                    "fn_loss": 71500000.0,
+                    "fp_loss": 18900000.0,
+                    "total_financial_loss": 90400000.0
+                },
+                {
+                    "threshold": 0.19999999999999996,
+                    "tp": 34,
+                    "tn": 1061,
+                    "fp": 60,
+                    "fn": 45,
+                    "fn_loss": 73125000.0,
+                    "fp_loss": 18000000.0,
+                    "total_financial_loss": 91125000.0
+                },
+                {
+                    "threshold": 0.20999999999999996,
+                    "tp": 34,
+                    "tn": 1068,
+                    "fp": 53,
+                    "fn": 45,
+                    "fn_loss": 73125000.0,
+                    "fp_loss": 15900000.0,
+                    "total_financial_loss": 89025000.0
+                },
+                {
+                    "threshold": 0.21999999999999997,
+                    "tp": 33,
+                    "tn": 1072,
+                    "fp": 49,
+                    "fn": 46,
+                    "fn_loss": 74750000.0,
+                    "fp_loss": 14700000.0,
+                    "total_financial_loss": 89450000.0
+                },
+                {
+                    "threshold": 0.22999999999999998,
+                    "tp": 30,
+                    "tn": 1075,
+                    "fp": 46,
+                    "fn": 49,
+                    "fn_loss": 79625000.0,
+                    "fp_loss": 13800000.0,
+                    "total_financial_loss": 93425000.0
+                },
+                {
+                    "threshold": 0.24,
+                    "tp": 27,
+                    "tn": 1075,
+                    "fp": 46,
+                    "fn": 52,
+                    "fn_loss": 84500000.0,
+                    "fp_loss": 13800000.0,
+                    "total_financial_loss": 98300000.0
+                },
+                {
+                    "threshold": 0.24999999999999994,
+                    "tp": 25,
+                    "tn": 1080,
+                    "fp": 41,
+                    "fn": 54,
+                    "fn_loss": 87750000.0,
+                    "fp_loss": 12300000.0,
+                    "total_financial_loss": 100050000.0
+                },
+                {
+                    "threshold": 0.25999999999999995,
+                    "tp": 24,
+                    "tn": 1084,
+                    "fp": 37,
+                    "fn": 55,
+                    "fn_loss": 89375000.0,
+                    "fp_loss": 11100000.0,
+                    "total_financial_loss": 100475000.0
+                },
+                {
+                    "threshold": 0.26999999999999996,
+                    "tp": 23,
+                    "tn": 1089,
+                    "fp": 32,
+                    "fn": 56,
+                    "fn_loss": 91000000.0,
+                    "fp_loss": 9600000.0,
+                    "total_financial_loss": 100600000.0
+                },
+                {
+                    "threshold": 0.27999999999999997,
+                    "tp": 22,
+                    "tn": 1092,
+                    "fp": 29,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 8700000.0,
+                    "total_financial_loss": 101325000.0
+                },
+                {
+                    "threshold": 0.29,
+                    "tp": 22,
+                    "tn": 1095,
+                    "fp": 26,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 7800000.0,
+                    "total_financial_loss": 100425000.0
+                },
+                {
+                    "threshold": 0.3,
+                    "tp": 22,
+                    "tn": 1099,
+                    "fp": 22,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 6600000.0,
+                    "total_financial_loss": 99225000.0
+                },
+                {
+                    "threshold": 0.30999999999999994,
+                    "tp": 22,
+                    "tn": 1099,
+                    "fp": 22,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 6600000.0,
+                    "total_financial_loss": 99225000.0
+                },
+                {
+                    "threshold": 0.31999999999999995,
+                    "tp": 22,
+                    "tn": 1100,
+                    "fp": 21,
+                    "fn": 57,
+                    "fn_loss": 92625000.0,
+                    "fp_loss": 6300000.0,
+                    "total_financial_loss": 98925000.0
+                },
+                {
+                    "threshold": 0.32999999999999996,
+                    "tp": 21,
+                    "tn": 1100,
+                    "fp": 21,
+                    "fn": 58,
+                    "fn_loss": 94250000.0,
+                    "fp_loss": 6300000.0,
+                    "total_financial_loss": 100550000.0
+                },
+                {
+                    "threshold": 0.33999999999999997,
+                    "tp": 21,
+                    "tn": 1100,
+                    "fp": 21,
+                    "fn": 58,
+                    "fn_loss": 94250000.0,
+                    "fp_loss": 6300000.0,
+                    "total_financial_loss": 100550000.0
+                },
+                {
+                    "threshold": 0.3499999999999999,
+                    "tp": 19,
+                    "tn": 1100,
+                    "fp": 21,
+                    "fn": 60,
+                    "fn_loss": 97500000.0,
+                    "fp_loss": 6300000.0,
+                    "total_financial_loss": 103800000.0
+                },
+                {
+                    "threshold": 0.35999999999999993,
+                    "tp": 16,
+                    "tn": 1102,
+                    "fp": 19,
+                    "fn": 63,
+                    "fn_loss": 102375000.0,
+                    "fp_loss": 5700000.0,
+                    "total_financial_loss": 108075000.0
+                },
+                {
+                    "threshold": 0.36999999999999994,
+                    "tp": 16,
+                    "tn": 1102,
+                    "fp": 19,
+                    "fn": 63,
+                    "fn_loss": 102375000.0,
+                    "fp_loss": 5700000.0,
+                    "total_financial_loss": 108075000.0
+                },
+                {
+                    "threshold": 0.37999999999999995,
+                    "tp": 15,
+                    "tn": 1104,
+                    "fp": 17,
+                    "fn": 64,
+                    "fn_loss": 104000000.0,
+                    "fp_loss": 5100000.0,
+                    "total_financial_loss": 109100000.0
+                },
+                {
+                    "threshold": 0.38999999999999996,
+                    "tp": 15,
+                    "tn": 1105,
+                    "fp": 16,
+                    "fn": 64,
+                    "fn_loss": 104000000.0,
+                    "fp_loss": 4800000.0,
+                    "total_financial_loss": 108800000.0
+                },
+                {
+                    "threshold": 0.3999999999999999,
+                    "tp": 13,
+                    "tn": 1105,
+                    "fp": 16,
+                    "fn": 66,
+                    "fn_loss": 107250000.0,
+                    "fp_loss": 4800000.0,
+                    "total_financial_loss": 112050000.0
+                },
+                {
+                    "threshold": 0.4099999999999999,
+                    "tp": 12,
+                    "tn": 1105,
+                    "fp": 16,
+                    "fn": 67,
+                    "fn_loss": 108875000.0,
+                    "fp_loss": 4800000.0,
+                    "total_financial_loss": 113675000.0
+                },
+                {
+                    "threshold": 0.41999999999999993,
+                    "tp": 12,
+                    "tn": 1106,
+                    "fp": 15,
+                    "fn": 67,
+                    "fn_loss": 108875000.0,
+                    "fp_loss": 4500000.0,
+                    "total_financial_loss": 113375000.0
+                },
+                {
+                    "threshold": 0.42999999999999994,
+                    "tp": 12,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 67,
+                    "fn_loss": 108875000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 112775000.0
+                },
+                {
+                    "threshold": 0.43999999999999995,
+                    "tp": 11,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 68,
+                    "fn_loss": 110500000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 114400000.0
+                },
+                {
+                    "threshold": 0.4499999999999999,
+                    "tp": 11,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 68,
+                    "fn_loss": 110500000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 114400000.0
+                },
+                {
+                    "threshold": 0.4599999999999999,
+                    "tp": 10,
+                    "tn": 1108,
+                    "fp": 13,
+                    "fn": 69,
+                    "fn_loss": 112125000.0,
+                    "fp_loss": 3900000.0,
+                    "total_financial_loss": 116025000.0
+                },
+                {
+                    "threshold": 0.4699999999999999,
+                    "tp": 9,
+                    "tn": 1109,
+                    "fp": 12,
+                    "fn": 70,
+                    "fn_loss": 113750000.0,
+                    "fp_loss": 3600000.0,
+                    "total_financial_loss": 117350000.0
+                },
+                {
+                    "threshold": 0.4799999999999999,
+                    "tp": 9,
+                    "tn": 1112,
+                    "fp": 9,
+                    "fn": 70,
+                    "fn_loss": 113750000.0,
+                    "fp_loss": 2700000.0,
+                    "total_financial_loss": 116450000.0
+                },
+                {
+                    "threshold": 0.48999999999999994,
+                    "tp": 7,
+                    "tn": 1112,
+                    "fp": 9,
+                    "fn": 72,
+                    "fn_loss": 117000000.0,
+                    "fp_loss": 2700000.0,
+                    "total_financial_loss": 119700000.0
+                },
+                {
+                    "threshold": 0.49999999999999994,
+                    "tp": 7,
+                    "tn": 1114,
+                    "fp": 7,
+                    "fn": 72,
+                    "fn_loss": 117000000.0,
+                    "fp_loss": 2100000.0,
+                    "total_financial_loss": 119100000.0
+                },
+                {
+                    "threshold": 0.5099999999999999,
+                    "tp": 6,
+                    "tn": 1114,
+                    "fp": 7,
+                    "fn": 73,
+                    "fn_loss": 118625000.0,
+                    "fp_loss": 2100000.0,
+                    "total_financial_loss": 120725000.0
+                },
+                {
+                    "threshold": 0.5199999999999999,
+                    "tp": 6,
+                    "tn": 1115,
+                    "fp": 6,
+                    "fn": 73,
+                    "fn_loss": 118625000.0,
+                    "fp_loss": 1800000.0,
+                    "total_financial_loss": 120425000.0
+                },
+                {
+                    "threshold": 0.5299999999999999,
+                    "tp": 6,
+                    "tn": 1115,
+                    "fp": 6,
+                    "fn": 73,
+                    "fn_loss": 118625000.0,
+                    "fp_loss": 1800000.0,
+                    "total_financial_loss": 120425000.0
+                },
+                {
+                    "threshold": 0.5399999999999999,
+                    "tp": 6,
+                    "tn": 1115,
+                    "fp": 6,
+                    "fn": 73,
+                    "fn_loss": 118625000.0,
+                    "fp_loss": 1800000.0,
+                    "total_financial_loss": 120425000.0
+                },
+                {
+                    "threshold": 0.5499999999999999,
+                    "tp": 6,
+                    "tn": 1115,
+                    "fp": 6,
+                    "fn": 73,
+                    "fn_loss": 118625000.0,
+                    "fp_loss": 1800000.0,
+                    "total_financial_loss": 120425000.0
+                },
+                {
+                    "threshold": 0.5599999999999999,
+                    "tp": 6,
+                    "tn": 1116,
+                    "fp": 5,
+                    "fn": 73,
+                    "fn_loss": 118625000.0,
+                    "fp_loss": 1500000.0,
+                    "total_financial_loss": 120125000.0
+                },
+                {
+                    "threshold": 0.57,
+                    "tp": 6,
+                    "tn": 1116,
+                    "fp": 5,
+                    "fn": 73,
+                    "fn_loss": 118625000.0,
+                    "fp_loss": 1500000.0,
+                    "total_financial_loss": 120125000.0
+                },
+                {
+                    "threshold": 0.58,
+                    "tp": 6,
+                    "tn": 1116,
+                    "fp": 5,
+                    "fn": 73,
+                    "fn_loss": 118625000.0,
+                    "fp_loss": 1500000.0,
+                    "total_financial_loss": 120125000.0
+                },
+                {
+                    "threshold": 0.59,
+                    "tp": 5,
+                    "tn": 1116,
+                    "fp": 5,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 1500000.0,
+                    "total_financial_loss": 121750000.0
+                },
+                {
+                    "threshold": 0.6,
+                    "tp": 5,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 121450000.0
+                },
+                {
+                    "threshold": 0.61,
+                    "tp": 5,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 121450000.0
+                },
+                {
+                    "threshold": 0.62,
+                    "tp": 5,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 121450000.0
+                },
+                {
+                    "threshold": 0.63,
+                    "tp": 5,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 74,
+                    "fn_loss": 120250000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 121450000.0
+                },
+                {
+                    "threshold": 0.6399999999999999,
+                    "tp": 4,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 75,
+                    "fn_loss": 121875000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 123075000.0
+                },
+                {
+                    "threshold": 0.6499999999999999,
+                    "tp": 4,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 75,
+                    "fn_loss": 121875000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 123075000.0
+                },
+                {
+                    "threshold": 0.6599999999999999,
+                    "tp": 4,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 75,
+                    "fn_loss": 121875000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 123075000.0
+                },
+                {
+                    "threshold": 0.6699999999999999,
+                    "tp": 4,
+                    "tn": 1117,
+                    "fp": 4,
+                    "fn": 75,
+                    "fn_loss": 121875000.0,
+                    "fp_loss": 1200000.0,
+                    "total_financial_loss": 123075000.0
+                },
+                {
+                    "threshold": 0.6799999999999999,
+                    "tp": 3,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 76,
+                    "fn_loss": 123500000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 124400000.0
+                },
+                {
+                    "threshold": 0.69,
+                    "tp": 3,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 76,
+                    "fn_loss": 123500000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 124400000.0
+                },
+                {
+                    "threshold": 0.7,
+                    "tp": 2,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 77,
+                    "fn_loss": 125125000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 126025000.0
+                },
+                {
+                    "threshold": 0.71,
+                    "tp": 1,
+                    "tn": 1118,
+                    "fp": 3,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 900000.0,
+                    "total_financial_loss": 127650000.0
+                },
+                {
+                    "threshold": 0.72,
+                    "tp": 1,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 127350000.0
+                },
+                {
+                    "threshold": 0.73,
+                    "tp": 1,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 127350000.0
+                },
+                {
+                    "threshold": 0.74,
+                    "tp": 1,
+                    "tn": 1119,
+                    "fp": 2,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 600000.0,
+                    "total_financial_loss": 127350000.0
+                },
+                {
+                    "threshold": 0.7499999999999999,
+                    "tp": 1,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 127050000.0
+                },
+                {
+                    "threshold": 0.7599999999999999,
+                    "tp": 1,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 127050000.0
+                },
+                {
+                    "threshold": 0.7699999999999999,
+                    "tp": 1,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 78,
+                    "fn_loss": 126750000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 127050000.0
+                },
+                {
+                    "threshold": 0.7799999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.7899999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.7999999999999999,
+                    "tp": 0,
+                    "tn": 1120,
+                    "fp": 1,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 300000.0,
+                    "total_financial_loss": 128675000.0
+                },
+                {
+                    "threshold": 0.8099999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.82,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.83,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.84,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8499999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8599999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8699999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8799999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8899999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.8999999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.9099999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.9199999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.9299999999999999,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.94,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                },
+                {
+                    "threshold": 0.95,
+                    "tp": 0,
+                    "tn": 1121,
+                    "fp": 0,
+                    "fn": 79,
+                    "fn_loss": 128375000.0,
+                    "fp_loss": 0.0,
+                    "total_financial_loss": 128375000.0
+                }
+            ]
+        }
+    }
+}
