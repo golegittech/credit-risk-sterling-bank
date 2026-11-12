@@ -8,4 +8,4 @@ env/
 venv/
 ENV/
 .streamlit/
-!dissertation/*.docx
+dissertation/
