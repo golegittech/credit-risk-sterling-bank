@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run training to build datasets, models, metrics and SHAP visualizations if not present
-RUN python -m src.data_generator && python -m src.train_models && python -m src.explainability
+RUN python -m src.experiment
 
 EXPOSE 8501 8000
 

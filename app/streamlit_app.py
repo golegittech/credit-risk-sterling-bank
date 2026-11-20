@@ -71,15 +71,15 @@ st.markdown("""
 
 # ----------------- Helper Functions ----------------- #
 
+from src import scoring
+from src.preprocessing import load_portfolio
+
+
 @st.cache_resource
 def load_assets(portfolio_type: str):
-    m_path = f"models/{portfolio_type}_xgboost.joblib"
-    p_path = f"models/{portfolio_type}_preprocessor.joblib"
-    if os.path.exists(m_path) and os.path.exists(p_path):
-        model = joblib.load(m_path)
-        prep = joblib.load(p_path)
-        return model, prep
-    return None, None
+    if os.path.exists(scoring.bundle_path(portfolio_type)):
+        return scoring.load_bundle(portfolio_type)
+    return None
 
 @st.cache_data
 def load_metrics(portfolio_type: str):
@@ -93,12 +93,12 @@ def load_metrics(portfolio_type: str):
 
 col_logo, col_title = st.columns([1, 6])
 with col_title:
-    st.markdown('<p class="main-header">STERLING BANK NIGERIA — CREDIT RISK DECISION ENGINE</p>', unsafe_allow_html=True)
-    st.markdown('<p class="sub-header">Dual-Model Machine Learning Underwriting System & Explainable AI (XAI) Compliance Dashboard</p>', unsafe_allow_html=True)
+    st.markdown('<p class="main-header">CREDIT RISK DECISION ENGINE (ACADEMIC PROTOTYPE)</p>', unsafe_allow_html=True)
+    st.markdown('<p class="sub-header">Dual-model (personal and SME) default prediction with SHAP explanations</p>', unsafe_allow_html=True)
+st.warning("Academic prototype. All loan records are simulated; no real customer data is used. Not affiliated with or operated by Sterling Bank.")
 
 # ----------------- Sidebar Navigation ----------------- #
 
-st.sidebar.image("https://via.placeholder.com/260x80/8B0000/FFFFFF?text=STERLING+BANK")
 st.sidebar.title("Operational Controls")
 
 app_mode = st.sidebar.radio(
@@ -130,19 +130,19 @@ if app_mode == "Loan Application Underwriting":
     
     portfolio_choice = st.selectbox(
         "Select Lending Portfolio Segment",
-        ["Personal Loan (Salary Earner)", "Retail SME Loan"]
+        ["Personal Loan (Salary Earner)", "SME Loan"]
     )
     
     p_key = "personal" if "Personal" in portfolio_choice else "retail"
-    model, prep = load_assets(p_key)
-    metrics_data = load_metrics(p_key)
+    bundle = load_assets(p_key)
     
-    if model is None or prep is None:
-        st.warning(f"⚠️ {portfolio_choice} models are not yet trained. Please run `python -m src.train_models` to generate models.")
+    if bundle is None:
+        st.warning(f"⚠️ {portfolio_choice} model is not yet trained. Please run `python -m src.experiment`.")
     else:
-        opt_th = metrics_data.get("XGBoost", {}).get("financial_optimization", {}).get("optimal_threshold", 0.35)
+        opt_th = bundle["cutoff"]
+        band = bundle["review_band"]
         
-        st.markdown(f"**Applied Financial Loss-Minimizing Cutoff Threshold:** `{opt_th:.2f}`")
+        st.markdown(f"**Model:** `{bundle['model_name'].replace('_', ' ')}` · **Cost-based cutoff (chosen on validation set):** `{opt_th:.2f}`")
         
         with st.form("underwrite_form"):
             if p_key == "personal":
@@ -203,10 +203,9 @@ if app_mode == "Loan Application Underwriting":
                 }
 
         if submitted:
-            from src.explainability import CreditRiskExplainer
-            explainer = CreditRiskExplainer(p_key)
-            explanation = explainer.explain_instance(input_payload)
-            prob_def = explanation["predicted_default_probability"]
+            scored = scoring.score_application(p_key, input_payload)
+            explanation = scoring.explain(p_key, input_payload)
+            prob_def = scored["default_probability"]
             repayment_prob = (1.0 - prob_def) * 100
             
             st.markdown("---")
@@ -225,8 +224,8 @@ if app_mode == "Loan Application Underwriting":
                         'axis': {'range': [0, 100], 'tickwidth': 1},
                         'bar': {'color': "#8B0000" if prob_def >= opt_th else "#28a745"},
                         'steps': [
-                            {'range': [0, opt_th * 70], 'color': "#e8f5e9"},
-                            {'range': [opt_th * 70, opt_th * 100], 'color': "#fffde7"},
+                            {'range': [0, opt_th * band * 100], 'color': "#e8f5e9"},
+                            {'range': [opt_th * band * 100, opt_th * 100], 'color': "#fffde7"},
                             {'range': [opt_th * 100, 100], 'color': "#ffebee"}
                         ],
                         'threshold': {
@@ -241,7 +240,7 @@ if app_mode == "Loan Application Underwriting":
                 
             with d_col2:
                 st.markdown("### Underwriter Assessment")
-                if prob_def < (opt_th * 0.70):
+                if prob_def < (opt_th * band):
                     st.markdown('<p class="status-badge-approved">STATUS: AUTOMATED APPROVAL RECOMMENDED</p>', unsafe_allow_html=True)
                     st.write("Borrower risk profile is comfortably within the bank's risk appetite.")
                 elif prob_def < opt_th:
@@ -256,8 +255,8 @@ if app_mode == "Loan Application Underwriting":
                 
                 # Adverse Action Notice per CBN Guidelines
                 if prob_def >= opt_th:
-                    st.markdown("#### 📜 Central Bank of Nigeria (CBN) Adverse Action Summary")
-                    st.info("In compliance with the CBN Consumer Protection Framework, the primary factors determining this adverse decision are:")
+                    st.markdown("#### 📜 Reasons for decline (sample adverse-action statement)")
+                    st.info("Designed to support the CBN Consumer Protection Regulations (2019), under which a declined customer can ask for the reasons. The main factors that raised this applicant's estimated risk were:")
                     for idx, reason in enumerate(explanation["adverse_action_reasons"][:3], 1):
                         st.markdown(f"**{idx}.** {reason}")
 
@@ -271,11 +270,11 @@ if app_mode == "Loan Application Underwriting":
             fig_bar = px.bar(
                 top_attrs[::-1],
                 x="shap_value",
-                y="feature",
+                y="label",
                 orientation='h',
                 color="direction",
                 color_discrete_map={"INCREASES_RISK": "#d9534f", "DECREASES_RISK": "#5cb85c"},
-                labels={"shap_value": "SHAP Contribution to Default Risk", "feature": "Application Feature"},
+                labels={"shap_value": f"SHAP contribution ({explanation['units']} of default)", "label": "Application feature"},
                 title=f"Feature Impact Breakdown for Applicant ({portfolio_choice})"
             )
             fig_bar.update_layout(height=350, margin=dict(l=20, r=20, t=40, b=20))
@@ -339,7 +338,7 @@ elif app_mode == "Global XAI & Risk Drivers":
     st.subheader("Global Explainable AI (XAI) & Factor Attribution")
     st.markdown("""
     Global SHAP explanations quantify the systemic importance of each financial and demographic feature
-    across the entire lending portfolio, satisfying regulatory transparency standards.
+    across the test set, supporting transparency of the model's behaviour.
     """)
     
     portfolio_choice = st.selectbox(
@@ -365,19 +364,11 @@ elif app_mode == "Global XAI & Risk Drivers":
         else:
             st.info("Global summary plot pending.")
             
-    st.markdown("### Risk Interpretation & Regulatory Compliance")
-    if p_key == "personal":
-        st.write("""
-        - **Debt-to-Income (DTI) Ratio** exhibits the highest systemic SHAP attribution. Applicants exceeding 45% DTI demonstrate exponential default probability increases.
-        - **Credit Bureau Score** displays a strong inverse relationship: higher scores substantially lower default odds.
-        - **External Delinquencies** immediately shift the base log-odds into the high-risk bracket.
-        """)
-    else:
-        st.write("""
-        - **Existing External Delinquency** is the single greatest risk driver in the Retail SME portfolio.
-        - **Facility Interest Rate** heavily increases default risk when exceeding 26%, reflecting repayment burdens in high inflation environments.
-        - **Business Age (Years incorporated)** provides strong protection against default, verifying commercial stability over time.
-        """)
+    st.markdown("### Feature ranking (mean |SHAP| on the test set)")
+    rank_path = f"results/thesis/tables/{p_key}_shap_ranking.csv"
+    if os.path.exists(rank_path):
+        st.dataframe(pd.read_csv(rank_path))
+        st.caption("SHAP shows association with predicted risk, not cause.")
 
 # ----------------- MODE 4: Batch Portfolio Audit ----------------- #
 
@@ -386,22 +377,14 @@ elif app_mode == "Batch Portfolio Audit":
     portfolio_choice = st.selectbox("Portfolio Segment", ["Personal Loan", "Retail SME"], key="batch_port")
     p_key = "personal" if "Personal" in portfolio_choice else "retail"
     
-    model, prep = load_assets(p_key)
-    metrics_data = load_metrics(p_key)
+    bundle = load_assets(p_key)
     
-    if model is None or prep is None:
+    if bundle is None:
         st.warning("Models not yet available.")
     else:
-        opt_th = metrics_data.get("XGBoost", {}).get("financial_optimization", {}).get("optimal_threshold", 0.35)
-        csv_file = f"data/{p_key}_loans.csv" if p_key == "personal" else "data/retail_sme_loans.csv"
-        
-        if os.path.exists(csv_file):
-            df_full = pd.read_csv(csv_file).head(50)
-            X_batch, _ = prep.transform_test(df_full)
-            probs = model.predict_proba(X_batch)[:, 1]
-            
-            df_full["Predicted_Default_Prob"] = np.round(probs, 4)
-            df_full["Underwriter_Decision"] = np.where(probs < (opt_th * 0.70), "APPROVE", np.where(probs < opt_th, "MANUAL REVIEW", "REJECT"))
+        opt_th = bundle["cutoff"]
+        if True:
+            df_full = scoring.score_frame(p_key, load_portfolio(p_key).head(50))
             
             st.write(f"Scored sample of 50 accounts against optimal threshold `{opt_th:.2f}`:")
             st.dataframe(df_full)
@@ -410,6 +393,6 @@ elif app_mode == "Batch Portfolio Audit":
             st.download_button(
                 "📥 Download Scored Audit Report (CSV)",
                 csv_down,
-                f"sterling_bank_{p_key}_scored_audit.csv",
+                f"{p_key}_scored_audit_simulated.csv",
                 "text/csv"
             )

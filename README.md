@@ -1,134 +1,117 @@
-# Credit Risk Analysis and Loan Default Prediction Using Machine Learning Models and Data Visualization
+# Interpretable Machine Learning for Loan Default Prediction in Personal and SME Portfolios
 
-**Candidate:** Mbaegbu Chinedum Grace  
-**Matriculation Number:** 2025/A/DSC/0058  
-**Degree:** Bachelor of Science (Honours) Degree in Data Science  
-**Department:** Department of Data Science, School of Computing  
-**Institution:** Miva Open University, Abuja, Nigeria  
-**Supervisor:** Dr. A. S. Makinde  
-**Date:** August, 2026  
+**Candidate:** Mbaegbu Chinedum Grace (2025/A/DSC/0058)  
+**Degree:** B.Sc. (Hons) Data Science, Department of Data Science, School of Computing, Miva Open University, Abuja  
+**Supervisor:** Dr. A. S. Makinde
 
----
-
-## 1. Project Overview
-
-Credit risk management is vital for the safety and solvency of commercial banking institutions. This project delivers an end-to-end, interpretable machine learning system tailored for **Sterling Bank Nigeria**, specifically separating retail credit into a **Dual-Model Architecture**:
-1. **Personal Loan Portfolio (Salary Earners):** Evaluates demographic stability, verified monthly gross salary, Debt-to-Income (DTI) ratio, bureau credit score, and concurrent external debt obligations.
-2. **Retail Loan Portfolio (SMEs / Commercial Enterprises):** Evaluates years since CAC incorporation, sector economic risk, geopolitical region, facility structure (overdraft, term loan), and commercial lending interest rates.
-
-The framework resolves two primary operational hurdles in credit analytics:
-- **Severe Class Imbalance:** Mitigated using strictly out-of-fold **Synthetic Minority Over-sampling Technique (SMOTE)** to prevent data leakage.
-- **Model Opacity ("Black-Box" dilemma):** Resolved using **SHAP (SHapley Additive exPlanations)**, delivering global risk factor auditing and local adverse action explanations consistent with the **Central Bank of Nigeria (CBN) Consumer Protection Framework**.
-- **Financial Asymmetry:** Incorporates an expected financial loss matrix ($C_{FN} = EAD \times LGD$ vs. $C_{FP} = \text{Lost Margin}$) that calibrates cutoffs below the naive 0.50 default threshold, unlocking substantial capital savings.
+> **Data notice.** Both loan portfolios are **simulated** by `src/data_generator.py`. They are modelled on the
+> personal and SME products and field types of a Nigerian commercial bank (Sterling Bank Nigeria), but contain
+> **no real customer records**. The live dashboard is an academic prototype, is not affiliated with or
+> operated by Sterling Bank, and must not be used for real lending decisions.
 
 ---
 
-## 2. System Architecture
+## 1. What the project does
 
-```text
-               +-------------------------------------------+
-               |  Sterling Bank Retail Credit Portfolios   |
-               |     (Personal Salary & Retail SME)        |
-               +---------------------+---------------------+
-                                     |
-                                     v
-               +-------------------------------------------+
-               | Preprocessing & Leakage-Free SMOTE Engine |
-               +---------------------+---------------------+
-                                     |
-                                     v
-               +-------------------------------------------+
-               |   Model Benchmarking & Selection Engine   |
-               | (Logistic Regression, RF, LightGBM, XGB)  |
-               +---------------------+---------------------+
-                                     |
-                                     v
-               +-------------------------------------------+
-               | Financial Cost Matrix & Optimal Threshold |
-               +---------------------+---------------------+
-                                     |
-                                     v
-               +-------------------------------------------+
-               |   SHAP XAI & Adverse Action Generator     |
-               +----------+--------------------+-----------+
-                          |                    |
-                          v                    v
-              +----------------------+  +---------------------+
-              | FastAPI Backend REST |  | Streamlit Dashboard |
-              |  (Render Deployable) |  |   for Underwriters  |
-              +----------------------+  +---------------------+
-```
+Two separate models, one per portfolio:
 
----
+| Portfolio | Features |
+|---|---|
+| Personal (salary earner) | applicant age, housing status, employment length, annual income, debt-to-income ratio, credit bureau score, external loan status, loan amount |
+| SME | business age, sector, region, facility type, loan amount, interest rate, external loan status |
 
-## 3. Directory Layout
+For each portfolio the study:
+
+1. splits the data 60/20/20 (train / validation / test, stratified, seed 42);
+2. trains **Logistic Regression, Random Forest, LightGBM and XGBoost** under three imbalance treatments:
+   no resampling, class weighting, and **SMOTENC** (SMOTE for mixed numeric/categorical data, applied to
+   training data only, inside the pipeline);
+3. reports 5-fold stratified cross-validation (mean and SD) on the training set;
+4. calibrates probabilities (Platt scaling) and chooses the **cost-minimising cutoff on the validation set**;
+5. evaluates once on the test set: confusion matrix for every model, ROC-AUC and PR-AUC with 1,000-sample
+   bootstrap 95% CIs, DeLong tests, Brier scores, expected financial loss, LGD sensitivity, fairness by age band / region;
+6. explains predictions with **SHAP** (TreeExplainer, interventional, 200-row training background; beeswarm,
+   mean |SHAP| and a waterfall for one rejected applicant);
+7. serves the model with the lowest validation-set expected loss through a FastAPI backend and HTML dashboard,
+   with plain-language reasons for declined applications and a manual-review band.
+
+All settings (seed, split, hyperparameters, cost assumptions) are in [`src/config.py`](src/config.py).
+
+## 2. Headline results (simulated data, test set)
+
+Generated by `python -m src.experiment`; full tables in [`results/thesis/chapter4_tables.md`](results/thesis/chapter4_tables.md).
+
+* **Logistic Regression had the highest test ROC-AUC and PR-AUC on both portfolios** and the lowest expected loss.
+  On the personal portfolio its ROC-AUC advantage over XGBoost was not statistically significant (DeLong p = 0.056);
+  on the SME portfolio it was (p = 0.009). This is expected for these data: the simulator generates defaults from
+  a logistic model, so a well-specified Logistic Regression is close to the true model.
+* **SMOTENC did not improve ranking performance** (ROC-AUC / PR-AUC) for any model and made raw probabilities
+  badly over-confident (higher Brier score). Most of the "recall gain" at the 0.50 cutoff is a shift in predicted
+  probabilities, not better learning, consistent with van den Goorbergh et al. (2022).
+* After calibration, the cost-minimising cutoffs were **0.14 to 0.18**, close to the theoretical value
+  C_FP / (C_FP + C_FN) = 0.143 under the stated cost assumptions.
+
+## 3. Repository layout
 
 ```
-chinedum/
-├── api/
-│   └── main.py                     # FastAPI REST API
-├── app/
-│   └── streamlit_app.py            # Streamlit Underwriter & Auditor Dashboard
-├── data/
-│   ├── personal_loans.csv          # Personal loan portfolio
-│   └── retail_sme_loans.csv        # Retail SME loan portfolio
-├── dissertation/
-│   ├── Chapter_1_Introduction.md
-│   ├── Chapter_2_Literature_Review.md
-│   ├── Chapter_3_Methodology_System_Design.md
-│   ├── Chapter_4_Results_and_Discussion.md
-│   ├── Chapter_5_Conclusion_and_Recommendations.md
-│   └── Complete_Dissertation_Mbaegbu_Chinedum.md
-├── models/                         # Saved preprocessors and trained models (.joblib)
-├── results/                        # JSON performance metrics and high-res figures
-├── src/
-│   ├── data_generator.py           # Realistic portfolio synthesis
-│   ├── preprocessing.py            # Imputation, encoding, scaling, SMOTE
-│   ├── train_models.py             # 4-model benchmarking & financial matrix
-│   ├── financial_cost.py           # Cost matrix & threshold optimization
-│   └── explainability.py           # SHAP global/local XAI engine
-├── Dockerfile                      # Container specification
-├── Procfile                        # Cloud / Render deployment config
-├── requirements.txt                # Python dependencies
-├── run_app.bat                     # Windows 1-click execution script
-└── README.md                       # Project documentation
+api/main.py                 FastAPI backend + HTML underwriting dashboard
+app/streamlit_app.py        Alternative Streamlit dashboard
+data/                       Simulated portfolios (6,000 loans each)
+models/*_deployment.joblib  Served model: pipeline, calibrator, cutoff, SHAP background
+notebooks/reproduce_chapter4.ipynb   Reruns everything and shows every table and figure
+results/thesis/tables/      Every Chapter 4 table as CSV
+results/thesis/figures/     Every Chapter 4 figure
+results/thesis/chapter4_tables.md    All tables formatted for copying
+results/thesis/run_info.json         Seed, split and library versions
+results/thesis/api_examples/         Sample API requests and responses
+src/config.py               All settings and cost assumptions
+src/data_generator.py       Portfolio simulator
+src/preprocessing.py        Leakage-free imputation / SMOTENC / encoding pipelines
+src/evaluation.py           Confusion-matrix metrics, calibration, bootstrap CIs, DeLong test
+src/financial_cost.py       Per-loan cost matrix and cutoff selection
+src/explainability.py       SHAP explanations and adverse-action reasons
+src/experiment.py           The full study (one run, one seed)
+src/scoring.py              Scoring service used by both dashboards
+src/functional_test.py      20-application end-to-end API test
+tests/                      Unit and API tests (pytest)
 ```
 
----
+## 4. Reproduce
 
-## 4. Setup and Installation
+Python 3.11. On macOS, LightGBM/XGBoost need OpenMP (`brew install libomp`).
 
-### Prerequisites
-- Python 3.10+ (Configured with pip)
-- Git (Optional)
-
-### Step 1: Install Requirements
 ```bash
 pip install -r requirements.txt
+python -m src.experiment          # regenerates every table, figure and the served models
+python -m src.functional_test     # 20 applications through the API
+python -m pytest -q               # unit + API tests
+uvicorn api.main:app --port 8000  # dashboard at http://localhost:8000, API docs at /docs
 ```
 
-### Step 2: Run Data Generation, Training, and Explainability
-```bash
-python -m src.data_generator
-python -m src.train_models
-python -m src.explainability
-```
+## 5. API
 
-### Step 3: Launch the Interactive Dashboard
-```bash
-streamlit run app/streamlit_app.py
-```
-Access at: `http://localhost:8501`
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/` | Underwriting dashboard |
+| GET | `/health` | Models loaded, model names and cutoffs |
+| POST | `/predict/personal`, `/predict/retail` | Calibrated probability of default and decision |
+| POST | `/explain/personal`, `/explain/retail` | Same, plus SHAP contributions and reasons for decline |
+| GET | `/metrics/{personal\|retail}` | Test-set metrics |
+| GET | `/audit-sample/{personal\|retail}` | 50 scored simulated accounts |
+| GET | `/docs` | Swagger documentation |
 
-### Step 4: Run the FastAPI Service (Optional)
-```bash
-uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
-```
-Interactive Swagger docs at: `http://localhost:8000/docs`
+Decisions: **REJECT** if probability ≥ cutoff; **MANUAL REVIEW** if ≥ 0.7 × cutoff; otherwise **APPROVE**.
+Example request/response: [`results/thesis/api_examples/`](results/thesis/api_examples/).
 
----
+## 6. Regulatory context
 
-## 5. Central Bank of Nigeria (CBN) Compliance Features
-- **Adverse Action Explanations:** For any declined loan, the system automatically extracts top positive SHAP contributors to articulate defensible, plain-language rejection reasons.
-- **Auditable Fair Lending:** Real-time visibility into feature weights guarantees models do not leverage prohibited demographic proxies.
-- **Dual-Control Human-in-the-Loop:** Borderline risk scores trigger a `MANUAL REVIEW` flag rather than instant rejection.
+The system is *designed to support*, not guarantee, compliance with the CBN Consumer Protection Regulations (2019),
+under which a declined customer can obtain the reasons for the decision, and Section 37 of the Nigeria Data
+Protection Act 2023 on decisions based solely on automated processing (hence the manual-review band).
+SHAP values describe association with predicted risk, not causation. No real personal data is processed.
+
+## 7. Limitations
+
+Simulated data from a single generator; one random split (with CV on training data); fixed, untuned
+hyperparameters; assumed (not sourced) cost parameters; no origination dates, so no out-of-time test;
+small subgroups in the fairness analysis; no live validation.

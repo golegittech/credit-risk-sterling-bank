@@ -1,0 +1,9 @@
+Portfolio,Set,Performing,Defaulted,Total,Default rate (%)
+Personal (salary earner),Training (original),3363,237,3600,6.58
+Personal (salary earner),Training after SMOTENC,3363,3363,6726,50.0
+Personal (salary earner),Validation,1121,79,1200,6.58
+Personal (salary earner),Test,1121,79,1200,6.58
+SME,Training (original),3265,335,3600,9.31
+SME,Training after SMOTENC,3265,3265,6530,50.0
+SME,Validation,1088,112,1200,9.33
+SME,Test,1089,111,1200,9.25

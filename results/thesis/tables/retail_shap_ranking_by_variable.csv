@@ -1,0 +1,15 @@
+Model,rank,variable,mean_abs_shap
+XGBoost,1,Business age (years),0.485
+XGBoost,2,External loan status,0.4194
+XGBoost,3,Interest rate (%),0.3588
+XGBoost,4,Loan amount (NGN),0.3351
+XGBoost,5,Region,0.3248
+XGBoost,6,Sector,0.2723
+XGBoost,7,Facility type,0.2044
+Logistic Regression,1,External loan status,0.438
+Logistic Regression,2,Business age (years),0.4232
+Logistic Regression,3,Region,0.3526
+Logistic Regression,4,Sector,0.3167
+Logistic Regression,5,Interest rate (%),0.2626
+Logistic Regression,6,Facility type,0.2306
+Logistic Regression,7,Loan amount (NGN),0.1167

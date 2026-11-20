@@ -1,5 +1,6 @@
 """
-FastAPI Backend & Interactive Underwriting Dashboard for Sterling Bank Nigeria.
+FastAPI Backend & Interactive Underwriting Dashboard (academic prototype on simulated data
+modelled on the personal and SME portfolios of a Nigerian commercial bank).
 Full-featured cloud application containing:
 - 4 Operational Modes (Underwriting, Benchmarks, Global XAI, Batch Audit)
 - Plotly Gauge Chart & SHAP Local Feature Attribution Bar Chart
@@ -10,7 +11,7 @@ Full-featured cloud application containing:
 
 import os
 import json
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Literal, Optional
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
@@ -20,8 +21,11 @@ import joblib
 import numpy as np
 import pandas as pd
 
+from src import scoring
+from src.preprocessing import load_portfolio
+
 app = FastAPI(
-    title="Sterling Bank Credit Risk & Loan Default Prediction API",
+    title="Credit Risk & Loan Default Prediction API (academic prototype, simulated data)",
     description="Dual-Model Machine Learning API (Personal Salary Earner & Retail SME) with SHAP Explainability",
     version="1.0.0"
 )
@@ -46,43 +50,39 @@ if os.path.exists(RESULTS_DIR):
 
 # ----------------- Pydantic Request Models ----------------- #
 
+Housing = Literal["OWN", "RENT", "MORTGAGE"]
+ExtStatus = Literal["None", "Performing", "Defaulting"]
+Sector = Literal["Trade & Commerce", "Agriculture & Agro-allied", "Manufacturing", "Services",
+                 "Information Technology", "Construction"]
+Region = Literal["South-West", "North-Central", "South-South", "North-West", "South-East", "North-East"]
+Facility = Literal["Term Loan", "Overdraft", "Asset Finance", "Invoice Discounting"]
+
+
 class PersonalLoanRequest(BaseModel):
     applicant_age: int = Field(..., ge=18, le=75, description="Age in years")
-    housing_status: str = Field(..., description="OWN, RENT, or MORTGAGE")
+    housing_status: Housing
     employment_length: float = Field(..., ge=0, le=45, description="Years in formal employment")
     annual_income: float = Field(..., ge=100_000, description="Gross annual income in NGN")
     debt_to_income_ratio: float = Field(..., ge=0, le=100, description="DTI percentage")
-    credit_bureau_score: int = Field(..., ge=300, le=850, description="Credit Bureau Score")
-    existing_external_loan_status: str = Field(..., description="None, Performing, or Defaulting")
+    credit_bureau_score: int = Field(..., ge=300, le=850, description="Credit bureau score (300-850)")
+    existing_external_loan_status: ExtStatus
     loan_amount: float = Field(..., ge=50_000, description="Principal requested in NGN")
+
 
 class RetailLoanRequest(BaseModel):
     business_age_years: float = Field(..., ge=0, le=60, description="Years since CAC incorporation")
-    nature_of_business: str = Field(..., description="Trade, Agriculture, Manufacturing, Tech, etc.")
-    business_region: str = Field(..., description="Geopolitical zone / region")
-    facility_type: str = Field(..., description="Term Loan, Overdraft, Asset Finance, etc.")
+    nature_of_business: Sector
+    business_region: Region
+    facility_type: Facility
     loan_amount: float = Field(..., ge=100_000, description="Principal requested in NGN")
     interest_rate: float = Field(..., ge=5, le=50, description="Lending interest rate (%)")
-    existing_external_loan_status: str = Field(..., description="None, Performing, or Defaulting")
+    existing_external_loan_status: ExtStatus
 
 # ----------------- Helper Functions ----------------- #
 
-def load_model_and_prep(portfolio_type: str):
-    m_path = os.path.join(MODELS_DIR, f"{portfolio_type}_xgboost.joblib")
-    p_path = os.path.join(MODELS_DIR, f"{portfolio_type}_preprocessor.joblib")
-    if not os.path.exists(m_path) or not os.path.exists(p_path):
-        raise HTTPException(status_code=503, detail=f"Models for {portfolio_type} not trained or missing.")
-    model = joblib.load(m_path)
-    prep = joblib.load(p_path)
-    return model, prep
-
-def get_optimal_threshold(portfolio_type: str) -> float:
-    metrics_path = os.path.join(RESULTS_DIR, f"{portfolio_type}_metrics.json")
-    if os.path.exists(metrics_path):
-        with open(metrics_path, 'r') as f:
-            data = json.load(f)
-            return float(data.get("XGBoost", {}).get("financial_optimization", {}).get("optimal_threshold", 0.35))
-    return 0.35
+def _require(portfolio_type: str):
+    if not os.path.exists(scoring.bundle_path(portfolio_type)):
+        raise HTTPException(status_code=503, detail=f"Model for {portfolio_type} not trained. Run: python -m src.experiment")
 
 # ----------------- Main Dashboard UI ----------------- #
 
@@ -94,7 +94,7 @@ def dashboard_html():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sterling Bank Nigeria — Credit Risk Decision Engine</title>
+        <title>Credit Risk Decision Engine (Academic Prototype)</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
         <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
@@ -128,8 +128,8 @@ def dashboard_html():
             <div class="container-fluid px-4">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <h3 class="mb-0 fw-bold"><i class="fa-solid fa-building-columns me-2"></i>STERLING BANK NIGERIA</h3>
-                        <p class="mb-0 text-white-50 small">Interpretable Credit Risk Analytics & Loan Default Prediction Engine</p>
+                        <h3 class="mb-0 fw-bold"><i class="fa-solid fa-building-columns me-2"></i>CREDIT RISK DECISION ENGINE</h3>
+                        <p class="mb-0 text-white-50 small">Academic prototype · simulated personal and SME loan portfolios</p>
                     </div>
                     <div>
                         <a href="/docs" target="_blank" class="btn btn-outline-light btn-sm"><i class="fa-solid fa-code me-1"></i> Swagger API Docs</a>
@@ -194,10 +194,11 @@ def dashboard_html():
                                         <input type="radio" class="btn-check" name="portfolio_type" id="port_personal" checked onchange="togglePortfolioForm('personal')">
                                         <label class="btn btn-outline-danger btn-sm" for="port_personal">Personal (Salary Earner)</label>
                                         <input type="radio" class="btn-check" name="portfolio_type" id="port_retail" onchange="togglePortfolioForm('retail')">
-                                        <label class="btn btn-outline-danger btn-sm" for="port_retail">Retail SME Loan</label>
+                                        <label class="btn btn-outline-danger btn-sm" for="port_retail">SME Loan</label>
                                     </div>
                                 </div>
-                                <p class="text-muted small">Real-time credit risk evaluation calibrated against Sterling Bank's financial loss-minimizing threshold.</p>
+                                <p class="text-muted small">Probability of default is calibrated on a validation set; the cutoff minimises expected financial loss under the stated cost assumptions.</p>
+                                <div class="alert alert-warning small py-2"><strong>Academic prototype.</strong> All loan records are simulated; no real customer data is stored or processed. Not affiliated with or operated by Sterling Bank. Decisions shown here must not be used for real lending.</div>
 
                                 <!-- PERSONAL FORM -->
                                 <div id="form-personal-container">
@@ -433,15 +434,15 @@ def dashboard_html():
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-dark text-white">
-                        <h5 class="modal-title"><i class="fa-solid fa-shield-halved me-2"></i>CBN Consumer Protection Framework</h5>
+                        <h5 class="modal-title"><i class="fa-solid fa-shield-halved me-2"></i>Consumer protection and automated decisions</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body small">
-                        <p>Under <strong>Section 3.2 of the Central Bank of Nigeria (CBN) Consumer Protection Framework</strong> for Banks and Financial Institutions:</p>
+                        <p>This prototype is <strong>designed to support</strong> (not guarantee) two Nigerian requirements:</p>
                         <ul>
-                            <li>Lending institutions must ensure automated credit scoring algorithms are free of disparate demographic bias.</li>
-                            <li>Consumers have the statutory right to understand the precise financial and behavioral reasons behind adverse credit actions (loan denials).</li>
-                            <li>This system enforces full compliance by automatically synthesizing statutory adverse action statements directly from the top SHAP mathematical contributors.</li>
+                            <li><strong>CBN Consumer Protection Regulations (2019):</strong> a customer whose loan is declined can be given the reasons on request.</li>
+                            <li><strong>Nigeria Data Protection Act 2023, s.37:</strong> safeguards for decisions based solely on automated processing, including the right to human intervention. Borderline scores are therefore routed to <em>manual review</em>.</li>
+                            <li>Reasons are generated from the applicant's largest SHAP contributions. SHAP shows association with predicted risk, not cause.</li>
                         </ul>
                     </div>
                 </div>
@@ -461,7 +462,7 @@ def dashboard_html():
                         <ul>
                             <li>Each applicant feature acts as a player in a collaborative game estimating default risk.</li>
                             <li>Shapley values allocate fair additive payoffs based on marginal contributions across all feature coalitions.</li>
-                            <li>Guarantees local accuracy, consistency, and eliminate the "black-box" dilemma of tree-boosting ensembles.</li>
+                            <li>Satisfies local accuracy (contributions add up to the model score) and consistency; values are shown in log-odds of default.</li>
                         </ul>
                     </div>
                 </div>
@@ -481,7 +482,7 @@ def dashboard_html():
                         <ul>
                             <li><strong>False Negative (Defaulter approved):</strong> Costs <em>EAD × LGD</em> (direct capital write-off).</li>
                             <li><strong>False Positive (Good applicant rejected):</strong> Costs only the forgone net interest margin.</li>
-                            <li>Our threshold calibration sweeps from 0.05 to 0.95, selecting cutoffs that minimize total expected financial loss and save tens of millions of Naira for Sterling Bank.</li>
+                            <li>The cutoff is chosen on a validation set by sweeping 0.01 to 0.99 and taking the value with the lowest expected loss, then checked once on the test set. Cost parameters are stated assumptions, not bank figures.</li>
                         </ul>
                     </div>
                 </div>
@@ -536,7 +537,7 @@ def dashboard_html():
                 const adverseDiv = document.getElementById('adverseContainer');
                 outDiv.style.display = 'block';
                 cardDiv.className = 'score-box';
-                cardDiv.innerHTML = '<div class="spinner-border text-danger" role="status"></div><p class="mt-2 mb-0">Computing XGBoost Risk Scores & SHAP attributions...</p>';
+                cardDiv.innerHTML = '<div class="spinner-border text-danger" role="status"></div><p class="mt-2 mb-0">Computing risk score & SHAP attributions...</p>';
                 adverseDiv.style.display = 'none';
 
                 try {
@@ -593,8 +594,8 @@ def dashboard_html():
                         data.xai_explanation.adverse_action_reasons.forEach(r => { listHtml += `<li>${r}</li>`; });
                         adverseDiv.className = 'adverse-notice';
                         adverseDiv.innerHTML = `
-                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-scale-balanced me-2"></i>Central Bank of Nigeria (CBN) Adverse Action Statement</h6>
-                            <p class="small mb-1">In compliance with Section 3.2 of the CBN Consumer Protection Framework, this loan denial was driven by:</p>
+                            <h6 class="fw-bold mb-2"><i class="fa-solid fa-scale-balanced me-2"></i>Reasons for decline (sample adverse-action statement)</h6>
+                            <p class="small mb-1">The main factors that raised this applicant\'s estimated risk were:</p>
                             <ul class="mb-0 small">${listHtml}</ul>
                         `;
                         adverseDiv.style.display = 'block';
@@ -603,7 +604,7 @@ def dashboard_html():
                     // Local SHAP Feature Impact Bar Chart
                     if (data.xai_explanation && data.xai_explanation.top_attributions) {
                         const attrs = data.xai_explanation.top_attributions.slice().reverse();
-                        const yNames = attrs.map(a => a.feature.replace(/_/g, ' '));
+                        const yNames = attrs.map(a => a.label || a.feature.replace(/_/g, ' '));
                         const xVals = attrs.map(a => a.shap_value);
                         const colors = attrs.map(a => a.shap_value > 0 ? '#d9534f' : '#5cb85c');
 
@@ -616,8 +617,8 @@ def dashboard_html():
                         }];
                         const barLayout = {
                             title: 'Feature Impact on Default Risk (SHAP Attributions)',
-                            xaxis: { title: 'SHAP Value (Left: Reduces Risk | Right: Increases Risk)' },
-                            margin: { l: 150, r: 30, t: 40, b: 40 },
+                            xaxis: { title: `SHAP value, ${data.xai_explanation.units || 'log-odds'} (left: lowers risk | right: raises risk)` },
+                            margin: { l: 200, r: 30, t: 40, b: 40 },
                             height: 330
                         };
                         Plotly.newPlot('shapBarPlot', barData, barLayout, { responsive: true, displayModeBar: false });
@@ -754,122 +755,65 @@ def dashboard_html():
 @app.get("/audit-sample/{portfolio_type}")
 def get_audit_sample(portfolio_type: str):
     p_type = "personal" if "personal" in portfolio_type.lower() else "retail"
-    csv_file = os.path.join(DATA_DIR, f"{p_type}_loans.csv" if p_type == "personal" else "retail_sme_loans.csv")
-    
-    if os.path.exists(csv_file):
-        df = pd.read_csv(csv_file).head(50)
-    else:
-        from src.data_generator import generate_personal_loans, generate_retail_sme_loans
-        df = generate_personal_loans(n_samples=50) if p_type == "personal" else generate_retail_sme_loans(n_samples=50)
-    
-    model, prep = load_model_and_prep(p_type)
-    opt_th = get_optimal_threshold(p_type)
-    
-    X_batch, _ = prep.transform_test(df)
-    probs = model.predict_proba(X_batch)[:, 1]
-    
-    df_res = df.copy()
-    df_res["Predicted_Default_Prob"] = np.round(probs, 4)
-    df_res["Underwriter_Decision"] = np.where(probs < (opt_th * 0.70), "APPROVE", np.where(probs < opt_th, "MANUAL REVIEW", "REJECT"))
-    df_res = df_res.replace({np.nan: "N/A"}).fillna("N/A")
-    
+    _require(p_type)
+    df = load_portfolio(p_type).head(50)
+    df_res = scoring.score_frame(p_type, df)
+    df_res = df_res.astype(object).where(df_res.notna(), "N/A")
     return {"data": df_res.to_dict(orient="records")}
+
 
 @app.get("/api")
 def root_api():
     return {
-        "institution": "Sterling Bank Nigeria",
-        "system": "Credit Risk Analysis & Loan Default Prediction API",
+        "system": "Credit Risk Analysis & Loan Default Prediction API (simulated portfolios modelled on a Nigerian commercial bank)",
+        "data_notice": "All records are simulated. No real customer data is stored or served.",
         "dual_architecture": ["personal_loans", "retail_sme_loans"],
         "status": "operational",
-        "endpoints": ["/predict/personal", "/predict/retail", "/explain/personal", "/explain/retail", "/metrics/{portfolio_type}"]
+        "endpoints": ["/predict/personal", "/predict/retail", "/explain/personal", "/explain/retail",
+                      "/metrics/{portfolio_type}", "/audit-sample/{portfolio_type}", "/health"],
     }
+
 
 @app.get("/health")
 def health_check():
-    personal_ready = os.path.exists(os.path.join(MODELS_DIR, "personal_xgboost.joblib"))
-    retail_ready = os.path.exists(os.path.join(MODELS_DIR, "retail_xgboost.joblib"))
-    return {
-        "status": "healthy" if (personal_ready and retail_ready) else "models_pending",
-        "personal_model_loaded": personal_ready,
-        "retail_model_loaded": retail_ready
-    }
+    ready = {p: os.path.exists(scoring.bundle_path(p)) for p in ("personal", "retail")}
+    out = {"status": "healthy" if all(ready.values()) else "models_pending",
+           "personal_model_loaded": ready["personal"], "retail_model_loaded": ready["retail"]}
+    for p, ok in ready.items():
+        if ok:
+            b = scoring.load_bundle(p)
+            out[f"{p}_model"] = b["model_name"]
+            out[f"{p}_cutoff"] = b["cutoff"]
+    return out
+
+
+def _predict(p_type: str, label: str, application: BaseModel):
+    _require(p_type)
+    app_dict = application.model_dump()
+    return {"portfolio": label, "applicant": app_dict, **scoring.score_application(p_type, app_dict)}
+
 
 @app.post("/predict/personal")
 def predict_personal(application: PersonalLoanRequest):
-    model, prep = load_model_and_prep("personal")
-    features = prep.transform_single(application.dict())
-    prob = float(model.predict_proba(features)[0, 1])
-    opt_threshold = get_optimal_threshold("personal")
-    
-    if prob < (opt_threshold * 0.70):
-        decision = "APPROVE"
-        tier = "LOW RISK"
-    elif prob < opt_threshold:
-        decision = "MANUAL REVIEW"
-        tier = "MODERATE RISK"
-    else:
-        decision = "REJECT"
-        tier = "HIGH RISK"
-        
-    return {
-        "portfolio": "Personal Loan (Salary Earner)",
-        "applicant": application.dict(),
-        "default_probability": round(prob, 4),
-        "decision": decision,
-        "risk_tier": tier,
-        "optimal_threshold_applied": round(opt_threshold, 3),
-        "repayment_likelihood": round((1.0 - prob) * 100, 2)
-    }
+    return _predict("personal", "Personal Loan (Salary Earner)", application)
+
 
 @app.post("/predict/retail")
 def predict_retail(application: RetailLoanRequest):
-    model, prep = load_model_and_prep("retail")
-    features = prep.transform_single(application.dict())
-    prob = float(model.predict_proba(features)[0, 1])
-    opt_threshold = get_optimal_threshold("retail")
-    
-    if prob < (opt_threshold * 0.70):
-        decision = "APPROVE"
-        tier = "LOW RISK"
-    elif prob < opt_threshold:
-        decision = "MANUAL REVIEW"
-        tier = "MODERATE RISK"
-    else:
-        decision = "REJECT"
-        tier = "HIGH RISK"
-        
-    return {
-        "portfolio": "Retail SME Loan",
-        "applicant": application.dict(),
-        "default_probability": round(prob, 4),
-        "decision": decision,
-        "risk_tier": tier,
-        "optimal_threshold_applied": round(opt_threshold, 3),
-        "repayment_likelihood": round((1.0 - prob) * 100, 2)
-    }
+    return _predict("retail", "SME Loan", application)
+
 
 @app.post("/explain/personal")
 def explain_personal(application: PersonalLoanRequest):
-    from src.explainability import CreditRiskExplainer
-    explainer = CreditRiskExplainer("personal")
-    pred_res = predict_personal(application)
-    explanation = explainer.explain_instance(application.dict())
-    return {
-        **pred_res,
-        "xai_explanation": explanation
-    }
+    res = predict_personal(application)
+    return {**res, "xai_explanation": scoring.explain("personal", application.model_dump())}
+
 
 @app.post("/explain/retail")
 def explain_retail(application: RetailLoanRequest):
-    from src.explainability import CreditRiskExplainer
-    explainer = CreditRiskExplainer("retail")
-    pred_res = predict_retail(application)
-    explanation = explainer.explain_instance(application.dict())
-    return {
-        **pred_res,
-        "xai_explanation": explanation
-    }
+    res = predict_retail(application)
+    return {**res, "xai_explanation": scoring.explain("retail", application.model_dump())}
+
 
 @app.get("/metrics/{portfolio_type}")
 def get_metrics(portfolio_type: str):
@@ -877,6 +821,5 @@ def get_metrics(portfolio_type: str):
     metrics_path = os.path.join(RESULTS_DIR, f"{p_type}_metrics.json")
     if not os.path.exists(metrics_path):
         raise HTTPException(status_code=404, detail=f"Metrics for {p_type} not found.")
-    with open(metrics_path, 'r') as f:
-        data = json.load(f)
-    return data
+    with open(metrics_path, "r") as f:
+        return json.load(f)

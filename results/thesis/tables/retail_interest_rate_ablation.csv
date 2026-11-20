@@ -1,0 +1,5 @@
+Model,Variant,ROC-AUC [95% CI],PR-AUC
+Logistic Regression,With interest rate,"0.724 [0.675, 0.770]",0.2715
+Logistic Regression,Without interest rate,"0.712 [0.658, 0.757]",0.2613
+XGBoost,With interest rate,"0.673 [0.619, 0.725]",0.2016
+XGBoost,Without interest rate,"0.635 [0.580, 0.687]",0.2106

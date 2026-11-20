@@ -1,0 +1,17 @@
+Model,rank,variable,mean_abs_shap
+XGBoost,1,Credit bureau score,1.0326
+XGBoost,2,Debt-to-income ratio (%),0.8443
+XGBoost,3,Housing status,0.4854
+XGBoost,4,Applicant age (years),0.4081
+XGBoost,5,Annual income (NGN),0.3928
+XGBoost,6,Loan amount (NGN),0.2939
+XGBoost,7,Employment length (years),0.284
+XGBoost,8,External loan status,0.254
+Logistic Regression,1,Credit bureau score,0.9075
+Logistic Regression,2,Housing status,0.7578
+Logistic Regression,3,Debt-to-income ratio (%),0.6024
+Logistic Regression,4,External loan status,0.2804
+Logistic Regression,5,Employment length (years),0.1451
+Logistic Regression,6,Annual income (NGN),0.1256
+Logistic Regression,7,Applicant age (years),0.1043
+Logistic Regression,8,Loan amount (NGN),0.0796

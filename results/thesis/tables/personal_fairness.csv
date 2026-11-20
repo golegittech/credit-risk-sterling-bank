@@ -1,0 +1,7 @@
+Model,Age band,Applicants,Actual default rate (%),Approval rate (%),"Good borrowers refused (FPR, %)","Defaulters approved (FNR, %)",Defaulters in group
+Logistic Regression (deployed),30-44,426,7.7,89.4,7.1,48.5,33
+Logistic Regression (deployed),45+,544,5.5,91.2,6.8,56.7,30
+Logistic Regression (deployed),<30,230,7.0,87.8,8.4,37.5,16
+XGBoost,30-44,426,7.7,84.7,12.7,54.5,33
+XGBoost,45+,544,5.5,91.9,6.6,66.7,30
+XGBoost,<30,230,7.0,92.6,5.6,68.8,16

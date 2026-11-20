@@ -1,0 +1,25 @@
+Model,rank,feature,mean_abs_shap
+XGBoost,1,credit_bureau_score,1.0325809831567276
+XGBoost,2,debt_to_income_ratio,0.8443114700458378
+XGBoost,3,applicant_age,0.4080675395561029
+XGBoost,4,housing_status_RENT,0.3940483356421911
+XGBoost,5,annual_income,0.3928417804194475
+XGBoost,6,loan_amount,0.29392399982443435
+XGBoost,7,employment_length,0.2840092823653951
+XGBoost,8,existing_external_loan_status_None,0.17301807879051156
+XGBoost,9,existing_external_loan_status_Defaulting,0.13940357147083343
+XGBoost,10,housing_status_MORTGAGE,0.12229978357253309
+XGBoost,11,existing_external_loan_status_Performing,0.028294994149406047
+XGBoost,12,housing_status_OWN,0.006588433143329654
+Logistic Regression,1,credit_bureau_score,0.9075209791370882
+Logistic Regression,2,debt_to_income_ratio,0.6024054331221779
+Logistic Regression,3,housing_status_RENT,0.455016658439311
+Logistic Regression,4,existing_external_loan_status_None,0.3446199899080171
+Logistic Regression,5,housing_status_MORTGAGE,0.3088249498857879
+Logistic Regression,6,existing_external_loan_status_Performing,0.1564933861274633
+Logistic Regression,7,employment_length,0.14514915366206346
+Logistic Regression,8,existing_external_loan_status_Defaulting,0.14066699386095183
+Logistic Regression,9,annual_income,0.12555185052834833
+Logistic Regression,10,housing_status_OWN,0.10748526264770668
+Logistic Regression,11,applicant_age,0.10432008757187279
+Logistic Regression,12,loan_amount,0.07959877588210025

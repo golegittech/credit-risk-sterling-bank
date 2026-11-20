@@ -1,97 +1,81 @@
 """
-Financial Cost Matrix and Threshold Calibration Module.
-Calculates expected portfolio losses incorporating asymmetric classification costs:
-- C_FN (Cost of False Negative): Direct capital write-off (EAD * LGD)
-- C_FP (Cost of False Positive): Opportunity cost of forgone interest margin
-Evaluates optimal decision thresholds that minimize monetary losses for Sterling Bank Nigeria.
+Financial cost matrix and cutoff selection.
+
+Per-loan costs (assumptions in src/config.py, reported in the cost table):
+  C_FN(i) = EAD_i x LGD                      EAD_i = loan amount of applicant i
+  C_FP(i) = loan amount_i x net margin x tenor
+
+Expected loss at cutoff t = sum of C_FN over defaulters approved (p < t)
+                          + sum of C_FP over good borrowers refused (p >= t)
+
+The cutoff is chosen on the VALIDATION set and then applied unchanged to the
+test set, so the test-set saving is an honest out-of-sample estimate.
 """
 
+from typing import Dict, Any
+
 import numpy as np
-import pandas as pd
-from typing import Dict, Tuple, List, Any
 
-# Standard default financial parameters for Nigerian retail banking
-COST_PARAMS = {
-    "personal": {
-        "ead": 2_500_000.0,      # Exposure at Default in NGN
-        "lgd": 0.65,             # Loss Given Default (65%)
-        "c_fn": 2_500_000.0 * 0.65, # NGN 1,625,000
-        "c_fp": 300_000.0,       # Forgone net interest margin (NGN 300,000)
-    },
-    "retail": {
-        "ead": 12_000_000.0,     # Exposure at Default in NGN
-        "lgd": 0.60,             # Loss Given Default (60%)
-        "c_fn": 12_000_000.0 * 0.60, # NGN 7,200,000
-        "c_fp": 1_200_000.0,     # Forgone net interest margin (NGN 1,200,000)
-    }
-}
+from src import config
 
-def evaluate_financial_loss(
-    y_true: np.ndarray,
-    y_prob: np.ndarray,
-    threshold: float,
-    c_fn: float,
-    c_fp: float
-) -> Dict[str, float]:
-    """
-    Computes confusion matrix counts and total expected financial loss at a given cutoff threshold.
-    """
-    y_pred = (y_prob >= threshold).astype(int)
-    
-    tp = np.sum((y_true == 1) & (y_pred == 1))
-    tn = np.sum((y_true == 0) & (y_pred == 0))
-    fp = np.sum((y_true == 0) & (y_pred == 1)) # Good applicant rejected (lost interest)
-    fn = np.sum((y_true == 1) & (y_pred == 0)) # Defaulter approved (capital write-off)
-    
-    total_loss = (fn * c_fn) + (fp * c_fp)
-    
+THRESHOLD_GRID = np.round(np.arange(0.01, 1.00, 0.01), 2)
+
+
+def cost_vectors(loan_amount: np.ndarray, portfolio: str, lgd: float = None):
+    a = dict(config.COST_ASSUMPTIONS[portfolio])
+    if lgd is not None:
+        a["lgd"] = lgd
+    loan_amount = np.asarray(loan_amount, dtype=float)
+    c_fn = loan_amount * a["lgd"]
+    c_fp = loan_amount * a["net_margin"] * a["tenor_years"]
+    return c_fn, c_fp
+
+
+def bayes_cutoff(portfolio: str, lgd: float = None) -> float:
+    """Theoretical cutoff for calibrated probabilities: C_FP / (C_FP + C_FN).
+    With costs proportional to loan size this is the same for every applicant."""
+    a = dict(config.COST_ASSUMPTIONS[portfolio])
+    if lgd is not None:
+        a["lgd"] = lgd
+    fp = a["net_margin"] * a["tenor_years"]
+    return fp / (fp + a["lgd"])
+
+
+def confusion_at(y: np.ndarray, p: np.ndarray, t: float) -> Dict[str, int]:
+    pred = p >= t
+    y = np.asarray(y).astype(bool)
     return {
-        "threshold": float(threshold),
-        "tp": int(tp),
-        "tn": int(tn),
-        "fp": int(fp),
-        "fn": int(fn),
-        "fn_loss": float(fn * c_fn),
-        "fp_loss": float(fp * c_fp),
-        "total_financial_loss": float(total_loss)
+        "TP": int(np.sum(pred & y)),
+        "FP": int(np.sum(pred & ~y)),
+        "FN": int(np.sum(~pred & y)),
+        "TN": int(np.sum(~pred & ~y)),
     }
 
-def optimize_decision_threshold(
-    y_true: np.ndarray,
-    y_prob: np.ndarray,
-    portfolio_type: str = "personal",
-    threshold_range: np.ndarray = np.linspace(0.05, 0.95, 91)
-) -> Dict[str, Any]:
-    """
-    Sweeps through candidate thresholds and identifies the financial loss-minimizing cutoff.
-    """
-    params = COST_PARAMS.get(portfolio_type.lower(), COST_PARAMS["personal"])
-    c_fn = params["c_fn"]
-    c_fp = params["c_fp"]
-    
-    loss_curve = []
-    for th in threshold_range:
-        res = evaluate_financial_loss(y_true, y_prob, th, c_fn, c_fp)
-        loss_curve.append(res)
-        
-    df_curve = pd.DataFrame(loss_curve)
-    best_idx = df_curve["total_financial_loss"].idxmin()
-    best_row = df_curve.iloc[best_idx].to_dict()
-    
-    # Baseline comparison at conventional 0.50 threshold
-    res_default_50 = evaluate_financial_loss(y_true, y_prob, 0.50, c_fn, c_fp)
-    savings = res_default_50["total_financial_loss"] - best_row["total_financial_loss"]
-    savings_pct = (savings / res_default_50["total_financial_loss"]) * 100 if res_default_50["total_financial_loss"] > 0 else 0
-    
+
+def expected_loss(y, p, t, c_fn, c_fp) -> Dict[str, float]:
+    y = np.asarray(y).astype(bool)
+    pred = np.asarray(p) >= t
+    fn_loss = float(np.sum(c_fn[~pred & y]))
+    fp_loss = float(np.sum(c_fp[pred & ~y]))
+    return {"fn_loss": fn_loss, "fp_loss": fp_loss, "total": fn_loss + fp_loss}
+
+
+def loss_curve(y, p, c_fn, c_fp, grid=THRESHOLD_GRID):
+    return np.array([expected_loss(y, p, t, c_fn, c_fp)["total"] for t in grid])
+
+
+def choose_cutoff(y, p, c_fn, c_fp, grid=THRESHOLD_GRID) -> float:
+    losses = loss_curve(y, p, c_fn, c_fp, grid)
+    return float(grid[int(np.argmin(losses))])
+
+
+def summarise_at_cutoffs(y, p, c_fn, c_fp, cutoff: float) -> Dict[str, Any]:
+    at50 = expected_loss(y, p, 0.50, c_fn, c_fp)
+    atc = expected_loss(y, p, cutoff, c_fn, c_fp)
     return {
-        "portfolio_type": portfolio_type,
-        "c_fn": c_fn,
-        "c_fp": c_fp,
-        "optimal_threshold": float(best_row["threshold"]),
-        "min_financial_loss": float(best_row["total_financial_loss"]),
-        "default_50_loss": float(res_default_50["total_financial_loss"]),
-        "monetary_savings_ngn": float(savings),
-        "savings_percentage": float(savings_pct),
-        "optimal_metrics": best_row,
-        "loss_curve": df_curve.to_dict(orient="records")
+        "cutoff": cutoff,
+        **{k: v for k, v in confusion_at(y, p, cutoff).items()},
+        "loss_at_050": at50["total"],
+        "loss_at_cutoff": atc["total"],
+        "saving": at50["total"] - atc["total"],
     }

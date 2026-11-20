@@ -1,0 +1,9 @@
+Portfolio,Model,Cutoff (chosen on validation),TP,FP,FN,TN,"Expected loss at 0.50, uncalibrated (NGN M)",Expected loss at chosen cutoff (NGN M),Saving (NGN M)
+Personal (salary earner),Logistic Regression,0.15,40,81,39,1040,57.4,42.3,15.1
+Personal (salary earner),Random Forest,0.15,31,99,48,1022,51.2,54.8,-3.6
+Personal (salary earner),LightGBM,0.18,27,69,52,1052,55.1,57.1,-2.0
+Personal (salary earner),XGBoost,0.16,30,96,49,1025,52.9,52.5,0.4
+SME,Logistic Regression,0.16,46,127,65,962,607.7,551.9,55.8
+SME,Random Forest,0.14,42,161,69,928,630.5,637.7,-7.3
+SME,LightGBM,0.18,31,108,80,981,635.6,634.6,1.0
+SME,XGBoost,0.16,33,128,78,961,672.5,661.3,11.3

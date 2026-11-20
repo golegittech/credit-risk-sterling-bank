@@ -1,0 +1,5 @@
+Model,"Hyperparameters (fixed, not tuned)",Feature scaling,Imbalance treatment (main),Also compared
+Logistic Regression,"solver=lbfgs, max_iter=1000",StandardScaler,SMOTENC (k=5) on training data only,No resampling; class weighting
+Random Forest,"n_estimators=200, max_depth=10, min_samples_split=5",None (raw units),SMOTENC (k=5) on training data only,No resampling; class weighting
+LightGBM,"n_estimators=250, learning_rate=0.05, num_leaves=31",None (raw units),SMOTENC (k=5) on training data only,No resampling; class weighting
+XGBoost,"n_estimators=250, learning_rate=0.05, max_depth=5, subsample=0.8, colsample_bytree=0.8",None (raw units),SMOTENC (k=5) on training data only,No resampling; class weighting

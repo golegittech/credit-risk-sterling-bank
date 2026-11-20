@@ -1,0 +1,3 @@
+Portfolio,EAD,LGD (base),LGD sensitivity,Net interest margin forgone,Tenor,C_FN,C_FP,Theoretical cutoff C_FP/(C_FP+C_FN)
+Personal (salary earner),Loan amount requested (full drawdown assumed),60%,"45%, 60%, 75%",10% p.a.,1 year,Loan amount x LGD,Loan amount x margin x tenor,0.143
+SME,Loan amount requested (full drawdown assumed),60%,"45%, 60%, 75%",10% p.a.,1 year,Loan amount x LGD,Loan amount x margin x tenor,0.143

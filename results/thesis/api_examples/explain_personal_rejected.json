@@ -1,0 +1,144 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/explain/personal",
+    "body": {
+      "applicant_age": 26,
+      "housing_status": "RENT",
+      "employment_length": 0.5,
+      "annual_income": 1500000,
+      "debt_to_income_ratio": 70,
+      "credit_bureau_score": 380,
+      "existing_external_loan_status": "Defaulting",
+      "loan_amount": 700000
+    }
+  },
+  "response": {
+    "portfolio": "Personal Loan (Salary Earner)",
+    "applicant": {
+      "applicant_age": 26,
+      "housing_status": "RENT",
+      "employment_length": 0.5,
+      "annual_income": 1500000.0,
+      "debt_to_income_ratio": 70.0,
+      "credit_bureau_score": 380,
+      "existing_external_loan_status": "Defaulting",
+      "loan_amount": 700000.0
+    },
+    "model": "Logistic_Regression",
+    "default_probability": 0.9511,
+    "decision": "REJECT",
+    "risk_tier": "HIGH RISK",
+    "optimal_threshold_applied": 0.15,
+    "manual_review_from": 0.105,
+    "repayment_likelihood": 4.89,
+    "xai_explanation": {
+      "explained_model": "Logistic_Regression",
+      "units": "log-odds",
+      "base_value": -1.2273433963913607,
+      "top_attributions": [
+        {
+          "feature": "credit_bureau_score",
+          "label": "Credit bureau score",
+          "applicant_value": 380,
+          "shap_value": 3.120303115288095,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "debt_to_income_ratio",
+          "label": "Debt-to-income ratio (%)",
+          "applicant_value": 70.0,
+          "shap_value": 2.073665059999189,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "existing_external_loan_status",
+          "label": "External loan status",
+          "applicant_value": "Defaulting",
+          "shap_value": 1.1500469500509305,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "housing_status",
+          "label": "Housing status",
+          "applicant_value": "RENT",
+          "shap_value": 0.6951312269616974,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "employment_length",
+          "label": "Employment length (years)",
+          "applicant_value": 0.5,
+          "shap_value": 0.21406188156136227,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "annual_income",
+          "label": "Annual income (NGN)",
+          "applicant_value": 1500000.0,
+          "shap_value": 0.17366139170886588,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "applicant_age",
+          "label": "Applicant age (years)",
+          "applicant_value": 26,
+          "shap_value": 0.16021646945780868,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "loan_amount",
+          "label": "Loan amount (NGN)",
+          "applicant_value": 700000.0,
+          "shap_value": -0.09345657387452529,
+          "direction": "DECREASES_RISK"
+        }
+      ],
+      "risk_drivers": [
+        {
+          "feature": "credit_bureau_score",
+          "label": "Credit bureau score",
+          "applicant_value": 380,
+          "shap_value": 3.120303115288095,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "debt_to_income_ratio",
+          "label": "Debt-to-income ratio (%)",
+          "applicant_value": 70.0,
+          "shap_value": 2.073665059999189,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "existing_external_loan_status",
+          "label": "External loan status",
+          "applicant_value": "Defaulting",
+          "shap_value": 1.1500469500509305,
+          "direction": "INCREASES_RISK"
+        },
+        {
+          "feature": "housing_status",
+          "label": "Housing status",
+          "applicant_value": "RENT",
+          "shap_value": 0.6951312269616974,
+          "direction": "INCREASES_RISK"
+        }
+      ],
+      "mitigating_factors": [
+        {
+          "feature": "loan_amount",
+          "label": "Loan amount (NGN)",
+          "applicant_value": 700000.0,
+          "shap_value": -0.09345657387452529,
+          "direction": "DECREASES_RISK"
+        }
+      ],
+      "adverse_action_reasons": [
+        "Credit bureau score of 380 indicates elevated historical credit risk.",
+        "Debt-to-income ratio of 70.0% is high for the requested facility.",
+        "An existing loan with another lender is reported as defaulting.",
+        "Housing status (RENT) is associated with higher default rates in the portfolio."
+      ]
+    }
+  }
+}

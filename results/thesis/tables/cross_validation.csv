@@ -1,0 +1,25 @@
+Portfolio,Strategy,Model,ROC-AUC mean,ROC-AUC SD,PR-AUC mean,PR-AUC SD,Brier mean (uncalibrated)
+Personal (salary earner),No resampling,Logistic Regression,0.8228,0.0366,0.3253,0.0704,0.053
+Personal (salary earner),No resampling,Random Forest,0.7822,0.0483,0.2711,0.0595,0.0556
+Personal (salary earner),No resampling,LightGBM,0.7758,0.0473,0.2361,0.0494,0.0611
+Personal (salary earner),No resampling,XGBoost,0.7819,0.0467,0.2429,0.0505,0.0581
+Personal (salary earner),Class weighting,Logistic Regression,0.8217,0.0365,0.3308,0.076,0.1718
+Personal (salary earner),Class weighting,Random Forest,0.7833,0.053,0.2369,0.0446,0.0991
+Personal (salary earner),Class weighting,LightGBM,0.7671,0.0395,0.2247,0.0297,0.0712
+Personal (salary earner),Class weighting,XGBoost,0.7741,0.0451,0.2327,0.0392,0.0865
+Personal (salary earner),SMOTENC,Logistic Regression,0.8104,0.0365,0.3078,0.0632,0.1612
+Personal (salary earner),SMOTENC,Random Forest,0.7693,0.0473,0.2168,0.0521,0.1277
+Personal (salary earner),SMOTENC,LightGBM,0.7632,0.0389,0.208,0.0366,0.0782
+Personal (salary earner),SMOTENC,XGBoost,0.7625,0.0436,0.2148,0.043,0.1069
+SME,No resampling,Logistic Regression,0.7523,0.0435,0.3096,0.0684,0.0752
+SME,No resampling,Random Forest,0.7227,0.0432,0.2818,0.0708,0.0769
+SME,No resampling,LightGBM,0.6917,0.0548,0.2284,0.0831,0.0841
+SME,No resampling,XGBoost,0.7049,0.0517,0.2518,0.0689,0.0798
+SME,Class weighting,Logistic Regression,0.7529,0.0499,0.303,0.0727,0.193
+SME,Class weighting,Random Forest,0.7158,0.0442,0.2749,0.0638,0.135
+SME,Class weighting,LightGBM,0.6834,0.051,0.2339,0.0886,0.106
+SME,Class weighting,XGBoost,0.6923,0.0428,0.247,0.0647,0.1191
+SME,SMOTENC,Logistic Regression,0.7218,0.0351,0.2808,0.0484,0.1792
+SME,SMOTENC,Random Forest,0.7014,0.0325,0.2476,0.0532,0.1534
+SME,SMOTENC,LightGBM,0.6553,0.0445,0.1999,0.0642,0.113
+SME,SMOTENC,XGBoost,0.6643,0.0364,0.2209,0.067,0.1358

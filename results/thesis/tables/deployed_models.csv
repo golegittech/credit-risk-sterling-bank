@@ -1,0 +1,3 @@
+Portfolio,Model served by API,Selection rule,Cutoff,Manual-review band starts at
+Personal (salary earner),Logistic Regression,"Lowest expected loss on validation set (SMOTENC, calibrated)",0.15,0.105
+SME,Logistic Regression,"Lowest expected loss on validation set (SMOTENC, calibrated)",0.16,0.112

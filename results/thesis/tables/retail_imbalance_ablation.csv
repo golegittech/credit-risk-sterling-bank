@@ -1,0 +1,7 @@
+Model,Imbalance treatment,ROC-AUC,PR-AUC,Brier (raw),Brier (calibrated),"Mean predicted PD (raw, %)",Recall @0.50 (%),Precision @0.50 (%),Defaulters caught @0.50,Tuned cutoff,Recall @cutoff (%),Precision @cutoff (%),Expected loss @cutoff (NGN M)
+XGBoost,No resampling,0.6832,0.2122,0.0811,0.0795,8.23,7.21,40.0,8 of 111,0.17,30.63,25.56,635.1
+XGBoost,Class weighting,0.6734,0.195,0.1324,0.0806,25.38,34.23,21.59,38 of 111,0.15,35.14,20.42,618.2
+XGBoost,SMOTENC,0.6735,0.2016,0.1386,0.0806,27.16,33.33,19.47,37 of 111,0.16,29.73,20.5,661.3
+Logistic Regression,No resampling,0.7656,0.2809,0.0752,0.0752,9.05,3.6,44.44,4 of 111,0.15,45.05,28.25,504.7
+Logistic Regression,Class weighting,0.7643,0.2735,0.1913,0.0754,41.48,62.16,19.94,69 of 111,0.21,37.84,35.29,522.6
+Logistic Regression,SMOTENC,0.7242,0.2715,0.1812,0.0765,37.76,54.95,18.83,61 of 111,0.16,41.44,26.59,551.9

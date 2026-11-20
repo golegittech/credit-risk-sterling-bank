@@ -1,0 +1,21 @@
+Portfolio,Case,Actual outcome,Expected PD,Returned PD,Expected decision,Returned decision,Top risk-raising factor,HTTP 200,Model matches,Probability matches,Decision matches,Reason given if rejected,SHAP additivity
+Personal (salary earner),1,Repaid,0.0012,0.0012,APPROVE,APPROVE,Length of current employment (0.4 years) is short.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),2,Default,0.0183,0.0183,APPROVE,APPROVE,Housing status (RENT) is associated with higher default rates in the portfolio.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),3,Repaid,0.0055,0.0055,APPROVE,APPROVE,Debt-to-income ratio of 35.7% is high for the requested facility.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),4,Repaid,0.1058,0.1058,MANUAL REVIEW,MANUAL REVIEW,Debt-to-income ratio of 53.6% is high for the requested facility.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),5,Repaid,0.0151,0.0151,APPROVE,APPROVE,Credit bureau score of 585 indicates elevated historical credit risk.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),6,Repaid,0.0037,0.0037,APPROVE,APPROVE,Housing status (RENT) is associated with higher default rates in the portfolio.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),7,Repaid,0.0206,0.0206,APPROVE,APPROVE,Credit bureau score of 566 indicates elevated historical credit risk.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),8,Repaid,0.1151,0.1151,MANUAL REVIEW,MANUAL REVIEW,Debt-to-income ratio of 61.9% is high for the requested facility.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),9,Repaid,0.057,0.057,APPROVE,APPROVE,Housing status (RENT) is associated with higher default rates in the portfolio.,Pass,Pass,Pass,Pass,Pass,Pass
+Personal (salary earner),10,Repaid,0.0258,0.0258,APPROVE,APPROVE,An existing loan with another lender is reported as defaulting.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,1,Repaid,0.0122,0.0122,APPROVE,APPROVE,"Requested amount (NGN 43,750,000) is large relative to the applicant's profile.",Pass,Pass,Pass,Pass,Pass,Pass
+SME,2,Default,0.1643,0.1643,REJECT,REJECT,An existing loan with another lender is reported as defaulting.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,3,Repaid,0.0666,0.0666,APPROVE,APPROVE,Sector (Agriculture & Agro-allied) has a higher observed default rate in the portfolio.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,4,Repaid,0.0085,0.0085,APPROVE,APPROVE,Sector (Agriculture & Agro-allied) has a higher observed default rate in the portfolio.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,5,Default,0.0308,0.0308,APPROVE,APPROVE,Region (South-West) contributed to higher estimated risk.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,6,Repaid,0.0242,0.0242,APPROVE,APPROVE,Region (South-West) contributed to higher estimated risk.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,7,Repaid,0.083,0.083,APPROVE,APPROVE,Sector (Agriculture & Agro-allied) has a higher observed default rate in the portfolio.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,8,Repaid,0.363,0.363,REJECT,REJECT,An existing loan with another lender is reported as defaulting.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,9,Repaid,0.1261,0.1261,MANUAL REVIEW,MANUAL REVIEW,Region (South-West) contributed to higher estimated risk.,Pass,Pass,Pass,Pass,Pass,Pass
+SME,10,Repaid,0.0374,0.0374,APPROVE,APPROVE,"Facility interest rate of 30.5% is associated with higher default rates (association, not cause).",Pass,Pass,Pass,Pass,Pass,Pass

@@ -1,0 +1,10 @@
+Variable,Category,Loans,Defaults,Default rate (%)
+housing_status,MORTGAGE,1411,76,5.39
+housing_status,OWN,1176,50,4.25
+housing_status,RENT,3413,269,7.88
+existing_external_loan_status,Defaulting,646,116,17.96
+existing_external_loan_status,None,2648,119,4.49
+existing_external_loan_status,Performing,2706,160,5.91
+age_band,<30,1132,89,7.86
+age_band,30-44,2212,166,7.5
+age_band,45+,2656,140,5.27

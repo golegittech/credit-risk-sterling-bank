@@ -1,55 +1,86 @@
 """
-Unit tests for Sterling Bank Credit Risk Decision Engine.
-Verifies:
-1. Data generation schemas and output dimensions.
-2. Preprocessor transformation, median imputation, and SMOTE resampling.
-3. Financial cost matrix calculations and savings.
-4. FastAPI endpoints structure.
+Unit tests for the revised pipeline.
+
+    python -m pytest -q
 """
 
-import unittest
 import numpy as np
 import pandas as pd
-import os
+import pytest
 
+from src import config
 from src.data_generator import generate_personal_loans, generate_retail_sme_loans
-from src.preprocessing import CreditDataPreprocessor
-from src.financial_cost import evaluate_financial_loss, optimize_decision_threshold
+from src.evaluation import PlattCalibrator, delong_test, metrics_from_confusion
+from src.financial_cost import bayes_cutoff, choose_cutoff, confusion_at, cost_vectors, expected_loss
+from src.preprocessing import build_pipeline, feature_frame, load_portfolio, split_portfolio
 
-class TestCreditRiskPipeline(unittest.TestCase):
-    
-    def test_personal_data_generator(self):
-        df = generate_personal_loans(n_samples=200, seed=42)
-        self.assertEqual(len(df), 200)
-        self.assertIn('loan_status', df.columns)
-        self.assertIn('debt_to_income_ratio', df.columns)
-        self.assertTrue((df['loan_status'].isin([0, 1])).all())
 
-    def test_retail_data_generator(self):
-        df = generate_retail_sme_loans(n_samples=200, seed=42)
-        self.assertEqual(len(df), 200)
-        self.assertIn('business_age_years', df.columns)
-        self.assertIn('facility_type', df.columns)
-        self.assertTrue((df['loan_status'].isin([0, 1])).all())
+def test_generators_schema():
+    p = generate_personal_loans(n_samples=200, seed=1)
+    r = generate_retail_sme_loans(n_samples=200, seed=1)
+    assert set(config.PORTFOLIOS["personal"]["num_cols"] + config.PORTFOLIOS["personal"]["cat_cols"]) <= set(p.columns)
+    assert set(config.PORTFOLIOS["retail"]["num_cols"] + config.PORTFOLIOS["retail"]["cat_cols"]) <= set(r.columns)
+    assert p["loan_status"].isin([0, 1]).all() and r["loan_status"].isin([0, 1]).all()
 
-    def test_preprocessor_fit_transform(self):
-        df = generate_personal_loans(n_samples=300, seed=42)
-        prep = CreditDataPreprocessor(portfolio_type="personal")
-        X_res, y_res, feat_names = prep.fit_transform_train(df, apply_smote=True)
-        
-        # SMOTE should balance classes (50/50)
-        self.assertEqual(np.mean(y_res), 0.5)
-        self.assertEqual(X_res.shape[0], len(y_res))
-        self.assertGreater(len(feat_names), 0)
 
-    def test_financial_cost_optimization(self):
-        y_true = np.array([0, 0, 0, 1, 0, 1, 0, 0, 1, 0])
-        y_prob = np.array([0.1, 0.2, 0.3, 0.8, 0.2, 0.6, 0.1, 0.4, 0.9, 0.1])
-        res = optimize_decision_threshold(y_true, y_prob, portfolio_type="personal")
-        
-        self.assertIn("optimal_threshold", res)
-        self.assertIn("min_financial_loss", res)
-        self.assertGreaterEqual(res["monetary_savings_ngn"], 0)
+def test_none_category_is_not_read_as_missing():
+    df = load_portfolio("personal")
+    assert df["existing_external_loan_status"].isna().sum() == 0
+    assert "None" in set(df["existing_external_loan_status"])
 
-if __name__ == "__main__":
-    unittest.main()
+
+def test_split_is_60_20_20_and_stratified():
+    df = load_portfolio("personal")
+    tr, va, te = split_portfolio(df)
+    assert (len(tr), len(va), len(te)) == (3600, 1200, 1200)
+    rates = [d["loan_status"].mean() for d in (tr, va, te)]
+    assert max(rates) - min(rates) < 0.005
+
+
+def test_smotenc_balances_training_only_and_keeps_valid_categories():
+    df = generate_personal_loans(n_samples=600, seed=3)
+    pipe = build_pipeline("personal", "Logistic_Regression", "smotenc")
+    Xi = pipe.named_steps["impute"].fit_transform(feature_frame(df, "personal"))
+    Xr, yr = pipe.named_steps["smote"].fit_resample(Xi, df["loan_status"])
+    assert np.mean(yr) == 0.5
+    assert set(Xr["housing_status"]) <= {"OWN", "RENT", "MORTGAGE"}  # no interpolated categories
+    pipe.fit(feature_frame(df, "personal"), df["loan_status"])
+    assert pipe.predict_proba(feature_frame(df, "personal")).shape == (600, 2)  # no resampling at predict
+
+
+def test_metrics_reconcile_with_confusion_matrix():
+    m = metrics_from_confusion(tp=111, fp=84, fn=31, tn=974)
+    assert m["precision"] == pytest.approx(111 / 195)
+    assert m["specificity"] == pytest.approx(974 / 1058)
+    assert m["accuracy"] == pytest.approx(1085 / 1200)
+
+
+def test_cost_and_cutoff():
+    y = np.array([0, 0, 0, 1, 0, 1, 0, 0, 1, 0])
+    p = np.array([0.1, 0.2, 0.3, 0.8, 0.2, 0.6, 0.1, 0.4, 0.9, 0.1])
+    amt = np.full(10, 1_000_000.0)
+    cfn, cfp = cost_vectors(amt, "personal")
+    assert cfn[0] == pytest.approx(600_000) and cfp[0] == pytest.approx(100_000)
+    t = choose_cutoff(y, p, cfn, cfp)
+    assert expected_loss(y, p, t, cfn, cfp)["total"] <= expected_loss(y, p, 0.5, cfn, cfp)["total"]
+    assert confusion_at(y, p, 0.5) == {"TP": 3, "FP": 0, "FN": 0, "TN": 7}
+    assert bayes_cutoff("personal") == pytest.approx(0.1 / 0.7)
+
+
+def test_platt_calibration_is_monotone():
+    rng = np.random.default_rng(0)
+    p = rng.uniform(0.01, 0.99, 500)
+    y = (rng.uniform(size=500) < p * 0.3).astype(int)
+    cal = PlattCalibrator().fit(p, y)
+    out = cal.transform(np.sort(p))
+    assert np.all(np.diff(out) >= -1e-12)
+
+
+def test_delong_matches_sklearn_auc():
+    from sklearn.metrics import roc_auc_score
+    rng = np.random.default_rng(1)
+    y = rng.integers(0, 2, 400)
+    a, b = y + rng.normal(0, 1, 400), y + rng.normal(0, 2, 400)
+    d = delong_test(y, a, b)
+    assert d["auc_1"] == pytest.approx(roc_auc_score(y, a))
+    assert 0 <= d["p_value"] <= 1

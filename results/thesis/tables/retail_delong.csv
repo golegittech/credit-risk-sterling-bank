@@ -1,0 +1,7 @@
+Model A,Model B,AUC A,AUC B,Difference,z,p-value,Significant at 5%
+Logistic Regression,Random Forest,0.7242,0.6994,0.0248,1.701,0.089,No
+Logistic Regression,LightGBM,0.7242,0.6457,0.0785,3.205,0.0014,Yes
+Logistic Regression,XGBoost,0.7242,0.6735,0.0507,2.626,0.0087,Yes
+Random Forest,LightGBM,0.6994,0.6457,0.0536,2.484,0.013,Yes
+Random Forest,XGBoost,0.6994,0.6735,0.0259,1.668,0.0953,No
+LightGBM,XGBoost,0.6457,0.6735,-0.0278,-2.072,0.0383,Yes

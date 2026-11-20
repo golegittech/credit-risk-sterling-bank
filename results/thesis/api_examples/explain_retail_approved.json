@@ -1,0 +1,122 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/explain/retail",
+    "body": {
+      "business_age_years": 12,
+      "nature_of_business": "Information Technology",
+      "business_region": "South-East",
+      "facility_type": "Invoice Discounting",
+      "loan_amount": 5000000,
+      "interest_rate": 21,
+      "existing_external_loan_status": "None"
+    }
+  },
+  "response": {
+    "portfolio": "SME Loan",
+    "applicant": {
+      "business_age_years": 12.0,
+      "nature_of_business": "Information Technology",
+      "business_region": "South-East",
+      "facility_type": "Invoice Discounting",
+      "loan_amount": 5000000.0,
+      "interest_rate": 21.0,
+      "existing_external_loan_status": "None"
+    },
+    "model": "Logistic_Regression",
+    "default_probability": 0.002,
+    "decision": "APPROVE",
+    "risk_tier": "LOW RISK",
+    "optimal_threshold_applied": 0.16,
+    "manual_review_from": 0.112,
+    "repayment_likelihood": 99.8,
+    "xai_explanation": {
+      "explained_model": "Logistic_Regression",
+      "units": "log-odds",
+      "base_value": -0.5828374323430158,
+      "top_attributions": [
+        {
+          "feature": "business_age_years",
+          "label": "Business age (years)",
+          "applicant_value": 12.0,
+          "shap_value": -1.1429400611334462,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "business_region",
+          "label": "Region",
+          "applicant_value": "South-East",
+          "shap_value": -0.8464818897587377,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "facility_type",
+          "label": "Facility type",
+          "applicant_value": "Invoice Discounting",
+          "shap_value": -0.738184955897545,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "nature_of_business",
+          "label": "Sector",
+          "applicant_value": "Information Technology",
+          "shap_value": -0.7065005099279453,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "existing_external_loan_status",
+          "label": "External loan status",
+          "applicant_value": "None",
+          "shap_value": -0.5015249147519947,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "interest_rate",
+          "label": "Interest rate (%)",
+          "applicant_value": 21.0,
+          "shap_value": -0.4733255662844943,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "loan_amount",
+          "label": "Loan amount (NGN)",
+          "applicant_value": 5000000.0,
+          "shap_value": -0.11830430011289776,
+          "direction": "DECREASES_RISK"
+        }
+      ],
+      "risk_drivers": [],
+      "mitigating_factors": [
+        {
+          "feature": "business_age_years",
+          "label": "Business age (years)",
+          "applicant_value": 12.0,
+          "shap_value": -1.1429400611334462,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "business_region",
+          "label": "Region",
+          "applicant_value": "South-East",
+          "shap_value": -0.8464818897587377,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "facility_type",
+          "label": "Facility type",
+          "applicant_value": "Invoice Discounting",
+          "shap_value": -0.738184955897545,
+          "direction": "DECREASES_RISK"
+        },
+        {
+          "feature": "nature_of_business",
+          "label": "Sector",
+          "applicant_value": "Information Technology",
+          "shap_value": -0.7065005099279453,
+          "direction": "DECREASES_RISK"
+        }
+      ],
+      "adverse_action_reasons": []
+    }
+  }
+}

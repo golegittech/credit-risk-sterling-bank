@@ -1,0 +1,45 @@
+Model,rank,feature,mean_abs_shap
+XGBoost,1,business_age_years,0.48503408719200586
+XGBoost,2,interest_rate,0.35884958085796553
+XGBoost,3,loan_amount,0.33506240047269603
+XGBoost,4,existing_external_loan_status_None,0.29370219107658774
+XGBoost,5,existing_external_loan_status_Defaulting,0.29269493207653774
+XGBoost,6,business_region_South-West,0.2510067697682451
+XGBoost,7,nature_of_business_Agriculture & Agro-allied,0.16066275042496844
+XGBoost,8,facility_type_Invoice Discounting,0.12908379284546045
+XGBoost,9,nature_of_business_Information Technology,0.11361980288824071
+XGBoost,10,facility_type_Overdraft,0.10036829365774756
+XGBoost,11,existing_external_loan_status_Performing,0.08129021155570715
+XGBoost,12,nature_of_business_Services,0.07197559695700524
+XGBoost,13,business_region_South-East,0.06513094263710324
+XGBoost,14,facility_type_Asset Finance,0.05963027170132263
+XGBoost,15,business_region_North-West,0.057183813992130794
+XGBoost,16,nature_of_business_Manufacturing,0.052279818758344275
+XGBoost,17,business_region_North-East,0.04228319876142515
+XGBoost,18,nature_of_business_Construction,0.034327692937021
+XGBoost,19,business_region_South-South,0.03012316618371574
+XGBoost,20,facility_type_Term Loan,0.02781698601459532
+XGBoost,21,nature_of_business_Trade & Commerce,0.025108325116205872
+XGBoost,22,business_region_North-Central,0.01706429154746752
+Logistic Regression,1,existing_external_loan_status_None,0.539266685405581
+Logistic Regression,2,business_age_years,0.4232204959913222
+Logistic Regression,3,business_region_South-West,0.33781839746197667
+Logistic Regression,4,existing_external_loan_status_Performing,0.2840647327433257
+Logistic Regression,5,existing_external_loan_status_Defaulting,0.2663072187605652
+Logistic Regression,6,interest_rate,0.26263952336309293
+Logistic Regression,7,nature_of_business_Agriculture & Agro-allied,0.21392496675686937
+Logistic Regression,8,facility_type_Invoice Discounting,0.15816988603702767
+Logistic Regression,9,facility_type_Overdraft,0.13213282956376066
+Logistic Regression,10,loan_amount,0.11666846159306457
+Logistic Regression,11,nature_of_business_Information Technology,0.09566856556364946
+Logistic Regression,12,business_region_South-South,0.08953091471889425
+Logistic Regression,13,nature_of_business_Services,0.08551632847526612
+Logistic Regression,14,nature_of_business_Trade & Commerce,0.08474403478349725
+Logistic Regression,15,facility_type_Term Loan,0.06964137718397384
+Logistic Regression,16,business_region_North-East,0.06632225029351764
+Logistic Regression,17,business_region_South-East,0.06066851972001199
+Logistic Regression,18,business_region_North-West,0.04186062090397564
+Logistic Regression,19,business_region_North-Central,0.04052688068061641
+Logistic Regression,20,facility_type_Asset Finance,0.028324278166147566
+Logistic Regression,21,nature_of_business_Manufacturing,0.024970297800784042
+Logistic Regression,22,nature_of_business_Construction,0.02076875714182627

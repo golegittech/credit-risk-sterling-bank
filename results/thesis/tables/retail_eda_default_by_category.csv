@@ -1,0 +1,20 @@
+Variable,Category,Loans,Defaults,Default rate (%)
+nature_of_business,Agriculture & Agro-allied,1236,161,13.03
+nature_of_business,Construction,388,46,11.86
+nature_of_business,Information Technology,476,33,6.93
+nature_of_business,Manufacturing,911,89,9.77
+nature_of_business,Services,854,62,7.26
+nature_of_business,Trade & Commerce,2135,167,7.82
+business_region,North-Central,1336,132,9.88
+business_region,North-East,248,23,9.27
+business_region,North-West,583,53,9.09
+business_region,South-East,467,35,7.49
+business_region,South-South,862,88,10.21
+business_region,South-West,2504,227,9.07
+facility_type,Asset Finance,940,85,9.04
+facility_type,Invoice Discounting,619,56,9.05
+facility_type,Overdraft,1734,178,10.27
+facility_type,Term Loan,2707,239,8.83
+existing_external_loan_status,Defaulting,733,227,30.97
+existing_external_loan_status,None,2396,131,5.47
+existing_external_loan_status,Performing,2871,200,6.97

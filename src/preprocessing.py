@@ -1,169 +1,121 @@
 """
-Preprocessing and Resampling Pipeline for Credit Risk Assessment.
-Handles:
-- Missing value imputation (Median for continuous, Mode for categorical)
-- One-hot encoding for nominal categories
-- Numerical standardization
-- Stratified train-test split
-- SMOTE class imbalance resampling strictly on training fold (preventing data leakage)
+Leakage-free modelling pipelines.
+
+Each pipeline is: impute -> (optional SMOTENC) -> encode/scale -> model.
+It is an imbalanced-learn Pipeline, so the resampling step runs only inside
+`fit` (training data or a training fold) and is skipped by `predict_proba`.
+Validation and test data therefore always keep their real class balance.
+
+SMOTENC is used instead of plain SMOTE because the data mixes numeric and
+categorical columns: plain SMOTE would interpolate one-hot columns into
+invalid fractional values, while SMOTENC assigns each synthetic record the
+most common category among its nearest neighbours.
 """
+
+from typing import List, Tuple
 
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from imblearn.over_sampling import SMOTENC
+from imblearn.pipeline import Pipeline
+from lightgbm import LGBMClassifier
+from sklearn.compose import ColumnTransformer
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
-from imblearn.over_sampling import SMOTE
-import joblib
-import os
-from typing import Tuple, Dict, Any, List
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from xgboost import XGBClassifier
 
-class CreditDataPreprocessor:
-    def __init__(self, portfolio_type: str = "personal"):
-        """
-        portfolio_type: 'personal' or 'retail'
-        """
-        self.portfolio_type = portfolio_type.lower()
-        self.num_imputer = None
-        self.cat_imputer = None
-        self.encoder = None
-        self.scaler = None
-        self.feature_names = []
-        self.num_cols = []
-        self.cat_cols = []
-        self.target_col = 'loan_status'
-        
-        self._init_column_definitions()
-
-    def _init_column_definitions(self):
-        if self.portfolio_type == "personal":
-            self.num_cols = [
-                'applicant_age',
-                'employment_length',
-                'annual_income',
-                'debt_to_income_ratio',
-                'credit_bureau_score',
-                'loan_amount'
-            ]
-            self.cat_cols = [
-                'housing_status',
-                'existing_external_loan_status'
-            ]
-        elif self.portfolio_type == "retail":
-            self.num_cols = [
-                'business_age_years',
-                'loan_amount',
-                'interest_rate'
-            ]
-            self.cat_cols = [
-                'nature_of_business',
-                'business_region',
-                'facility_type',
-                'existing_external_loan_status'
-            ]
-        else:
-            raise ValueError(f"Unknown portfolio_type: {self.portfolio_type}")
-
-    def fit_transform_train(self, df: pd.DataFrame, apply_smote: bool = True, random_state: int = 42) -> Tuple[np.ndarray, np.ndarray, List[str]]:
-        """
-        Fits transformers on raw training dataframe and optionally applies SMOTE.
-        Returns: X_train_processed, y_train_resampled, feature_names
-        """
-        X = df[self.num_cols + self.cat_cols].copy()
-        y = df[self.target_col].values.astype(int)
-
-        # 1. Missing Value Imputation
-        self.num_imputer = SimpleImputer(strategy='median')
-        X_num_imp = self.num_imputer.fit_transform(X[self.num_cols])
-
-        self.cat_imputer = SimpleImputer(strategy='most_frequent')
-        X_cat_imp = self.cat_imputer.fit_transform(X[self.cat_cols])
-
-        # 2. Categorical One-Hot Encoding
-        self.encoder = OneHotEncoder(sparse_output=False, handle_unknown='ignore')
-        X_cat_encoded = self.encoder.fit_transform(X_cat_imp)
-        cat_feature_names = self.encoder.get_feature_names_out(self.cat_cols).tolist()
-
-        # Combine features
-        self.feature_names = self.num_cols + cat_feature_names
-        X_combined = np.hstack([X_num_imp, X_cat_encoded])
-
-        # 3. Scaler (fitted for models that need scaling, e.g. Logistic Regression)
-        self.scaler = StandardScaler()
-        self.scaler.fit(X_combined)
-
-        # 4. SMOTE Resampling (Train set ONLY to avoid data leakage)
-        if apply_smote:
-            smote = SMOTE(random_state=random_state)
-            X_resampled, y_resampled = smote.fit_resample(X_combined, y)
-        else:
-            X_resampled, y_resampled = X_combined, y
-
-        return X_resampled, y_resampled, self.feature_names
-
-    def transform_test(self, df: pd.DataFrame) -> Tuple[np.ndarray, np.ndarray]:
-        """
-        Transforms test/validation data using fitted transformers.
-        Does NOT apply SMOTE (test data preserves original real-world distribution).
-        """
-        X = df[self.num_cols + self.cat_cols].copy()
-        y = df[self.target_col].values.astype(int)
-
-        X_num_imp = self.num_imputer.transform(X[self.num_cols])
-        X_cat_imp = self.cat_imputer.transform(X[self.cat_cols])
-        X_cat_encoded = self.encoder.transform(X_cat_imp)
-
-        X_combined = np.hstack([X_num_imp, X_cat_encoded])
-        return X_combined, y
-
-    def transform_single(self, input_dict: Dict[str, Any]) -> np.ndarray:
-        """
-        Transforms a single application dictionary into a 2D feature array.
-        """
-        df_single = pd.DataFrame([input_dict])
-        X_num = df_single[self.num_cols].values
-        X_cat = df_single[self.cat_cols].values
-
-        X_num_imp = self.num_imputer.transform(X_num)
-        X_cat_imp = self.cat_imputer.transform(X_cat)
-        X_cat_encoded = self.encoder.transform(X_cat_imp)
-
-        return np.hstack([X_num_imp, X_cat_encoded])
-
-    def save(self, filepath: str):
-        os.makedirs(os.path.dirname(filepath), exist_ok=True)
-        joblib.dump(self, filepath)
-
-    @classmethod
-    def load(cls, filepath: str) -> "CreditDataPreprocessor":
-        return joblib.load(filepath)
+from src import config
 
 
-def prepare_portfolio_splits(csv_path: str, portfolio_type: str, test_size: float = 0.20, random_state: int = 42):
-    """
-    Loads dataset, splits into train and test with stratification, fits preprocessor and returns splits.
-    """
-    df = pd.read_csv(csv_path)
-    train_df, test_df = train_test_split(
-        df, test_size=test_size, random_state=random_state, stratify=df['loan_status']
+def load_portfolio(portfolio: str) -> pd.DataFrame:
+    # keep_default_na=False: the category "None" (no external loan) must stay a
+    # category. pandas' default would read it as missing, and it would then be
+    # imputed as "Performing" (a bug in the original pipeline).
+    return pd.read_csv(config.PORTFOLIOS[portfolio]["csv"], keep_default_na=False, na_values=[""])
+
+
+def split_portfolio(df: pd.DataFrame, seed: int = config.RANDOM_SEED) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    """Stratified 60/20/20 train/validation/test split."""
+    train, rest = train_test_split(
+        df, train_size=config.TRAIN_FRAC, stratify=df[config.TARGET], random_state=seed
+    )
+    valid_share = config.VALID_FRAC / (config.VALID_FRAC + config.TEST_FRAC)
+    valid, test = train_test_split(
+        rest, train_size=valid_share, stratify=rest[config.TARGET], random_state=seed
+    )
+    return train.reset_index(drop=True), valid.reset_index(drop=True), test.reset_index(drop=True)
+
+
+def _make_model(name: str, strategy: str, pos_weight: float, seed: int):
+    params = dict(config.MODEL_PARAMS[name])
+    weighted = strategy == "class_weight"
+    if name == "Logistic_Regression":
+        return LogisticRegression(random_state=seed, class_weight="balanced" if weighted else None, **params)
+    if name == "Random_Forest":
+        return RandomForestClassifier(random_state=seed, n_jobs=-1, class_weight="balanced" if weighted else None, **params)
+    if name == "LightGBM":
+        return LGBMClassifier(random_state=seed, verbose=-1, n_jobs=4, deterministic=True, force_row_wise=True,
+                              scale_pos_weight=pos_weight if weighted else 1.0, **params)
+    if name == "XGBoost":
+        return XGBClassifier(random_state=seed, eval_metric="logloss", n_jobs=4,
+                             scale_pos_weight=pos_weight if weighted else 1.0, **params)
+    raise ValueError(name)
+
+
+def build_pipeline(portfolio: str, model_name: str, strategy: str, pos_weight: float = 1.0,
+                   seed: int = config.RANDOM_SEED) -> Pipeline:
+    spec = config.PORTFOLIOS[portfolio]
+    num, cat = spec["num_cols"], spec["cat_cols"]
+
+    impute = ColumnTransformer(
+        [
+            ("num", SimpleImputer(strategy="median"), num),
+            ("cat", SimpleImputer(strategy="most_frequent"), cat),
+        ],
+        verbose_feature_names_out=False,
+    ).set_output(transform="pandas")
+
+    # Scaling only matters for Logistic Regression; trees keep raw units so
+    # SHAP plots show real values (Naira, %, years).
+    num_step = StandardScaler() if model_name == "Logistic_Regression" else "passthrough"
+    encode = ColumnTransformer(
+        [
+            ("num", num_step, num),
+            ("cat", OneHotEncoder(handle_unknown="ignore", sparse_output=False), cat),
+        ],
+        verbose_feature_names_out=False,
     )
 
-    preprocessor = CreditDataPreprocessor(portfolio_type=portfolio_type)
-    X_train_res, y_train_res, feature_names = preprocessor.fit_transform_train(train_df, apply_smote=True)
-    X_test, y_test = preprocessor.transform_test(test_df)
-    
-    # Also prepare unscaled raw train for comparison
-    X_train_raw, y_train_raw, _ = preprocessor.fit_transform_train(train_df, apply_smote=False)
+    steps = [("impute", impute)]
+    if strategy == "smotenc":
+        steps.append(("smote", SMOTENC(categorical_features=cat, k_neighbors=config.SMOTE_K_NEIGHBORS,
+                                       random_state=seed)))
+    steps += [("encode", encode), ("model", _make_model(model_name, strategy, pos_weight, seed))]
+    return Pipeline(steps)
 
-    return {
-        'train_df': train_df,
-        'test_df': test_df,
-        'X_train_resampled': X_train_res,
-        'y_train_resampled': y_train_res,
-        'X_train_raw': X_train_raw,
-        'y_train_raw': y_train_raw,
-        'X_test': X_test,
-        'y_test': y_test,
-        'feature_names': feature_names,
-        'preprocessor': preprocessor
-    }
+
+def feature_frame(df: pd.DataFrame, portfolio: str) -> pd.DataFrame:
+    spec = config.PORTFOLIOS[portfolio]
+    return df[spec["num_cols"] + spec["cat_cols"]]
+
+
+def transformed_features(pipe: Pipeline, X: pd.DataFrame) -> Tuple[np.ndarray, List[str]]:
+    """Model-ready matrix and column names (resampling is skipped at transform time)."""
+    pre = pipe[:-1]
+    Xt = pre.transform(X)
+    names = list(pipe.named_steps["encode"].get_feature_names_out())
+    return np.asarray(Xt, dtype=float), names
+
+
+def original_feature(encoded_name: str, portfolio: str) -> str:
+    """Map a one-hot column such as 'housing_status_RENT' back to 'housing_status'."""
+    spec = config.PORTFOLIOS[portfolio]
+    if encoded_name in spec["num_cols"]:
+        return encoded_name
+    for c in sorted(spec["cat_cols"], key=len, reverse=True):
+        if encoded_name.startswith(c + "_"):
+            return c
+    return encoded_name
